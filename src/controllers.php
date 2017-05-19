@@ -41,6 +41,8 @@ $app->match("/testing/", "OrbitalExpress\\Controllers\\Game::testingJs");
 $app->view(function(array $results) {
     
     // TODO check if request is an ajax request
-
+  
     return json_encode($results);
 });
+
+$app->match("/page/{id_page}", "OrbitalExpress\\Controllers\\Game::afficheStory");
