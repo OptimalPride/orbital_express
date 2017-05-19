@@ -24,5 +24,8 @@ $app -> register(new Silex\Provider\DoctrineServiceProvider());
 $app["dao.page"] = function($app){
 	return new OrbitalExpress\DAO\PageDAO($app["db"]);
 };
+$app["dao.choice"] = function($app){
+	return new OrbitalExpress\DAO\ChoiceDAO($app["db"]);
+};
 
 return $app;
