@@ -1,5 +1,8 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
-    <p> {{ story["story"] }} </p>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="{{ asset('js/gameJs.js') }}"></script>
+	<h1>test javascript</h1>
+    <p id="story"></p>
 {% endblock %}

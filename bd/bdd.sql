@@ -44,14 +44,14 @@ CREATE TABLE IF NOT EXISTS Page (
 ALTER TABLE Page ADD INDEX(page_number);
 
 CREATE TABLE IF NOT EXISTS Choice (
-  id_choice INT(5) NOT NULL,
+  id_choice INT(5) NOT NULL AUTO_INCREMENT,
   id_current_page INT(5) NOT NULL,
   id_landing_page INT(5) NOT NULL,
   crew VARCHAR(20) NOT NULL,
   response VARCHAR(100) NOT NULL,
   PRIMARY KEY (id_choice),
-  FOREIGN KEY (id_current_page) REFERENCES Page (page_number),
-  FOREIGN KEY (id_landing_page) REFERENCES Page (page_number)
+  FOREIGN KEY (id_current_page) REFERENCES Page (id_page),
+  FOREIGN KEY (id_landing_page) REFERENCES Page (id_page)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO Adventure (id_adventure, name, description, pitch, active) values (1, "test", "test de db", "ceci est un test", true);
