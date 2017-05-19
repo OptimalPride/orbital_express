@@ -45,4 +45,4 @@ $app->view(function(array $results) {
     return json_encode($results);
 });
 
-$app->match("/page/{id_page}", "OrbitalExpress\\Controllers\\Game::afficheStory");
+$app->match("/gamefunction/", "OrbitalExpress\\Controllers\\Game::getPageInfo");

@@ -54,3 +54,14 @@ CREATE TABLE IF NOT EXISTS Choice (
   FOREIGN KEY (id_landing_page) REFERENCES Page (id_page)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO Adventure (id_adventure, name, description, pitch, active) 
+values (1, "test", "test de db", "ceci est un test", true);
+
+INSERT INTO 
+`page` (`id_page`, `page_number`, `id_adventure`, `story`, `background`, `animation`) 
+VALUES ('2', '2', '1', 'Ceci est la page deux', 'background2', 'sdd2'), ('3', '3', '1', 'Ceci est la page 3', 'background3', 'sdd3'), ('4', '4', '1', 'Ceci est la page 4', 'background4', 'sdd4');
+
+
+INSERT INTO 
+`choice` (`id_choice`, `id_current_page`, `id_landing_page`, `crew`, `response`) 
+VALUES ('1', '1', '2', 'Jonhson', 'reponse jonhson'), ('2', '1', '3', 'Sabrovich', 'reponse sabrovich'), ('3', '1', '4', 'Hans', 'Reponse Hans');
