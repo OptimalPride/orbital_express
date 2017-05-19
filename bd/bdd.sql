@@ -51,3 +51,5 @@ CREATE TABLE IF NOT EXISTS Adventure (
   active BOOLEAN,
   PRIMARY KEY (id_adventure)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO Adventure (id_adventure, name, description, pitch, active) values (1, "test", "test de db", "ceci est un test", true);
