@@ -1,5 +1,8 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
-    <p> {{ story["story"] }} </p>
+    <p> {{ page.story }} </p>
+    {% for choice in choices %}
+    <p> {{ choice.response }} </p>
+    {% endfor %}
 {% endblock %}

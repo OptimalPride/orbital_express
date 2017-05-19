@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace OrbitalExpress\DAO;
 
@@ -17,6 +17,7 @@ class PageDAO extends DAO
 			throw new \Exception("Aucune histoire à l'id:$id_page");
 		}
 	}
+	
 }
 
 ?>
