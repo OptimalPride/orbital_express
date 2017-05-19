@@ -1,14 +1,11 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
+  	<h1>test javascript</h1>
 
-    <p> {{ page.story }} </p>
-    {% for choice in choices %}
-    <p> {{ choice.response }} </p>
-    {% endfor %}
+    <div id="story">Loading...</div>
+    <div id="choices">Loading...</div>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="{{ asset('js/gameJs.js') }}"></script>
-	<h1>test javascript</h1>
-    <p id="story"></p>
 {% endblock %}

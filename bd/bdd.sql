@@ -54,3 +54,5 @@ CREATE TABLE IF NOT EXISTS Choice (
   FOREIGN KEY (id_landing_page) REFERENCES Page (id_page)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO Adventure (id_adventure, name, description, pitch, active)
+values (1, "test", "test de db", "ceci est un test", true);
