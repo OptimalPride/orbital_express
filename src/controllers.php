@@ -29,3 +29,18 @@ $app->error(function (\Exception $e, Request $request, $code) use ($app) {
 
     return new Response($app['twig']->resolveTemplate($templates)->render(array('code' => $code)), $code);
 });
+
+$app->match("/page/", function () use ($app){
+    return $app['twig']->render('game.html.twig', array());
+});
+
+$app->match("/test/json", "OrbitalExpress\\Controllers\\Game::testJson");
+
+$app->match("/testing/", "OrbitalExpress\\Controllers\\Game::testingJs");
+
+$app->view(function(array $results) {
+    
+    // TODO check if request is an ajax request
+
+    return json_encode($results);
+});
