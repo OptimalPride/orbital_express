@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{% block title '' %} - My Silex Application</title>
+
+        <title>{% block title '' %} - orbital express</title>
+
+
         <link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css" />
+
         <script>
         var baseUrl = "{{ path('homepage') }}";
         </script>
+        <nav>
+        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+          <a href="">Profil</a>  
+					<a href="{{ path("logout") }}">Deconnexion</a>
+					{% else %}
+					<a href="{{ path("login") }}">Connexion</a>
+          <a href="{{ path("register") }}">Inscription</a>
+				{% endif %}
     </head>
     <body>
         {% block content %}{% endblock %}

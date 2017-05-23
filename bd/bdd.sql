@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS Choice (
   FOREIGN KEY (id_landing_page) REFERENCES Page (id_page) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
 INSERT INTO Adventure (id_adventure, name, description, pitch, active) 
 values (1, "test", "test de db", "ceci est un test", true);
 
@@ -78,3 +79,4 @@ VALUES ('5', '1', '2', 'Ceci est la page 1', 'background2', 'sdd2'), ('6', '2', 
 INSERT INTO 
 `choice` (`id_choice`, `id_current_page`, `id_landing_page`, `crew`, `response`) 
 VALUES ('4', '5', '6', 'Jonhson', 'reponse jonhson'), ('5', '5', '7', 'Sabrovich', 'reponse sabrovich');
+

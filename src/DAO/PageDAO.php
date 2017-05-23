@@ -17,6 +17,7 @@ class PageDAO extends DAO
 			throw new \Exception("Aucune histoire à l'id:$id_page");
 		}
 	}
+
 	
 	public function getPagesByIdAdventure($id_adventure){
 		$requete = "SELECT * FROM page where id_adventure = ?";
@@ -40,6 +41,7 @@ class PageDAO extends DAO
 
 		return $page;
 	}
+
 }
 
 ?>
