@@ -17,5 +17,18 @@ class ChoiceDAO extends DAO
 			throw new \Exception("Aucun choix à l'id:$id_page");
 		}
 	}
+
+	protected function buildEntityObject(array $value){
+		$choice = new choice;
+
+		$choice -> setId_Choice($value["id_choice"]);
+		$choice -> setId_Current_Page($value["id_current_page"]);
+		$choice -> setId_Landing_Page($value["id_landing_page"]);
+		$choice -> setCrew($value["crew"]);
+		$choice -> setResponse($value["respon
+			"]);
+		
+		return $choice;
+	}
 }
 ?>

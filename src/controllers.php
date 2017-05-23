@@ -65,34 +65,4 @@ $app->match("/modifyadventure/{id_adventure}", "OrbitalExpress\\Controllers\\Adv
 
 $app->match("/displayadventure/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::displayAdventure")->bind("displayadventure");
 
-$app->match("/createadventure/", function (Request $request) use ($app){
-    $data = array(
-        "name" => "Nom de l'aventure",
-        "description" => "Description de l'aventure",
-        "pitch" => "Pitch de l'aventure, l'accroche"
-    );
-    $form = $app['form.factory']->createBuilder(FormType::class, $data)
-        ->add('name')
-        ->add('description')
-        ->add('pitch')
-        ->add('submit', SubmitType::class, [
-            'label' => 'Ajouter aventure',
-        ])
-        ->getForm();
-
-    $form->handleRequest($request);
-
-    if ($form->isValid()) {
-        $data = $form->getData();
-        if (isset($data["name"]) && isset($data["description"]) && isset($data["pitch"])) {
-            $information = array("name" => $data["name"], "description" => $data["description"], "pitch" => $data["pitch"]);
-            $msg = $app["dao.adventure"]->addNewAdventure($information);
-            $adventures = $app["dao.adventure"]->getAllAdventures();
-            return $app['twig']->render('backoffice/gestionadventure.html.twig', array("adventures" => $adventures, "msg" => $msg));
-        }
-        else{
-            throw new \Exception("Veuillez remplir toutes les informations");
-        }
-    }
-    return $app['twig']->render('backoffice/createadventure.html.twig', array('form' => $form->createView()));
-})->bind("createadventure");
+$app->match("/createadventure/", "OrbitalExpress\\Controllers\\Adventure::createAdventure")->bind("createadventure");

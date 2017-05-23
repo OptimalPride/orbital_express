@@ -24,6 +24,7 @@ $app->register(new FormServiceProvider());
 
 $app->register(new Silex\Provider\LocaleServiceProvider());
 $app->register(new Silex\Provider\TranslationServiceProvider());
+$app->register(new Silex\Provider\ValidatorServiceProvider());
 
 $app["dao.page"] = function($app){
 	return new OrbitalExpress\DAO\PageDAO($app["db"]);

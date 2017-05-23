@@ -56,6 +56,19 @@ class AdventureDAO extends DAO
 		return $msg;
 		;
 	}
+
+	protected function buildEntityObject(array $value){
+		$adventure = new adventure;
+
+		$adventure -> setId_Adventure($value["id_adventure"]);
+		$adventure -> setName($value["name"]);
+		$adventure -> setDescription($value["description"]);
+		$adventure -> setPitch($value["pitch"]);
+		$adventure -> setActive($value["active"]);
+
+		return $adventure;
+	}
+}
 }
 
 ?>

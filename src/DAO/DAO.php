@@ -37,7 +37,7 @@ abstract class DAO
 	*Doit OBLIGATOIREMENT etre redefini chez les heritiers
 	*
 	*/
-	// protected abstract function buildEntityObject(array $row);
+	protected abstract function buildEntityObject(array $row);
 	
 }
 
