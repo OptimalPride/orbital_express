@@ -12,11 +12,5 @@ class Game
 		$choices = $app["dao.choice"]->getChoicesByPageId($id_page);
 		return array("page" => $page, "choices" => $choices);
 	}
-
-	public function testingJs(Application $app){
-		$id_page = $_POST["id_page"];
-		$story = $app["dao.page"]->getStoryById($id_page);
-		return array("story" => $story);	
-	}
 }
 

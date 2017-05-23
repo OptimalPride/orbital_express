@@ -1,0 +1,32 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+
+<h2>Gestion d'aventure</h2>
+
+<a href="{{ path('createadventure')}}">Nouvelle aventure</a><br><br>
+
+<table border="1">
+	<tr>
+	{% for key, value in adventures[0] %}
+		<th>{{ key }}</th> 
+	{% endfor %}
+	<th>Actions</th>
+	</tr>
+	{% for key in adventures %}	
+		<tr>
+			{% for value in key %}
+				<td>{{ value }}</td>
+			{% endfor %}
+			<td>
+				<a href="{{ path('deleteadventure', {'id_adventure' : key.id_adventure}) }}"><img src="{{ asset('img/delete.png') }}"></a>
+				<a href="{{ path('modifyadventure', {'id_adventure' : key.id_adventure}) }}"><img src="{{ asset('img/edit.png') }}"></a>
+				<a href="{{ path('displayadventure', {'id_adventure' : key.id_adventure}) }}"><img src="{{ asset('img/info.png') }}"></a>
+			</td>
+		</tr>
+	{% endfor %}
+</table>
+
+{{ msg }}
+
+{% endblock %}
