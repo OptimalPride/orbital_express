@@ -1,15 +1,18 @@
 $(function(){
-	console.log("js marche");
-	var request = $.ajax({
+	console.log("Js marche");
+	var id_landing_page = 1;
+
+	var request = $.ajax({ 	
 		url: baseUrl+"gamefunction/",
 		method: "POST",
 		data : {id_page : 1}
-	});
+	});	
 
 	request.done(function( msg ) {
 		msg = JSON.parse(msg);
 		console.log(msg);
 		console.log("request done");
+
 		$("#story").html(msg.page.story);
 		var choices = msg.choices;
 		var ul = $('<ul>');
@@ -25,3 +28,4 @@ $(function(){
 	  alert( "Request failed: " + textStatus );
 	});
 });
+ 
