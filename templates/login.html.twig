@@ -1,0 +1,20 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+<h1>{{ title }}</h1>
+
+{% if error %}
+	<strong>Erreur de connexion :</strong>{{ error }}
+{% endif %}
+
+<form action="{{ path('login_check') }}" method="post">
+	<input type="text" name="_username" placeholder="username" value="{{ last_username }}"/>
+
+	<input type="password" name="_password"/>
+
+	<input type="submit" value="Connexion" />
+</form>
+{% endblock %}
