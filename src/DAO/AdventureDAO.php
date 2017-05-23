@@ -69,6 +69,6 @@ class AdventureDAO extends DAO
 		return $adventure;
 	}
 }
-}
+
 
 ?>
