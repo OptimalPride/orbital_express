@@ -1,0 +1,35 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+<h1>{{ title }}</h1>
+
+
+  {% if userForm %}
+  {{ form_start(userForm) }}
+
+  <label>Pseudo : </label>
+	{{ form_errors(userForm.username) }}
+    {{ form_widget(userForm.username) }}
+
+
+  <label>Mot de passe : </label>
+  {{ form_errors(userForm.password) }}
+    {{ form_widget(userForm.password) }}
+
+  <label>Email : </label>
+  {{ form_errors(userForm.email) }}
+    {{ form_widget(userForm.email) }}
+
+  <label>Avatar : </label>
+  {{ form_errors(userForm.avatar) }}
+    {{ form_widget(userForm.avatar) }}
+
+  <input type="submit" value="Inscription" />
+  {{ form_end(userForm) }}
+  {% endif %}
+
+
+{% endblock %}

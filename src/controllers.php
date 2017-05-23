@@ -5,6 +5,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 //Request::setTrustedProxies(array('127.0.0.1'));
 
@@ -29,3 +32,71 @@ $app->error(function (\Exception $e, Request $request, $code) use ($app) {
 
     return new Response($app['twig']->resolveTemplate($templates)->render(array('code' => $code)), $code);
 });
+
+$app->match("/page/", function () use ($app){
+    return $app['twig']->render('game.html.twig', array());
+});
+
+
+$app->view(function(array $results) {
+
+    // TODO check if request is an ajax request
+
+    return json_encode($results);
+});
+
+$app->match("/gamefunction/", "OrbitalExpress\\Controllers\\Game::getPageInfo");
+
+$app->get("/backoffice/", function () use ($app){
+    return $app['twig']->render('backoffice/gestion.html.twig', array());
+});
+
+
+$app->match("/gestionuser/", "OrbitalExpress\\Controllers\\Adventure::afficheGestionUser")->bind("gestionUser");
+
+$app->match("/gestionadventure/", "OrbitalExpress\\Controllers\\Adventure::afficheGestionAdventure")->bind("gestionAdventure");
+
+$app->match("/gestionsave/", "OrbitalExpress\\Controllers\\Adventure::afficheGestionAdventure")->bind("gestionSave");
+
+
+$app->match("/deleteadventure/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::deleteAdventure")->bind("deleteadventure");
+
+$app->match("/modifyadventure/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::modifyAdventure")->bind("modifyadventure");
+
+$app->match("/displayadventure/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::displayAdventure")->bind("displayadventure");
+
+$app->match("/createadventure/", "OrbitalExpress\\Controllers\\Adventure::createAdventure")->bind("createadventure");
+
+$app->match("/login" , "OrbitalExpress\\Controllers\\Home::login")
+->bind('login');
+
+$app->match("/login/redirect" , "OrbitalExpress\\Controllers\\Home::index")
+->bind('home_index');
+
+$app -> match("/register", function(Request $request) use($app){
+
+	$user = new OrbitalExpress\Entity\User;
+	$userForm = $app["form.factory"] -> create(OrbitalExpress\Form\Type\Usertype::class, $user);
+	$userForm -> handleRequest($request);
+
+	if($userForm->isSubmitted() && $userForm->isValid()){
+		$salt = substr(md5(time()), 0, 23);
+		$user -> setSalt($salt);
+
+		$password = $user-> getPassword(); // 'Bonjour'
+		$password_encode = $app["security.encoder.bcrypt"]->encodePassword($password, $user->getSalt());
+
+		$user->setPassword($password_encode);
+		$app["dao.user"]->save($user);
+		$app["session"]->getFlashBag()->add("success", "votre inscription a été prise en compte");
+	}
+	$userFormView = $userForm->createView();
+
+	$params = array(
+		"title" => "Inscription",
+		"userForm" => $userFormView
+	);
+
+	return $app["twig"]->render("register.html.twig", $params);
+
+}) -> bind("register");
