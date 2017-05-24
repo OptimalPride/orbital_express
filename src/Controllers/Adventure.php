@@ -16,8 +16,9 @@ class Adventure
 {
 
 	public function afficheGestionAdventure(Application $app){
+		$pages = $app["dao.page"]->getAllPages();
 		$adventures = $app["dao.adventure"]->getAllAdventures();
-		return $app['twig']->render('backoffice/gestionadventure.html.twig', array("adventures" => $adventures, "msg" => ""));
+		return $app['twig']->render('backoffice/gestionadventure.html.twig', array("adventures" => $adventures, "pages" => $pages, "msg" => ""));
 	}
 
 	public function getAdventures(Application $app){
