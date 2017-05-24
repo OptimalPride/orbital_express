@@ -70,7 +70,7 @@ INSERT INTO
 `choice` (`id_choice`, `id_current_page`, `id_landing_page`, `crew`, `response`) 
 VALUES ('1', '1', '2', 'Jonhson', 'reponse jonhson'), 
 ('2', '1', '3', 'Sabrovich', 'reponse sabrovich'), 
-('3', '1', '4', 'Hans', 'Reponse Hans 2'),
+('3', '1', '4', 'Hans', 'Reponse Hans'),
 ('4', '2', NULL, 'Jonhson', 'Reponse Jonhson 2'),
 ('5', '2', NULL, 'Sabrovich', 'Reponse Sabrovich 2'),
 ('6', '2', NULL, 'Hans', 'Reponse Hans 2'),

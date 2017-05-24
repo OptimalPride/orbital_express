@@ -15,7 +15,7 @@ class PageDAO extends DAO
 			return $resultat;
 		}
 		else{
-			throw new \Exception("Aucune histoire à l'id:$id_page");
+			throw new \Exception("Aucune histoire dans la base de donnée");
 		}
 	}
 
