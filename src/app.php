@@ -39,12 +39,16 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
 ));
 
 $app['twig'] = $app->extend('twig', function ($twig, $app) {
-    // add custom globals, filters, tags, ...
-
     return $twig;
 });
 
 $app -> register(new Silex\Provider\DoctrineServiceProvider());
+
+$app->register(new FormServiceProvider());
+
+$app->register(new Silex\Provider\LocaleServiceProvider());
+$app->register(new Silex\Provider\TranslationServiceProvider());
+$app->register(new Silex\Provider\ValidatorServiceProvider());
 
 $app["dao.page"] = function($app){
 	return new OrbitalExpress\DAO\PageDAO($app["db"]);
@@ -53,8 +57,13 @@ $app["dao.choice"] = function($app){
 	return new OrbitalExpress\DAO\ChoiceDAO($app["db"]);
 };
 
+
+$app["dao.adventure"] = function($app){
+	return new OrbitalExpress\DAO\AdventureDAO($app["db"]);
+};
 $app["dao.user"] = function($app){
 	return new OrbitalExpress\DAO\UserDAO($app["db"]);
+
 };
 
 return $app;

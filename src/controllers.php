@@ -34,12 +34,9 @@ $app->error(function (\Exception $e, Request $request, $code) use ($app) {
 });
 
 $app->match("/page/", function () use ($app){
-    return $app['twig']->render('game.html.twig', array());
+    return $app['twig']->render('page-jeu.html.twig', array());
 });
 
-$app->match("/test/json", "OrbitalExpress\\Controllers\\Game::testJson");
-
-$app->match("/testing/", "OrbitalExpress\\Controllers\\Game::testingJs");
 
 $app->view(function(array $results) {
 
@@ -49,6 +46,26 @@ $app->view(function(array $results) {
 });
 
 $app->match("/gamefunction/", "OrbitalExpress\\Controllers\\Game::getPageInfo");
+
+$app->get("/backoffice/", function () use ($app){
+    return $app['twig']->render('backoffice/gestion.html.twig', array());
+});
+
+
+$app->match("/gestionuser/", "OrbitalExpress\\Controllers\\Adventure::afficheGestionUser")->bind("gestionUser");
+
+$app->match("/gestionadventure/", "OrbitalExpress\\Controllers\\Adventure::afficheGestionAdventure")->bind("gestionAdventure");
+
+$app->match("/gestionsave/", "OrbitalExpress\\Controllers\\Adventure::afficheGestionAdventure")->bind("gestionSave");
+
+
+$app->match("/deleteadventure/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::deleteAdventure")->bind("deleteadventure");
+
+$app->match("/modifyadventure/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::modifyAdventure")->bind("modifyadventure");
+
+$app->match("/displayadventure/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::displayAdventure")->bind("displayadventure");
+
+$app->match("/createadventure/", "OrbitalExpress\\Controllers\\Adventure::createAdventure")->bind("createadventure");
 
 $app->match("/login" , "OrbitalExpress\\Controllers\\Home::login")
 ->bind('login');
