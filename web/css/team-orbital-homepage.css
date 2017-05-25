@@ -433,6 +433,7 @@
 
 .paragraph-3 {
   overflow: scroll;
+  overflow-x: hidden;
   max-height: none;
   padding: 30px;
   font-family: Avenir, sans-serif;
@@ -1215,6 +1216,7 @@ html.w-mod-js *[data-ix="initialstate-connexion"] {
   }
   .paragraph-3 {
     overflow: scroll;
+    overflow-x: hidden;
     max-height: none;
     text-align: center;
   }
@@ -1330,6 +1332,7 @@ html.w-mod-js *[data-ix="initialstate-connexion"] {
   }
   .paragraph-3 {
     overflow: scroll;
+    overflow-x: hidden;
   }
   .container-5 {
     margin-bottom: 99px;
@@ -1555,6 +1558,7 @@ html.w-mod-js *[data-ix="initialstate-connexion"] {
   }
   .paragraph-3 {
     overflow: scroll;
+    overflow-x: hidden;
     max-height: 500px;
   }
   .container-5 {
