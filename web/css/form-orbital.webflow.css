@@ -1,0 +1,189 @@
+
+
+form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  padding-right: 10%;
+  padding-left: 10%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  
+}
+
+input[type="submit"] {
+  display: block;
+  width: 50%;
+  margin-bottom: 21px;
+  margin-top:21px;
+  padding-right: 0%;
+  padding-left: 0%;
+  border-radius: 20px;
+  background-image: -webkit-linear-gradient(270deg, #e03a6b, rgba(167, 31, 117, .8) 86%);
+  background-image: linear-gradient(180deg, #e03a6b, rgba(167, 31, 117, .8) 86%);
+  font-family: Avenir, sans-serif;
+  color: #fff;
+  font-size: 1em;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+}
+
+input {
+  width: 70%;
+  margin-bottom: 13px;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 auto;
+  -ms-flex: 0 auto;
+  flex: 0 auto;
+  border-style: none;
+  background-color: #fff;
+  opacity:0.8;
+  -webkit-transition: border 1000ms ease;
+  transition: border 1000ms ease;
+  font-size: 1em;
+  color: #011c4a;
+}
+
+input:focus {
+  border-style: none;
+  border-width: 1px 1px 0px;
+  border-top-color: #cfe6e4;
+  border-right-color: #cfe6e4;
+  border-left-color: #cfe6e4;
+  color: #011c4a;
+}
+
+
+textarea {
+  width: 50%;
+  border-style: none;
+  background-color: #011c4a;
+  -webkit-transition: border 500ms ease;
+  transition: border 500ms ease;
+  font-family: Avenir, sans-serif;
+  color: #fff;
+  font-size: 1em;
+}
+
+textarea:focus {
+  border-width: 1px;
+  border-color: #cfe6e4;
+}
+
+label {
+  margin-bottom: 10px;
+  font-family: Avenir, sans-serif;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+@media (max-width: 991px) {
+  input[type="submit"] {
+    width: 25%;
+  }
+  input {
+    width: 80%;
+  }
+  textarea {
+    width: 80%;
+  }
+}
+
+@media (max-width: 767px) {
+  input[type="submit"] {
+    width: 30%;
+  }
+}
+
+@media (max-width: 479px) {
+  input[type="submit"] {
+    width: 50%;
+  }
+  input {
+    width: 90%;
+  }
+  textarea {
+    width: 90%;
+  }
+}
+
+@font-face {
+  font-family: 'Avenir';
+  src: url('../fonts/Avenir-BlackOblique.ttf') format('truetype'), url('../fonts/Avenir-HeavyOblique.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Avenir';
+  src: url('../fonts/Avenir-Black.ttf') format('truetype'), url('../fonts/Avenir-Heavy.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Avenir';
+  src: url('../fonts/Avenir-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Avenir';
+  src: url('../fonts/Avenir-BookOblique.ttf') format('truetype'), url('../fonts/Avenir-Oblique.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Avenir';
+  src: url('../fonts/Avenir-LightOblique.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Avenir book';
+  src: url('../fonts/Avenir-Book.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Avenir';
+  src: url('../fonts/Avenir-MediumOblique.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Avenir';
+  src: url('../fonts/Avenir-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Avenir roman';
+  src: url('../fonts/Avenir-Roman.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Slim joe';
+  src: url('../fonts/Slim-Joe.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Big john';
+  src: url('../fonts/BIG-JOHN.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
