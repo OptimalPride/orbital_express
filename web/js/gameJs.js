@@ -13,17 +13,21 @@ $(function(){
 			msg = JSON.parse(msg);
 			console.log(msg);
 			console.log("request done");
-
-			$("#story").html(msg.page.story);
-			var choice1 = msg.choices[0];
-			var choice2 = msg.choices[1];
-			var choice3 = msg.choices[2];
-			$("#response1").html(choice1.response);
-			$("#response2").html(choice2.response);
-			$("#response3").html(choice3.response);
-			$( "#link1" ).attr( "data_id", choice1.id_landing_page );
-			$( "#link2" ).attr( "data_id", choice2.id_landing_page );
-			$( "#link3" ).attr( "data_id", choice3.id_landing_page );
+			if(msg.cheat == "true"){
+				$("#story").html(msg.message);
+			}
+			else{
+				$("#story").html(msg.page.story);
+				var choice1 = msg.choices[0];
+				var choice2 = msg.choices[1];
+				var choice3 = msg.choices[2];
+				$("#response1").html(choice1.response);
+				$("#response2").html(choice2.response);
+				$("#response3").html(choice3.response);
+				$( "#link1" ).attr( "data_id", choice1.id_landing_page );
+				$( "#link2" ).attr( "data_id", choice2.id_landing_page );
+				$( "#link3" ).attr( "data_id", choice3.id_landing_page );			
+			}
 		});
 
 		request.fail(function( jqXHR, textStatus ) {
