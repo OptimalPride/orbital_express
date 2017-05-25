@@ -34,7 +34,7 @@ $app->error(function (\Exception $e, Request $request, $code) use ($app) {
 });
 
 $app->match("/page/", function () use ($app){
-    return $app['twig']->render('game.html.twig', array());
+    return $app['twig']->render('page-jeu.html.twig', array());
 });
 
 

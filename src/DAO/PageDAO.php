@@ -3,10 +3,22 @@
 namespace OrbitalExpress\DAO;
 
 use Doctrine\DBAL\Connection;
-use orbital_express\Entity\Page;
+use OrbitalExpress\Entity\Page;
 
 class PageDAO extends DAO
 {
+
+	public function getAllPages(){
+		$requete = "SELECT * FROM page";
+		$resultat = $this->getDb()->fetchAll($requete, array());
+		if($resultat){
+			return $resultat;
+		}
+		else{
+			throw new \Exception("Aucune histoire dans la base de donnée");
+		}
+	}
+
 	public function getContentById($id_page){
 		$requete = "SELECT * FROM page where id_page = ?";
 		$resultat = $this->getDb()->fetchAssoc($requete, array($id_page));

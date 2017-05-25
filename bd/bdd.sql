@@ -19,7 +19,8 @@ CREATE TABLE IF NOT EXISTS Save (
   id_current_page INT(5) NOT NULL,
   historic VARCHAR(50) NOT NULL,
   PRIMARY KEY (id_save),
-  FOREIGN KEY (id_user) REFERENCES User (id_user)
+  FOREIGN KEY (id_user) REFERENCES User (id_user) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (id_current_page) REFERENCES page (id_page) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS Adventure (
@@ -47,7 +48,7 @@ ALTER TABLE Page ADD INDEX(page_number);
 CREATE TABLE IF NOT EXISTS Choice (
   id_choice INT(5) NOT NULL AUTO_INCREMENT,
   id_current_page INT(5) NOT NULL,
-  id_landing_page INT(5) NOT NULL,
+  id_landing_page INT(5) DEFAULT NULL,
   crew VARCHAR(20) NOT NULL,
   response VARCHAR(100) NOT NULL,
   PRIMARY KEY (id_choice),
@@ -61,23 +62,23 @@ values (1, "test", "test de db", "ceci est un test", true);
 
 INSERT INTO 
 `page` (`id_page`, `page_number`, `id_adventure`, `story`, `background`, `animation`) 
-VALUES ('1', '1', '1', 'Ceci est la page un', 'background1', 'anim1'), ('2', '2', '1', 'Ceci est la page deux', 'background2', 'sdd2'), ('3', '3', '1', 'Ceci est la page 3', 'background3', 'sdd3'), ('4', '4', '1', 'Ceci est la page 4', 'background4', 'sdd4');
+VALUES ('1', '1', '1', 'Ceci est la page un', 'background1', 'anim1'), 
+('2', '2', '1', 'Ceci est la page deux', 'background2', 'sdd2'), 
+('3', '3', '1', 'Ceci est la page 3', 'background3', 'sdd3'), 
+('4', '4', '1', 'Ceci est la page 4', 'background4', 'sdd4');
 
 
 INSERT INTO 
 `choice` (`id_choice`, `id_current_page`, `id_landing_page`, `crew`, `response`) 
-VALUES ('1', '1', '2', 'Jonhson', 'reponse jonhson'), ('2', '1', '3', 'Sabrovich', 'reponse sabrovich'), ('3', '1', '4', 'Hans', 'Reponse Hans');
-
-
-
-INSERT INTO Adventure (id_adventure, name, description, pitch, active) 
-values (2, "test 2", "test de db 2 ", "ceci est un test 2", true);
-
-INSERT INTO 
-`page` (`id_page`, `page_number`, `id_adventure`, `story`, `background`, `animation`) 
-VALUES ('5', '1', '2', 'Ceci est la page 1', 'background2', 'sdd2'), ('6', '2', '2', 'Ceci est la page 2', 'background3', 'sdd3'), ('7', '3', '2', 'Ceci est la page 3', 'background4', 'sdd4');
-
-INSERT INTO 
-`choice` (`id_choice`, `id_current_page`, `id_landing_page`, `crew`, `response`) 
-VALUES ('4', '5', '6', 'Jonhson', 'reponse jonhson'), ('5', '5', '7', 'Sabrovich', 'reponse sabrovich');
-
+VALUES ('1', '1', '2', 'Jonhson', 'reponse jonhson'), 
+('2', '1', '3', 'Sabrovich', 'reponse sabrovich'), 
+('3', '1', '4', 'Hans', 'Reponse Hans'),
+('4', '2', NULL, 'Jonhson', 'Reponse Jonhson 2'),
+('5', '2', NULL, 'Sabrovich', 'Reponse Sabrovich 2'),
+('6', '2', NULL, 'Hans', 'Reponse Hans 2'),
+('7', '3', NULL, 'Jonhson', 'Reponse HanJonhsons 3'),
+('8', '3', NULL, 'Sabrovich', 'Reponse Sabrovich 3'),
+('9', '3', NULL, 'Hans', 'Reponse Hans 3'),
+('10', '4', NULL, 'Jonhson', 'Reponse Jonhson 4'),
+('11', '4', NULL, 'Sabrovich', 'Reponse Sabrovich 4'),
+('12', '4', NULL, 'Hans', 'Reponse Hans 4');
