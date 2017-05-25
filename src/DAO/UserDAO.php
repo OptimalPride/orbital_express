@@ -35,6 +35,17 @@ class UserDAO extends DAO implements UserProviderInterface
 		return $this -> loadUserByUsername($user -> getUsername());
 	}
 
+	public function verifyIfNameTaken($username){
+		$requete = "SELECT * FROM user WHERE username = ?";
+		$resultat = $this -> getDb() -> fetchAssoc($requete, array($username));
+		if($resultat){
+			return TRUE;
+		}
+		else{
+			return FALSE;
+		}
+	}
+
   public function findAll(){
 		$requete = "SELECT * FROM user";
 		$resultat = $this -> getDb() -> fetchAll($requete);
