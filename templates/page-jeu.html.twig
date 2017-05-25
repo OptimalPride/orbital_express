@@ -1,25 +1,52 @@
-<!DOCTYPE html>
-<!--  Last Published: Mon May 22 2017 15:33:23 GMT+0000 (UTC)  -->
-<html data-wf-page="59229b44024ad86ffbd70c4c" data-wf-site="591dbb2c653bab09628cdd31">
-<head>
-  <meta charset="utf-8">
-  <title>Orbital Express</title>
+{% extends "layout.html.twig" %}
+
+{% block data_html %} data-wf-page="59229b44024ad86ffbd70c4c" data-wf-site="591dbb2c653bab09628cdd31" {% endblock %}
+
+{% block title %}{% endblock %}
+
+
+
+{%  block body_class %} class="body-2" {% endblock %}
+
+
+
+{% block content %}
+
+
   <meta content="Orbital Express" property="og:title">
   <meta content="width=device-width, initial-scale=1" name="viewport">
-  <link href="{{ asset('css/normalize.css') }}" rel="stylesheet" type="text/css">
-  <link href="{{ asset('css/components.css') }}" rel="stylesheet" type="text/css">
-  <link href="{{ asset('css/team-orbital-homepage.css') }}" rel="stylesheet" type="text/css">
-  <!-- Scrollbar style -->
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.mCustomScrollbar.css') }}" />
-  <script src="{{ asset('js/modernizr.js') }}" type="text/javascript"></script>
+  <link href="css/normalize.css" rel="stylesheet" type="text/css">
+  <link href="css/components.css" rel="stylesheet" type="text/css">
+  <link href="css/team-orbital-homepage.css" rel="stylesheet" type="text/css">
+  <script src="js/modernizr.js" type="text/javascript"></script>
   <link href="https://daks2k3a4ib2z.cloudfront.net/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
   <link href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png" rel="apple-touch-icon">
-  <script>var baseUrl = "{{ path('homepage') }}";</script>
 </head>
 <body class="body-2">
+  <div class="div-block-15" data-ix="hide-nav-menu">
+    <div class="nav_menu_flex">
+      <a class="w-inline-block" href="#"><img class="close_menu" data-ix="close-menu" src="images/001-error.png">
+      </a>
+      <a class="link-block-9 w-inline-block" href="#">
+        <div class="nav_link">Profil</div>
+        <div class="nav_link">Contact</div>
+        <div class="nav_link">Regles du jeu</div>
+        <div class="nav_link">Deconnexion</div>
+        <div class="nav_link">Gestion membres</div>
+        <div class="nav_link">Gestion aventures</div>
+        <div class="nav_link">Gestion sauvegardes</div>
+      </a>
+    </div>
+  </div>
+  <div class="menuburger" data-ix="slide-navbar-out">
+    <a class="link-block-8 w-inline-block" href="#"><img src="images/002-menu.png" width="40">
+    </a>
+  </div>
+  <div class="section-9"><img class="image-10" sizes="(max-width: 1920px) 100vw, 1920px" src="images/hautpngtest.png" srcset="images/hautpngtest-p-500.png 500w, images/hautpngtest-p-800.png 800w, images/hautpngtest-p-1080.png 1080w, images/hautpngtest-p-1600.png 1600w, images/hautpngtest.png 1920w"><img class="image-9" sizes="(max-width: 1920px) 100vw, 1920px" src="images/baspngtest.png" srcset="images/baspngtest-p-500.png 500w, images/baspngtest-p-800.png 800w, images/baspngtest-p-1080.png 1080w, images/baspngtest-p-1600.png 1600w, images/baspngtest.png 1920w">
+  </div>
   <div class="navbar w-nav" data-animation="default" data-collapse="medium" data-duration="400">
     <div class="container w-container">
-      <a class="brand w-nav-brand" data-ix="fadein" href="#"><img class="image-4" src="{{ asset('img/logo-seul-test3.svg') }}" width="150">
+      <a class="brand w-nav-brand" data-ix="fadein" href="#"><img class="image-4" data-ix="logo-hover" sizes="150px" src="images/logowebfinal.png" srcset="images/logowebfinal-p-500.png 500w, images/logowebfinal-p-800.png 800w, images/logowebfinal.png 1024w" width="150">
       </a>
     </div>
   </div>
@@ -39,6 +66,7 @@
   <div class="section-8">
     <div class="container-6 w-container" data-ix="movetoleft-2">
       <div class="div-block-11"><img class="image-5" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg">
+
         <p id="response1" class="paragraph-4">Loading...</p>
         <div id="link1" class="linkchoice"><div class="divcheck" data-ix="clickcheck">
           <div class="div-block-13 w-preserve-3d"></div>
@@ -55,17 +83,20 @@
         <div id="link3" class="linkchoice"><div class="divcheck" data-ix="clickcheck">
           <div class="div-block-13 w-preserve-3d"></div>
         </div><a class="button-4 w-button" href="#">Valider ce choix</a></div>
+
       </div>
     </div>
   </div>
   <div class="section-5">
     <div class="div-block-5" data-ix="fadeup">
       <div class="div-block-7">
+
         <a class="link-block w-inline-block" target="_blank"><img src="{{ asset('img/003-facebook-letter-logo.png') }}" width="40">
         </a>
         <a class="link-block-2 w-inline-block" target="_blank"><img src="{{ asset('img/002-twitter-black-shape.png') }}" width="40">
         </a>
         <a class="link-block-3 w-inline-block" target="_blank"><img src="{{ asset('img/001-instagram-logo.png') }}" width="40">
+
         </a>
       </div>
       <div class="div-block-6"><a class="link w-preserve-3d" data-ix="linkhover" href="#">FACEBOOK</a><a class="link w-preserve-3d" data-ix="linkhover" href="#">TWITTER</a><a class="link w-preserve-3d" data-ix="linkhover" href="#">INSTAGRAM</a>
@@ -75,12 +106,14 @@
     </div>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script>
+
   <!-- Scrollbar style -->
   <script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
   <script src="{{ asset('js/team-orbital-homepage.js') }}" type="text/javascript">
   </script>
   <script  type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/gameJs.js') }}"></script>
+
   <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
 </body>
 </html>
