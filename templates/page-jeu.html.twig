@@ -2,7 +2,7 @@
 
 {% block data_html %} data-wf-page="59229b44024ad86ffbd70c4c" data-wf-site="591dbb2c653bab09628cdd31" {% endblock %}
 
-{% block title %}{% endblock %}
+{% block title %}Aventure{% endblock %}
 
 
 
@@ -12,20 +12,9 @@
 
 {% block content %}
 
-
-  <meta content="Orbital Express" property="og:title">
-  <meta content="width=device-width, initial-scale=1" name="viewport">
-  <link href="css/normalize.css" rel="stylesheet" type="text/css">
-  <link href="css/components.css" rel="stylesheet" type="text/css">
-  <link href="css/team-orbital-homepage.css" rel="stylesheet" type="text/css">
-  <script src="js/modernizr.js" type="text/javascript"></script>
-  <link href="https://daks2k3a4ib2z.cloudfront.net/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
-  <link href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png" rel="apple-touch-icon">
-</head>
-<body class="body-2">
   <div class="div-block-15" data-ix="hide-nav-menu">
     <div class="nav_menu_flex">
-      <a class="w-inline-block" href="#"><img class="close_menu" data-ix="close-menu" src="images/001-error.png">
+      <a class="w-inline-block" href="#"><img class="close_menu" data-ix="close-menu" src="{{ asset('img/001-error.png') }}">
       </a>
       <a class="link-block-9 w-inline-block" href="#">
         <div class="nav_link">Profil</div>
@@ -39,14 +28,14 @@
     </div>
   </div>
   <div class="menuburger" data-ix="slide-navbar-out">
-    <a class="link-block-8 w-inline-block" href="#"><img src="images/002-menu.png" width="40">
+    <a class="link-block-8 w-inline-block" href="#"><img src="{{ asset('img/002-menu.png') }}" width="40">
     </a>
   </div>
-  <div class="section-9"><img class="image-10" sizes="(max-width: 1920px) 100vw, 1920px" src="images/hautpngtest.png" srcset="images/hautpngtest-p-500.png 500w, images/hautpngtest-p-800.png 800w, images/hautpngtest-p-1080.png 1080w, images/hautpngtest-p-1600.png 1600w, images/hautpngtest.png 1920w"><img class="image-9" sizes="(max-width: 1920px) 100vw, 1920px" src="images/baspngtest.png" srcset="images/baspngtest-p-500.png 500w, images/baspngtest-p-800.png 800w, images/baspngtest-p-1080.png 1080w, images/baspngtest-p-1600.png 1600w, images/baspngtest.png 1920w">
+  <div class="section-9"><img class="image-10" sizes="(max-width: 1920px) 100vw, 1920px" src="{{ asset('img/hautpngtest.png') }}" srcset="{{ asset('img/hautpngtest-p-500.png') }} 500w, {{ asset('img/hautpngtest-p-800.png') }} 800w, {{ asset('img/hautpngtest-p-1080.png') }} 1080w, {{ asset('img/hautpngtest-p-1600.png') }} 1600w, {{ asset('img/hautpngtest.png') }} 1920w"><img class="image-9" sizes="(max-width: 1920px) 100vw, 1920px" src="{{ asset('img/baspngtest.png') }}" srcset="{{ asset('img/baspngtest-p-500.png') }} 500w, {{ asset('img/baspngtest-p-800.png') }} 800w, {{ asset('img/baspngtest-p-1080.png') }} 1080w, {{ asset('img/baspngtest-p-1600.png') }} 1600w, {{ asset('img/baspngtest.png') }} 1920w">
   </div>
   <div class="navbar w-nav" data-animation="default" data-collapse="medium" data-duration="400">
     <div class="container w-container">
-      <a class="brand w-nav-brand" data-ix="fadein" href="#"><img class="image-4" data-ix="logo-hover" sizes="150px" src="images/logowebfinal.png" srcset="images/logowebfinal-p-500.png 500w, images/logowebfinal-p-800.png 800w, images/logowebfinal.png 1024w" width="150">
+      <a class="brand w-nav-brand" data-ix="fadein" href="#"><img class="image-4" data-ix="logo-hover" sizes="150px" src="{{ asset('img/logowebfinal.png') }}" srcset="{{ asset('img/logowebfinal-p-500.png') }} 500w, {{ asset('img/logowebfinal-p-800.png') }} 800w, {{ asset('img/logowebfinal.png') }} 1024w" width="150">
       </a>
     </div>
   </div>
@@ -59,7 +48,11 @@
   <div class="section-6">
     <div class="container-5 w-container" data-ix="fadedown-3">
       <div class="div-block-10">
-        <p id="story" class="paragraph-3">Loading...</p>
+        <p id="story" class="paragraph-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris laoreet leo vitae faucibus lacinia. Vivamus hendrerit ut nibh nec rhoncus. Nam dapibus ante sit amet tellus consectetur, eu eleifend magna tincidunt. Aenean vel nibh a ligula venenatis finibus in fringilla mi. Praesent dictum condimentum est volutpat viverra. Nulla quis hendrerit felis, vel consequat nulla. Suspendisse eget aliquet odio. Aenean vel nisl tincidunt, egestas lectus quis, maximus mauris. Sed facilisis, nisl nec fringilla tristique, ligula nisl tincidunt odio, sed faucibus nibh erat quis ante. Duis a nibh sapien. Cras molestie erat metus, ut tristique diam eleifend finibus. Nam pulvinar nibh ut leo facilisis, sed interdum arcu finibus. Aliquam malesuada augue condimentum arcu tempor mattis. Sed ullamcorper elementum ipsum, vel viverra nibh scelerisque at.
+
+Cras efficitur venenatis elementum. Pellentesque eu massa lacus. Etiam porta lobortis imperdiet. Nunc nec malesuada sem, quis euismod elit. Nam eget diam non felis tincidunt sagittis. Nulla porta est non felis pellentesque auctor. Vestibulum posuere viverra massa, eu pulvinar magna consequat sed. Morbi vestibulum sed nisl eu ornare. Vivamus consequat nec urna ac consequat. Ut ut justo a lorem euismod accumsan. Nam metus dui, cursus vitae pretium eget, eleifend lobortis metus. Praesent fringilla consequat pellentesque.
+
+</p>
       </div>
     </div>
   </div>
@@ -87,33 +80,6 @@
       </div>
     </div>
   </div>
-  <div class="section-5">
-    <div class="div-block-5" data-ix="fadeup">
-      <div class="div-block-7">
+{% endblock %}
 
-        <a class="link-block w-inline-block" target="_blank"><img src="{{ asset('img/003-facebook-letter-logo.png') }}" width="40">
-        </a>
-        <a class="link-block-2 w-inline-block" target="_blank"><img src="{{ asset('img/002-twitter-black-shape.png') }}" width="40">
-        </a>
-        <a class="link-block-3 w-inline-block" target="_blank"><img src="{{ asset('img/001-instagram-logo.png') }}" width="40">
 
-        </a>
-      </div>
-      <div class="div-block-6"><a class="link w-preserve-3d" data-ix="linkhover" href="#">FACEBOOK</a><a class="link w-preserve-3d" data-ix="linkhover" href="#">TWITTER</a><a class="link w-preserve-3d" data-ix="linkhover" href="#">INSTAGRAM</a>
-      </div>
-      <div class="div-block-9"><a class="link w-preserve-3d" data-ix="linkhover" href="#">2017©TEAMORBITAL</a>
-      </div>
-    </div>
-  </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script>
-
-  <!-- Scrollbar style -->
-  <script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
-  <script src="{{ asset('js/team-orbital-homepage.js') }}" type="text/javascript">
-  </script>
-  <script  type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('js/gameJs.js') }}"></script>
-
-  <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
-</body>
-</html>
