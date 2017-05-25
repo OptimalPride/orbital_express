@@ -2114,6 +2114,17 @@
 
 }());
 
+
+/* Style scrollbar */
+(function($){
+    $(window).on("load",function(){
+        $(".paragraph-3").mCustomScrollbar({
+			theme:"minimal"
+		});
+    });
+})(jQuery);
+
+
 /**
  * ----------------------------------------------------------------------
  * Webflow: Interactions: Init
