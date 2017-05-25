@@ -3,7 +3,7 @@
 namespace OrbitalExpress\DAO;
 
 use Doctrine\DBAL\Connection;
-use orbital_express\Entity\Save;
+use OrbitalExpress\Entity\Save;
 
 class SaveDAO extends DAO
 {
@@ -41,8 +41,28 @@ class SaveDAO extends DAO
 		}
 	}
 
-	public function verifyPageBySave($id_user, $id_page){
+	public function verifyPageBySave(array $infos){
 		$requete = "SELECT id_current_page FROM save where id_save = ?";
+		$id_save = $infos["id_save"];
+		$id_current_page = $infos["id_current_page"];
+		$resultat = $this->getDb()->fetchAssoc($requete, array($id_save));
+		if($resultat["id_current_page"] == $id_current_page){
+			return FALSE;
+		}
+		else {
+			return TRUE;
+		}
+	}
+
+	protected function buildEntityObject(array $value){
+		$save = new save;
+
+		$save -> setId_Save($value["id_save"]);
+		$save -> setId_User($value["id_user"]);
+		$save -> setId_Current_Page($value["id_current_page"]);
+		$save -> setHistoric($value["historic"]);
+
+		return $save;
 	}
 }
 ?>

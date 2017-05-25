@@ -3,7 +3,7 @@
 namespace OrbitalExpress\DAO;
 
 use Doctrine\DBAL\Connection;
-use orbital_express\Entity\Choice;
+use OrbitalExpress\Entity\Choice;
 
 class ChoiceDAO extends DAO
 {

@@ -61,9 +61,13 @@ $app["dao.choice"] = function($app){
 $app["dao.adventure"] = function($app){
 	return new OrbitalExpress\DAO\AdventureDAO($app["db"]);
 };
-$app["dao.user"] = function($app){
-	return new OrbitalExpress\DAO\UserDAO($app["db"]);
 
+$app["dao.user"] = function($app){
+    return new OrbitalExpress\DAO\UserDAO($app["db"]);
+};
+
+$app["dao.save"] = function($app){
+	return new OrbitalExpress\DAO\SaveDAO($app["db"]);
 };
 
 return $app;

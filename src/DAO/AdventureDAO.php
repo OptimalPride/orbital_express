@@ -3,7 +3,7 @@
 namespace OrbitalExpress\DAO;
 
 use Doctrine\DBAL\Connection;
-use orbital_express\Entity\Adventure;
+use OrbitalExpress\Entity\Adventure;
 
 class AdventureDAO extends DAO
 {
