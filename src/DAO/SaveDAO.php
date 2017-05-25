@@ -54,6 +54,19 @@ class SaveDAO extends DAO
 		}
 	}
 
+	public function updateSave(array $infos){
+		$requete "UPDATE save SET id_current_page = ? WHERE id_save = ?";
+		$id_current_page = $infos["id_current_page"];
+		$id_save = $infos["id_save"];
+		if ($this->getDb()->executeUpdate($requete, array($id_current_page, $id_save))){
+			$msg = "sauvegarde réussie";
+		}
+		else {
+			$msg = "Erreur pendant l'update de la sauvegarde";
+		}
+		return $msg;
+	}
+
 	protected function buildEntityObject(array $value){
 		$save = new save;
 
