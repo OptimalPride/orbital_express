@@ -41,7 +41,7 @@ $app->match("/page/", function () use ($app){
 $app->view(function(array $results) {
 
     // TODO check if request is an ajax request
-
+	
     return json_encode($results);
 });
 
@@ -67,13 +67,14 @@ $app->match("/displayadventure/{id_adventure}", "OrbitalExpress\\Controllers\\Ad
 
 $app->match("/createadventure/", "OrbitalExpress\\Controllers\\Adventure::createAdventure")->bind("createadventure");
 
-$app->match("/login" , "OrbitalExpress\\Controllers\\Home::login")
+$app->match("/login/" , "OrbitalExpress\\Controllers\\Home::login")
 ->bind('login');
 
-$app->match("/login/redirect" , "OrbitalExpress\\Controllers\\Home::index")
+$app->match("/login/redirect/" , "OrbitalExpress\\Controllers\\Home::index")
 ->bind('home_index');
 
-$app -> match("/register", function(Request $request) use($app){
+$app->match("/register2/", "OrbitalExpress\\Controllers\\Home::getRegister");
+$app -> match("/register/", function(Request $request) use($app){
 
 	$user = new OrbitalExpress\Entity\User;
 	$userForm = $app["form.factory"] -> create(OrbitalExpress\Form\Type\Usertype::class, $user);
@@ -89,14 +90,19 @@ $app -> match("/register", function(Request $request) use($app){
 		$user->setPassword($password_encode);
 		$app["dao.user"]->save($user);
 		$app["session"]->getFlashBag()->add("success", "votre inscription a été prise en compte");
+		// return $app["twig"]->render("index.html.twig");
+		return "ça marche !!";
 	}
 	$userFormView = $userForm->createView();
 
 	$params = array(
-		"title" => "Inscription",
-		"userForm" => $userFormView
+		"userForm" => $userForm->createView()
 	);
 
-	return $app["twig"]->render("register.html.twig", $params);
+	 return $app["twig"]->render("register.html.twig", $params);
 
 }) -> bind("register");
+
+$app->match("/profil/", function () use ($app){
+    return $app['twig']->render('profil.html.twig', array());
+});

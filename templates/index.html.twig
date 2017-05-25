@@ -1,21 +1,38 @@
-<!DOCTYPE html>
-<!--  Last Published: Mon May 22 2017 15:33:23 GMT+0000 (UTC)  -->
-<html data-wf-page="591dbb2c653bab09628cdd32" data-wf-site="591dbb2c653bab09628cdd31">
-<head>
-  <meta charset="utf-8">
-  <title>Team Orbital HomePage</title>
-  <meta content="width=device-width, initial-scale=1" name="viewport">
-  <link href="{{ asset('css/normalize.css') }}" rel="stylesheet" type="text/css">
-  <link href="{{ asset('css/components.css') }}" rel="stylesheet" type="text/css">
-  <link href="{{ asset('css/team-orbital-homepage.css') }}" rel="stylesheet" type="text/css">
-  <script src="{{ asset('js/modernizr.js') }}" type="text/javascript"></script>
-  <link href="https://daks2k3a4ib2z.cloudfront.net/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
-  <link href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png" rel="apple-touch-icon">
-</head>
-<body class="body">
+{% extends "layout.html.twig" %}
+
+{% block data_html %} data-wf-page="591dbb2c653bab09628cdd32" data-wf-site="591dbb2c653bab09628cdd31" {% endblock %}
+
+{% block title %}HomePage{% endblock %}
+
+
+
+{%  block body_class %} class="body" {% endblock %}
+
+
+
+{% block content %}
+
+  <div class="popup_wrapper" data-ix="initialstate-connexion">
+    <div class="popup_connexion">
+      <a class="closepopup w-inline-block" data-ix="close-connexion" href="#"><img class="image_close_poup" src="{{ asset('img/001-error.png') }}" width="40">
+      </a>
+      <h3 class="headerconnexion">connexion</h3>
+      <div class="contenu_popup_connexion"></div>
+    </div>
+  </div>
+  <div class="popup_wrapper2" data-ix="initialstate-inscription">
+    <div class="popup_inscription">
+      <a class="closepopup_inscription w-inline-block" data-ix="close-inscription" href="#"><img class="image_close_popup_inscription" src="{{ asset('img/001-error.png') }}" width="40">
+      </a>
+      <h3 class="header_inscription">Inscription</h3>
+      <div class="contenu_popup_inscription"></div>
+    </div>
+  </div>
+  <div class="section-9"><img class="planete1" data-ix="planete1" src="{{ asset('img/planete3png.png') }}" width="111.5"><img class="image-10" sizes="(max-width: 1920px) 100vw, 1920px" src="{{ asset('img/hautpngtest.png') }}" srcset="{{ asset('img/hautpngtest-p-500.png') }} 500w, {{ asset('img/hautpngtest-p-800.png') }} 800w, {{ asset('img/hautpngtest-p-1080.png') }} 1080w, {{ asset('img/hautpngtest-p-1600.png') }} 1600w, {{ asset('img/hautpngtest.png') }} 1920w"><img class="image-13 planeteanneau" data-ix="planeteanneau" sizes="(max-width: 767px) 100vw, 500px" src="{{ asset('img/planeteanneaupng.png') }}" srcset="{{ asset('img/planeteanneaupng-p-500.png') }} 500w, {{ asset('img/planeteanneaupng.png') }} 728w" width="500"><img class="planete3" data-ix="planete-3" src="{{ asset('img/planete6png.png') }}" width="62.5"><img class="image-9" sizes="(max-width: 1920px) 100vw, 1920px" src="{{ asset('img/baspngtest.png') }}" srcset="{{ asset('img/baspngtest-p-500.png') }} 500w, {{ asset('img/baspngtest-p-800.png') }} 800w, {{ asset('img/baspngtest-p-1080.png') }} 1080w, {{ asset('img/baspngtest-p-1600.png') }} 1600w, {{ asset('img/baspngtest.png') }} 1920w"><img class="planete2" data-ix="planete2" src="{{ asset('img/planete5png.png') }}" width="300">
+  </div>
   <div class="navbar w-nav" data-animation="default" data-collapse="medium" data-duration="400">
     <div class="container w-container">
-      <a class="w-nav-brand" data-ix="fadein" href="#"><img class="image-4" data-ix="logo-hover" src="{{ asset('img/logo-seul-test3.svg') }}" width="150">
+      <a class="w-nav-brand" data-ix="fadein" href="#"><img class="image-4" data-ix="logo-hover" sizes="(max-width: 479px) 92vw, 150px" src="{{ asset('img/logowebfinal.png') }}" srcset="{{ asset('img/logowebfinal-p-500.png')}} 500w, {{ asset('img/images/logowebfinal-p-800.png') }} 800w, {{ asset('img/logowebfinal.png') }} 1024w" width="150">
       </a>
     </div>
   </div>
@@ -30,33 +47,14 @@
         <div class="column-3 w-col w-col-6 w-col-stack w-col-tiny-tiny-stack" data-ix="movetoleft">
           <h1 class="heading-3">une épopée incroyable...</h1>
           <p class="paragraph-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
-          <p class="paragraph-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
         </div>
       </div>
     </div>
   </div>
   <div class="section-4">
-    <div class="container-3 w-container"><a class="boutonhome button w-button" data-ix="fadedown" href="#">inscription</a><a class="boutonhome button w-button" data-ix="fadedown-2" href="#">Se connecter</a>
+    <div class="container-3 w-container" data-ix="fadedown-2"><a class="bouton_inscription boutonhome button w-button" data-ix="click-bouton-inscription" href="#">inscription</a><a class="bouton_connexion boutonhome button w-button" data-ix="click-bouton-connexion" href="#">Se connecter</a>
     </div>
   </div>
-  <div class="section-5">
-    <div class="div-block-5" data-ix="fadeup">
-      <div class="div-block-7">
-        <a class="link-block w-inline-block" target="_blank"><img src="{{ asset('img/003-facebook-letter-logo.png') }}" width="40">
-        </a>
-        <a class="link-block-2 w-inline-block" target="_blank"><img src="{{ asset('img/002-twitter-black-shape.png') }}" width="40">
-        </a>
-        <a class="link-block-3 w-inline-block" target="_blank"><img src="{{ asset('img/001-instagram-logo.png') }}" width="40">
-        </a>
-      </div>
-      <div class="div-block-6"><a class="link w-preserve-3d" data-ix="linkhover" href="#">FACEBOOK</a><a class="link w-preserve-3d" data-ix="linkhover" href="#">TWITTER</a><a class="link w-preserve-3d" data-ix="linkhover" href="#">INSTAGRAM</a>
-      </div>
-      <div class="div-block-9"><a class="link w-preserve-3d" data-ix="linkhover" href="#">2017©TEAMORBITAL</a>
-      </div>
-    </div>
-  </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script>
-  <script src="{{ asset('js/team-orbital-homepage.js') }}" type="text/javascript"></script>
-  <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
-</body>
-</html>
+  <script  type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/connexion.js') }}"></script>
+{% endblock %}
