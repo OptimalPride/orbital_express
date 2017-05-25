@@ -1,12 +1,12 @@
 $(function(){
 	console.log("Js marche");
-	var id_landing_page = 1;
 
-	function gameFunction(page){
+	function gameFunction(id_landing_page, id_current_page){
 		var request = $.ajax({ 	
 			url: baseUrl+"gamefunction/",
 			method: "POST",
-			data : {id_page : page}
+			data : {id_landing_page : id_landing_page,
+			 id_current_page : id_current_page}
 		});	
 
 		request.done(function( msg ) {
@@ -31,15 +31,14 @@ $(function(){
 		});		
 	}
 
-	var page = 1;
-	gameFunction(page);
+	var id_landing_page = 1;
+	var id_current_page = id_landing_page;
+	gameFunction(id_landing_page, id_current_page);
 
 	$("div.linkchoice").click(function(e) {
-
-		page = $(this).attr('data_id');
-		console.log(page);
-		gameFunction(page);
-		
+		id_current_page = id_landing_page;
+		id_landing_page = $(this).attr('data_id');
+		gameFunction(id_landing_page, id_current_page);
 	});
 	
 
