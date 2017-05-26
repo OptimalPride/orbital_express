@@ -9,6 +9,8 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
+
+
 //Request::setTrustedProxies(array('127.0.0.1'));
 
 $app->get('/', function () use ($app) {
@@ -70,9 +72,19 @@ $app->match("/createadventure/", "OrbitalExpress\\Controllers\\Adventure::create
 $app->match("/login" , "OrbitalExpress\\Controllers\\Home::login")
 ->bind('login');
 
+$app->get("/profil/{id}", function($id) use ($app){
+	$user = $app["dao.user"]->find($id);
+
+	$params = array(
+		"user" => $user,
+	);
+  return $app["twig"]->render("profil.html.twig", $params);
+}) -> bind("profil");
+
 $app->match("/login/redirect" , "OrbitalExpress\\Controllers\\Home::index")
 ->bind('home_index');
 
+// START REGISTER
 $app -> match("/register", function(Request $request) use($app){
 
 	$user = new OrbitalExpress\Entity\User;
@@ -100,3 +112,4 @@ $app -> match("/register", function(Request $request) use($app){
 	return $app["twig"]->render("register.html.twig", $params);
 
 }) -> bind("register");
+// END REGISTER
