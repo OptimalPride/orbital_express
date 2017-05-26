@@ -17,7 +17,6 @@ class Home
 				'last_username' => $app['session'] -> get('_security.last_username'),
 				'title' =>	'Connexion'
 			);
-
 			$infos = array("redirect"=> "false", "display" => $app['twig'] -> render('login.html.twig', $params));
 			return $infos;
 		}

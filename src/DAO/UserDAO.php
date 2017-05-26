@@ -119,6 +119,11 @@ class UserDAO extends DAO implements UserProviderInterface
 		}
 	}
 
+	public function getUserData(){
+		$user = $this->get('security.token_storage')->getToken()->getUser();
+		return $user;
+	}
+
 }
 
 

@@ -20,6 +20,7 @@ $(function(){
 			$(".contenu_popup_connexion").html(msg['display']);
 			$("div.contenu_popup_connexion > form").on("submit", function(e){
 				e.preventDefault();
+				var formData = $(this).serialize();
 				var loginData = $.ajax({ 	
 					url: $(this).attr('action'),
 					method: $(this).attr('method'),
@@ -28,9 +29,9 @@ $(function(){
 
 				loginData.done(function(reg){
 					reg = JSON.parse(reg);
-					console.log(reg);
+					console.log(loginData);
 					if(reg["redirect"] == "true"){
-						window.location.href=baseUrl+'profil';
+						// window.location.href=baseUrl+'profil';
 					}
 					else{
 						$("#error_connexion").html("Erreur de saisie");
