@@ -1,6 +1,6 @@
 $(function(){
 
-	var loginInit = $.ajax({
+	var loginInit = $.ajax({ 	
 		url: baseUrl+"login/",
 		method: "POST",
 	});
@@ -10,10 +10,10 @@ $(function(){
 	});
 
 	$("a.bouton_connexion").click(function(e){
-		var login = $.ajax({
+		var login = $.ajax({ 	
 			url: baseUrl+"login/",
 			method: "POST",
-		});
+		});	
 
 		login.done(function( msg ) {
 			msg = JSON.parse(msg);
@@ -21,7 +21,7 @@ $(function(){
 			$("div.contenu_popup_connexion > form").on("submit", function(e){
 				e.preventDefault();
 				var formData = $(this).serialize();
-				var loginData = $.ajax({
+				var loginData = $.ajax({ 	
 					url: $(this).attr('action'),
 					method: $(this).attr('method'),
 					data: $(this).serialize()
@@ -31,7 +31,7 @@ $(function(){
 					reg = JSON.parse(reg);
 					console.log(loginData);
 					if(reg["redirect"] == "true"){
-						 window.location.href=baseUrl+'tableau';
+						window.location.href=baseUrl+'tableau';
 					}
 					else{
 						$("#error_connexion").html("Erreur de saisie");
@@ -39,37 +39,37 @@ $(function(){
 				});
 				loginData.fail(function( jqXHR, textStatus ) {
 		  			alert( "Request failed: " + textStatus );
-		  		});
+		  		});			
 			});
 		});
 
 		login.fail(function( jqXHR, textStatus ) {
 		  alert( "Request failed: " + textStatus );
-		});
+		});		
 	});
 
 
 // ---------------------------
 
-	var registerInit = $.ajax({
+	var registerInit = $.ajax({ 	
 		url: baseUrl+"register/",
 		method: "POST",
-	});
+	});	
 	registerInit.done(function( msg ) {
 		$(".contenu_popup_inscription").html(msg);
 	});
 
 	$("a.bouton_inscription").click(function(e){
-		var register = $.ajax({
+		var register = $.ajax({ 	
 			url: baseUrl+"register/",
 			method: "POST",
-		});
+		});	
 
 		register.done(function( msg ) {
 			$(".contenu_popup_inscription").html(msg);
 			$("div.contenu_popup_inscription > form").on("submit", function(e){
 				e.preventDefault();
-				var registerData = $.ajax({
+				var registerData = $.ajax({ 	
 					url: $(this).attr('action'),
 					method: $(this).attr('method'),
 					data: $(this).serialize()
@@ -90,8 +90,7 @@ $(function(){
 				});
 				registerData.fail(function( jqXHR, textStatus ) {
 		  			alert( "Request failed: " + textStatus );
-		  		});
-
+		  		});	
 			});
 		});
 

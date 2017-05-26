@@ -101,7 +101,6 @@ $app -> match("/register/", function(Request $request) use($app){
 		else{
 			$salt = substr(md5(time()), 0, 23);
 			$user -> setSalt($salt);
-
 			$password = $user-> getPassword(); // 'Bonjour'
 			$password_encode = $app["security.encoder.bcrypt"]->encodePassword($password, $user->getSalt());
 
@@ -109,6 +108,7 @@ $app -> match("/register/", function(Request $request) use($app){
 			$app["dao.user"]->save($user);
 			$app["session"]->getFlashBag()->add("success", "votre inscription a été prise en compte");
 			// return $app["twig"]->render("index.html.twig");
+
 			return "ça marche !!";
 		}
 
@@ -130,7 +130,8 @@ $app->match("/goprofil/", function () use ($app){
 });
 
 $app->match("/profil/", function () use ($app){
-    return $app['twig']->render('profil.html.twig', array());
+	$userTest = $app["session"]->get("user");
+    return $app['twig']->render('profil.html.twig', array("userTest" =>$userTest));
 })->bind('profil');
 
 $app->match("/contact/", function () use ($app){
@@ -140,3 +141,5 @@ $app->match("/contact/", function () use ($app){
 $app->match("/tableau/", function () use ($app){
     return $app['twig']->render('tableau-de-bord.html.twig', array());
 })->bind('tableau');
+
+$app->match("/sessionset/", "OrbitalExpress\\Controllers\\Home::sessionSet");

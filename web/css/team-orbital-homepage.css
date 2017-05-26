@@ -818,6 +818,11 @@
   font-size: 0.85em;
 }
 
+.nav_link > a{
+  text-decoration:none;
+  color:#fff;
+}
+
 .link-block-9 {
   width: 100%;
   text-decoration: none;
