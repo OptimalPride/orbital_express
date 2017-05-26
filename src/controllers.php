@@ -122,3 +122,14 @@ $app -> match("/register", function(Request $request) use($app){
 $app->match("/profil/", function () use ($app){
     return $app['twig']->render('profil.html.twig', array());
 });
+
+
+$app->match("/contact/", function () use ($app){
+    return $app['twig']->render('support.html.twig', array());
+});
+
+$app->match("/tableau/", function () use ($app){
+    return $app['twig']->render('tableau-de-bord.html.twig', array());
+});
+
+
