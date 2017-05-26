@@ -1,4 +1,4 @@
-{% extends "layout.html.twig" %}
+{% extends "layoutBO.html.twig" %}
 
 {% block content %}
 
@@ -9,12 +9,12 @@
 <table border="1">
 	<tr>
 	{% for key, value in adventures[0] %}
-		<th>{{ key }}</th> 
+		<th>{{ key }}</th>
 	{% endfor %}
 	<th>Nombres de pages</th>
 	<th>Actions</th>
 	</tr>
-	{% for key in adventures %}	
+	{% for key in adventures %}
 		<tr>
 			{% for key2, value in key %}
 				{% if key2 == "active" %}
@@ -26,13 +26,13 @@
 				{% else %}
 					<td>{{ value }}</td>
 				{% endif %}
-			{% endfor %}	
+			{% endfor %}
 			{% set i = 0 %}
 				{% for key2 in pages %}
 					{% if key2["id_adventure"] == key["id_adventure"]  %}
 						{% set i = i + 1 %}
 					{% endif %}
-				{% endfor %}	
+				{% endfor %}
 			<td>{{ i }}</td>
 			<td>
 				<a href="{{ path('deleteadventure', {'id_adventure' : key.id_adventure}) }}"><img src="{{ asset('img/delete.png') }}"></a>

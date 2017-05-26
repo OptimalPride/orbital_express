@@ -20,7 +20,7 @@ class AdventureDAO extends DAO
 
 	public function getAdventureById($id_adventure){
 		$requete = "SELECT * FROM adventure where id_adventure = ?";
-		$resultat = $this->getDb()->fetchAll($requete, array($id_adventure));
+		$resultat = $this->getDb()->fetchAssoc($requete, array($id_adventure));
 		if($resultat){
 			return $resultat;
 		}
@@ -55,6 +55,14 @@ class AdventureDAO extends DAO
 		}
 		return $msg;
 		;
+	}
+
+	public function updateAdventure($information){
+		$name = $information["name"];
+		$description = $information["description"];
+		$pitch = $information["pitch"];
+		$requete = "UPDATE adventure(name, description, pitch) VALUES (:name, :description, :pitch)";
+		
 	}
 
 	protected function buildEntityObject(array $value){
