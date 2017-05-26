@@ -31,7 +31,7 @@ $(function(){
 					reg = JSON.parse(reg);
 					console.log(loginData);
 					if(reg["redirect"] == "true"){
-						// window.location.href=baseUrl+'profil';
+						window.location.href=baseUrl+'tableau';
 					}
 					else{
 						$("#error_connexion").html("Erreur de saisie");

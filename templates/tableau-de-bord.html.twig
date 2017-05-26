@@ -11,7 +11,20 @@
 
 
 {% block content %}
-
+  <script  type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+<script>
+$(function(){
+    var session = $.ajax({  
+      url: baseUrl+"sessionset/",
+      method: "POST",
+      data : {id_user : {{app.user.id_user}},
+       username : '{{app.user.username}}', email : '{{app.user.email}}', role : '{{app.user.role}}'}
+    }); 
+    session.done(function( msg ) {
+      console.log(msg);
+    });
+});
+</script>
   <div class="section-7">
     <div class="container-4 w-container">
       <h1 class="heading-5" data-ix="fadedown">Tableau de bord</h1>
@@ -21,8 +34,8 @@
   <div class="infos_user" data-ix="fadedown-4">
     <div class="container_infos_user w-container">
       <div>
-        <p class="login_pseudo">Pseudo : janinedragonforce</p>
-        <p class="email">Email : janine@dragonforce.com</p>
+        <p class="login_pseudo">Pseudo : {{app.user.username}}</p>
+        <p class="email">Email : {{app.user.email}}</p>
       </div>
     </div>
     <div class="div-block-18">
