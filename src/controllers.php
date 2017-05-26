@@ -87,7 +87,7 @@ $app->match("/login/redirect" , "OrbitalExpress\\Controllers\\Home::index")
 
 // START REGISTER
 $app -> match("/register/", function(Request $request) use($app){
-
+  
 	$user = new OrbitalExpress\Entity\User;
 	$userForm = $app["form.factory"] -> create(OrbitalExpress\Form\Type\Usertype::class, $user);
 	$userForm -> handleRequest($request);
