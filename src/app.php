@@ -29,7 +29,7 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
             'anonymous' => true,
             'logout' => true,
             'form' => array('login' => '/login', 'check_path' => '/login_check',
-              'default_target_path' => '/login/redirect',
+              'default_target_path' => '/profil',
               'always_use_default_target_path' => true),
             'users' => function () use ($app) {
                 return new OrbitalExpress\DAO\UserDAO($app['db']);
@@ -61,9 +61,13 @@ $app["dao.choice"] = function($app){
 $app["dao.adventure"] = function($app){
 	return new OrbitalExpress\DAO\AdventureDAO($app["db"]);
 };
-$app["dao.user"] = function($app){
-	return new OrbitalExpress\DAO\UserDAO($app["db"]);
 
+$app["dao.user"] = function($app){
+    return new OrbitalExpress\DAO\UserDAO($app["db"]);
+};
+
+$app["dao.save"] = function($app){
+	return new OrbitalExpress\DAO\SaveDAO($app["db"]);
 };
 
 return $app;

@@ -3,7 +3,7 @@
 namespace OrbitalExpress\DAO;
 
 use Doctrine\DBAL\Connection;
-use orbital_express\Entity\Page;
+use OrbitalExpress\Entity\Page;
 
 class PageDAO extends DAO
 {
