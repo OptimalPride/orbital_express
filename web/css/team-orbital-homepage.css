@@ -1,8 +1,7 @@
 .body {
-  background-image: url('{{ asset('img/background_1png.png') }}');
+  background-color:#011C4A;
   background-position: 0px 0px;
   background-size: 1920px 1080px;
-  background-repeat: repeat;
   background-attachment: fixed;
   font-family: Avenir, sans-serif;
   font-size: 100%;
@@ -195,7 +194,7 @@
 
 .heading-2 {
   display: block;
-  width: 270%;
+  width: 100%;
   background-color: transparent;
   font-family: 'Big john', sans-serif;
   font-size: 3.5em;
@@ -370,7 +369,7 @@
 }
 
 .heading-4 {
-  width: 281%;
+  width: 100%;
   margin-top: 20px;
   margin-bottom: 0px;
   font-family: 'Big john', sans-serif;
@@ -404,7 +403,7 @@
 }
 
 .body-2 {
-  background-image: url('{{asset('img/background_1png.png') }}');
+  background-color:#011C4A;
   background-position: 0px 0px;
   background-size: cover;
 }
@@ -991,7 +990,7 @@
 }
 
 .body-3 {
-  background-image: url('{{ asset('img/background_1png.png') }}');
+  background-color:#011C4A;
   background-position: 0px 0px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -1179,7 +1178,7 @@
 }
 
 .body-4 {
-  background-image: url('{{ asset('img/background_1png.png') }}');
+  background-color:#011C4A;
   background-position: 0px 0px;
   background-size: cover;
   background-attachment: fixed;
@@ -1326,7 +1325,7 @@ html.w-mod-js *[data-ix="initialstate-connexion"] {
 
 @media (max-width: 991px) {
   .body {
-    background-image: url('{{ asset('img/background_1png.png') }}');
+    background-color:#011C4A;
     background-position: 0px 0px;
     background-size: cover;
   }
