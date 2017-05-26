@@ -1,15 +1,1 @@
-{% extends "layout.html.twig" %}
-
-{% block content %}
-
-	<div>
-		<a href="{{ path('gestionUser') }}">Gestion des membres</a>
-		<a href="{{ path('gestionAdventure') }}">Gestion des aventures</a>
-		<a href="{{ path('gestionSave') }}">Gestion des sauvegardes</a>
-	</div>
-
-<div id="load_gestion"></div>
-
-	<script  type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/gestionJs.js') }}"></script>
-{% endblock %}
+{% extends "layoutBO.html.twig" %}
