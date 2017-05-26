@@ -85,7 +85,7 @@ $app->match("/login/redirect" , "OrbitalExpress\\Controllers\\Home::index")
 ->bind('home_index');
 
 // START REGISTER
-$app -> match("/register", function(Request $request) use($app){
+$app -> match("/register/", function(Request $request) use($app){
 
 
 
