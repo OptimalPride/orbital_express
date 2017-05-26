@@ -1,5 +1,36 @@
-{% extends "layout.html.twig" %}
+{% extends "layout-home.html.twig" %}
+
+{% block data_html %} data-wf-page="591dbb2c653bab09628cdd32" data-wf-site="591dbb2c653bab09628cdd31" {% endblock %}
+
+{% block title %}HomePage{% endblock %}
+
+
+
+{%  block body_class %} class="body" {% endblock %}
+
+
 
 {% block content %}
-    Welcome to your new Silex Application!
+
+  <div class="section-3">
+    <div>
+      <div class="row-2 w-row">
+        <div class="column-2 w-col w-col-6 w-col-stack w-col-tiny-tiny-stack">
+          <div class="div-block-8">
+            <h1 class="heading-4" data-ix="movetoright">BIENVENUE,<br>AVENTURIER.</h1>
+          </div>
+        </div>
+        <div class="column-3 w-col w-col-6 w-col-stack w-col-tiny-tiny-stack" data-ix="movetoleft">
+          <h1 class="heading-3">une épopée incroyable...</h1>
+          <p class="paragraph-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-4">
+    <div class="container-3 w-container" data-ix="fadedown-2"><a class="bouton_inscription boutonhome button w-button" data-ix="click-bouton-inscription" href="#">inscription</a><a class="bouton_connexion boutonhome button w-button" data-ix="click-bouton-connexion" href="#">Se connecter</a>
+    </div>
+  </div>
+  <script  type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/connexion.js') }}"></script>
 {% endblock %}

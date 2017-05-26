@@ -1,0 +1,23 @@
+{% extends "layoutBO.html.twig" %}
+
+{% block content %}
+
+<h2>Pages de l'aventure : </h2>
+
+<table border="1">
+	<tr>
+	{% for key, value in pages[0] %}
+		<th>{{ key }}</th>
+	{% endfor %}
+	</tr>
+	{% for key in pages %}
+		<tr>
+			{% for value in key %}
+				<td>{{ value }}</td>
+			{% endfor %}
+		</tr>
+	{% endfor %}
+</table>
+
+
+{% endblock %}

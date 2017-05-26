@@ -1,0 +1,16 @@
+
+
+
+{% if error %}
+	<strong>Erreur de connexion :</strong>{{ error }}
+{% endif %}
+
+<form action="{{ path('login_check') }}" method="post">
+	<label>Pseudo</label>
+	<input type="text" name="_username" placeholder="pseudo" value="{{ last_username }}"/>
+
+	<label>Mot de passe</label>
+	<input type="password" name="_password" placeholder="mot de passe" />
+
+	<input type="submit" value="Connexion" />
+</form>

@@ -1,0 +1,48 @@
+{% extends "layoutBO.html.twig" %}
+
+{% block content %}
+
+<h2>Gestion d'aventure</h2>
+
+<a href="{{ path('createadventure')}}">Nouvelle aventure</a><br><br>
+
+<table border="1">
+	<tr>
+	{% for key, value in adventures[0] %}
+		<th>{{ key }}</th>
+	{% endfor %}
+	<th>Nombres de pages</th>
+	<th>Actions</th>
+	</tr>
+	{% for key in adventures %}
+		<tr>
+			{% for key2, value in key %}
+				{% if key2 == "active" %}
+						{% if value == TRUE %}
+							<td>{{ "oui" }}</td>
+						{% else %}
+							<td>{{ "non" }}</td>
+						{% endif %}
+				{% else %}
+					<td>{{ value }}</td>
+				{% endif %}
+			{% endfor %}
+			{% set i = 0 %}
+				{% for key2 in pages %}
+					{% if key2["id_adventure"] == key["id_adventure"]  %}
+						{% set i = i + 1 %}
+					{% endif %}
+				{% endfor %}
+			<td>{{ i }}</td>
+			<td>
+				<a href="{{ path('deleteadventure', {'id_adventure' : key.id_adventure}) }}"><img src="{{ asset('img/delete.png') }}"></a>
+				<a href="{{ path('modifyadventure', {'id_adventure' : key.id_adventure}) }}"><img src="{{ asset('img/edit.png') }}"></a>
+				<a href="{{ path('displayadventure', {'id_adventure' : key.id_adventure}) }}"><img src="{{ asset('img/info.png') }}"></a>
+			</td>
+		</tr>
+	{% endfor %}
+</table>
+
+{{ msg }}
+
+{% endblock %}
