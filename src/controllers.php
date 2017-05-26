@@ -43,7 +43,7 @@ $app->match("/page/", function () use ($app){
 $app->view(function(array $results) {
 
     // TODO check if request is an ajax request
-	
+
     return json_encode($results);
 });
 
@@ -85,7 +85,7 @@ $app->match("/login/redirect" , "OrbitalExpress\\Controllers\\Home::index")
 ->bind('home_index');
 
 // START REGISTER
-$app -> match("/register", function(Request $request) use($app){
+$app -> match("/register/", function(Request $request) use($app){
 
 
 
