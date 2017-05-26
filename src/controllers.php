@@ -130,7 +130,8 @@ $app->match("/goprofil/", function () use ($app){
 });
 
 $app->match("/profil/", function () use ($app){
-    return $app['twig']->render('profil.html.twig', array());
+	$userTest = $app["session"]->get("user");
+    return $app['twig']->render('profil.html.twig', array("userTest" =>$userTest));
 })->bind('profil');
 
 $app->match("/contact/", function () use ($app){
@@ -140,3 +141,5 @@ $app->match("/contact/", function () use ($app){
 $app->match("/tableau/", function () use ($app){
     return $app['twig']->render('tableau-de-bord.html.twig', array());
 });
+
+$app->match("/sessionset/", "OrbitalExpress\\Controllers\\Home::sessionSet");
