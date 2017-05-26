@@ -142,4 +142,4 @@ $app->match("/tableau/", function () use ($app){
     return $app['twig']->render('tableau-de-bord.html.twig', array());
 })->bind('tableau');
 
-$app->match("/sessionset/", "OrbitalExpress\\Controllers\\Home::sessionSet");
+$app->match("/unregister/{id_user}", "OrbitalExpress\\Controllers\\User::unregister")->bind("unregister");
