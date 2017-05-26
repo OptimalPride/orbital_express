@@ -1,4 +1,4 @@
-{% extends "layout.html.twig" %}
+{% extends "layoutBO.html.twig" %}
 
 {% block content %}
 
@@ -7,10 +7,10 @@
 <table border="1">
 	<tr>
 	{% for key, value in pages[0] %}
-		<th>{{ key }}</th> 
+		<th>{{ key }}</th>
 	{% endfor %}
 	</tr>
-	{% for key in pages %}	
+	{% for key in pages %}
 		<tr>
 			{% for value in key %}
 				<td>{{ value }}</td>

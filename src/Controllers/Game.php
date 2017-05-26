@@ -20,9 +20,14 @@ class Game
 			return array("cheat" => "true", "message" => "Ce n'est pas bien de tricher.");
 		}
 		else{
+			$infos_save = array(
+				"id_save" => $id_save,
+				"id_current_page" => $id_landing_page
+			);
+			$app["dao.save"]->updateSave($infos_save);
 			$page = $app["dao.page"]->getContentById($id_landing_page);
 			$choices = $app["dao.choice"]->getChoicesByPageId($id_landing_page);
-			return array("page" => $page, "choices" => $choices);
+			return array("cheat" => "false", "page" => $page, "choices" => $choices);
 		}
 	}
 }

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>{% block title '' %} - admin orbital express</title>
+    </head>
+    <body>
+        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+          <a href="{{ path('profil', {id: app.user.id_user}) }}">Profil</a>
+          <a href="{{ path("logout") }}">Deconnexion</a>
+          {% else %}
+          <a href="{{ path("login") }}">Connexion</a>
+          <a href="{{ path("register") }}">Inscription</a>
+        {% endif %}
+
+        <div>
+          <a href="{{ path('gestionUser') }}">Gestion des membres</a>
+          <a href="{{ path('gestionAdventure') }}">Gestion des aventures</a>
+          <a href="{{ path('gestionSave') }}">Gestion des sauvegardes</a>
+        </div>
+
+        <div id="load_gestion">{% block content %}{% endblock %}</div>
+
+        <script  type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/gestionJs.js') }}"></script>
+    </body>
+</html>
