@@ -30,4 +30,8 @@ class Game
 			return array("cheat" => "false", "page" => $page, "choices" => $choices);
 		}
 	}
+
+	public function startNewGame(Application $app){
+		return "o";
+	}
 }
