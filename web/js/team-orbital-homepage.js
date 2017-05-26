@@ -849,6 +849,314 @@
   });
   });
 
+  var xdomainMin = __commonjs(function (module) {
+  /*!
+   * jQuery-ajaxTransport-XDomainRequest - v1.0.3
+   * 2014-12-16 WEBFLOW - Removed UMD wrapper
+   * https://github.com/MoonScript/jQuery-ajaxTransport-XDomainRequest
+   * Copyright (c) 2014 Jason Moon (@JSONMOON)
+   * @license MIT (/blob/master/LICENSE.txt)
+   */
+  module.exports=function($){if($.support.cors||!$.ajaxTransport||!window.XDomainRequest){return}var httpRegEx=/^https?:\/\//i;var getOrPostRegEx=/^get|post$/i;var sameSchemeRegEx=new RegExp("^"+location.protocol,"i");$.ajaxTransport("* text html xml json",function(options,userOptions,jqXHR){if(!options.crossDomain||!options.async||!getOrPostRegEx.test(options.type)||!httpRegEx.test(options.url)||!sameSchemeRegEx.test(options.url)){return}var xdr=null;return{send:function(headers,complete){var postData="";var userType=(userOptions.dataType||"").toLowerCase();xdr=new XDomainRequest;if(/^\d+$/.test(userOptions.timeout)){xdr.timeout=userOptions.timeout}xdr.ontimeout=function(){complete(500,"timeout")};xdr.onload=function(){var allResponseHeaders="Content-Length: "+xdr.responseText.length+"\r\nContent-Type: "+xdr.contentType;var status={code:200,message:"success"};var responses={text:xdr.responseText};try{if(userType==="html"||/text\/html/i.test(xdr.contentType)){responses.html=xdr.responseText}else if(userType==="json"||userType!=="text"&&/\/json/i.test(xdr.contentType)){try{responses.json=$.parseJSON(xdr.responseText)}catch(e){status.code=500;status.message="parseerror"}}else if(userType==="xml"||userType!=="text"&&/\/xml/i.test(xdr.contentType)){var doc=new ActiveXObject("Microsoft.XMLDOM");doc.async=false;try{doc.loadXML(xdr.responseText)}catch(e){doc=undefined}if(!doc||!doc.documentElement||doc.getElementsByTagName("parsererror").length){status.code=500;status.message="parseerror";throw"Invalid XML: "+xdr.responseText}responses.xml=doc}}catch(parseMessage){throw parseMessage}finally{complete(status.code,status.message,responses,allResponseHeaders)}};xdr.onprogress=function(){};xdr.onerror=function(){complete(500,"error",{text:xdr.responseText})};if(userOptions.data){postData=$.type(userOptions.data)==="string"?userOptions.data:$.param(userOptions.data)}xdr.open(options.type,options.url);xdr.send(postData)},abort:function(){if(xdr){xdr.abort()}}}})}(window.jQuery);
+  });
+
+  var webflowForms = __commonjs(function (module) {
+  /**
+   * Webflow: Forms
+   */
+
+  var Webflow = require$$0;
+
+  Webflow.define('forms', module.exports = function($, _) {
+    var api = {};
+
+    // Cross-Domain AJAX for IE8
+    
+
+    var $doc = $(document);
+    var $forms;
+    var loc = window.location;
+    var retro = window.XDomainRequest && !window.atob;
+    var namespace = '.w-form';
+    var siteId;
+    var emailField = /e(-)?mail/i;
+    var emailValue = /^\S+@\S+$/;
+    var alert = window.alert;
+    var inApp = Webflow.env();
+    var listening;
+
+    // MailChimp domains: list-manage.com + mirrors
+    var chimpRegex = /list-manage[1-9]?.com/i;
+
+    var disconnected = _.debounce(function() {
+      alert('Oops! This page has improperly configured forms. Please contact your website administrator to fix this issue.');
+    }, 100);
+
+    api.ready = api.design = api.preview = function() {
+      // Init forms
+      init();
+
+      // Wire document events on published site only once
+      if (!inApp && !listening) {
+        addListeners();
+      }
+    };
+
+    function init() {
+      siteId = $('html').attr('data-wf-site');
+
+      $forms = $(namespace + ' form');
+      if (!$forms.length) return;
+      $forms.each(build);
+    }
+
+    function build(i, el) {
+      // Store form state using namespace
+      var $el = $(el);
+      var data = $.data(el, namespace);
+      if (!data) data = $.data(el, namespace, { form: $el }); // data.form
+
+      reset(data);
+      var wrap = $el.closest('div.w-form');
+      data.done = wrap.find('> .w-form-done');
+      data.fail = wrap.find('> .w-form-fail');
+
+      var action = data.action = $el.attr('action');
+      data.handler = null;
+      data.redirect = $el.attr('data-redirect');
+
+      // MailChimp form
+      if (chimpRegex.test(action)) { data.handler = submitMailChimp; return; }
+
+      // Custom form action
+      if (action) return;
+
+      // Webflow form
+      if (siteId) { data.handler = submitWebflow; return; }
+
+      // Alert for disconnected Webflow forms
+      disconnected();
+    }
+
+    function addListeners() {
+      listening = true;
+
+      // Handle form submission for Webflow forms
+      $doc.on('submit', namespace + ' form', function(evt) {
+        var data = $.data(this, namespace);
+        if (data.handler) {
+          data.evt = evt;
+          data.handler(data);
+        }
+      });
+    }
+
+    // Reset data common to all submit handlers
+    function reset(data) {
+      var btn = data.btn = data.form.find(':input[type="submit"]');
+      data.wait = data.btn.attr('data-wait') || null;
+      data.success = false;
+      btn.prop('disabled', false);
+      data.label && btn.val(data.label);
+    }
+
+    // Disable submit button
+    function disableBtn(data) {
+      var btn = data.btn;
+      var wait = data.wait;
+      btn.prop('disabled', true);
+      // Show wait text and store previous label
+      if (wait) {
+        data.label = btn.val();
+        btn.val(wait);
+      }
+    }
+
+    // Find form fields, validate, and set value pairs
+    function findFields(form, result) {
+      var status = null;
+      result = result || {};
+
+      // The ":input" selector is a jQuery shortcut to select all inputs, selects, textareas
+      form.find(':input:not([type="submit"])').each(function(i, el) {
+        var field = $(el);
+        var type = field.attr('type');
+        var name = field.attr('data-name') || field.attr('name') || ('Field ' + (i + 1));
+        var value = field.val();
+
+        if (type === 'checkbox') {
+          value = field.is(':checked');
+        } if (type === 'radio') {
+          // Radio group value already processed
+          if (result[name] === null || typeof result[name] === 'string') {
+            return;
+          }
+
+          value = form.find('input[name="' + field.attr('name') + '"]:checked').val() || null;
+        }
+
+        if (typeof value === 'string') value = $.trim(value);
+        result[name] = value;
+        status = status || getStatus(field, type, name, value);
+      });
+
+      return status;
+    }
+
+    function getStatus(field, type, name, value) {
+      var status = null;
+
+      if (type === 'password') {
+        status = 'Passwords cannot be submitted.';
+      } else if (field.attr('required')) {
+        if (!value) {
+          status = 'Please fill out the required field: ' + name;
+        } else if (emailField.test(name) || emailField.test(field.attr('type'))) {
+          if (!emailValue.test(value)) status = 'Please enter a valid email address for: ' + name;
+        }
+      }
+
+      return status;
+    }
+
+    // Submit form to Webflow
+    function submitWebflow(data) {
+      reset(data);
+
+      var form = data.form;
+      var payload = {
+        name: form.attr('data-name') || form.attr('name') || 'Untitled Form',
+        source: loc.href,
+        test: Webflow.env(),
+        fields: {},
+        dolphin: /pass[\s-_]?(word|code)|secret|login|credentials/i.test(form.html())
+      };
+
+      preventDefault(data);
+
+      // Find & populate all fields
+      var status = findFields(form, payload.fields);
+      if (status) return alert(status);
+
+      // Disable submit button
+      disableBtn(data);
+
+      // Read site ID
+      // NOTE: If this site is exported, the HTML tag must retain the data-wf-site attribute for forms to work
+      if (!siteId) { afterSubmit(data); return; }
+      var url = "https://webflow.com" + '/api/v1/form/' + siteId;
+
+      // Work around same-protocol IE XDR limitation - without this IE9 and below forms won't submit
+      if (retro && url.indexOf("https://webflow.com") >= 0) {
+        url = url.replace("https://webflow.com", "http://formdata.webflow.com");
+      }
+
+      $.ajax({
+        url: url,
+        type: 'POST',
+        data: payload,
+        dataType: 'json',
+        crossDomain: true
+      }).done(function() {
+        data.success = true;
+        afterSubmit(data);
+      }).fail(function() {
+        afterSubmit(data);
+      });
+    }
+
+    // Submit form to MailChimp
+    function submitMailChimp(data) {
+      reset(data);
+
+      var form = data.form;
+      var payload = {};
+
+      // Skip Ajax submission if http/s mismatch, fallback to POST instead
+      if (/^https/.test(loc.href) && !/^https/.test(data.action)) {
+        form.attr('method', 'post');
+        return;
+      }
+
+      preventDefault(data);
+
+      // Find & populate all fields
+      var status = findFields(form, payload);
+      if (status) return alert(status);
+
+      // Disable submit button
+      disableBtn(data);
+
+      // Use special format for MailChimp params
+      var fullName;
+      _.each(payload, function(value, key) {
+        if (emailField.test(key)) payload.EMAIL = value;
+        if (/^((full[ _-]?)?name)$/i.test(key)) fullName = value;
+        if (/^(first[ _-]?name)$/i.test(key)) payload.FNAME = value;
+        if (/^(last[ _-]?name)$/i.test(key)) payload.LNAME = value;
+      });
+
+      if (fullName && !payload.FNAME) {
+        fullName = fullName.split(' ');
+        payload.FNAME = fullName[0];
+        payload.LNAME = payload.LNAME || fullName[1];
+      }
+
+      // Use the (undocumented) MailChimp jsonp api
+      var url = data.action.replace('/post?', '/post-json?') + '&c=?';
+      // Add special param to prevent bot signups
+      var userId = url.indexOf('u=') + 2;
+      userId = url.substring(userId, url.indexOf('&', userId));
+      var listId = url.indexOf('id=') + 3;
+      listId = url.substring(listId, url.indexOf('&', listId));
+      payload['b_' + userId + '_' + listId] = '';
+
+      $.ajax({
+        url: url,
+        data: payload,
+        dataType: 'jsonp'
+      }).done(function(resp) {
+        data.success = (resp.result === 'success' || /already/.test(resp.msg));
+        if (!data.success) console.info('MailChimp error: ' + resp.msg);
+        afterSubmit(data);
+      }).fail(function() {
+        afterSubmit(data);
+      });
+    }
+
+    // Common callback which runs after all Ajax submissions
+    function afterSubmit(data) {
+      var form = data.form;
+      var redirect = data.redirect;
+      var success = data.success;
+
+      // Redirect to a success url if defined
+      if (success && redirect) {
+        Webflow.location(redirect);
+        return;
+      }
+
+      // Show or hide status divs
+      data.done.toggle(success);
+      data.fail.toggle(!success);
+
+      // Hide form on success
+      form.toggle(!success);
+
+      // Reset data and enable submit button
+      reset(data);
+    }
+
+    function preventDefault(data) {
+      data.evt && data.evt.preventDefault();
+      data.evt = null;
+    }
+
+    // Export module
+    return api;
+  });
+  });
+
   var webflowIxEvents = __commonjs(function (module) {
   'use strict';
 
@@ -1973,6 +2281,224 @@
   });
   });
 
+  var webflowTabs = __commonjs(function (module) {
+  /**
+   * Webflow: Tabs component
+   */
+
+  var Webflow = require$$0;
+  var IXEvents = require$$0$2;
+
+  Webflow.define('tabs', module.exports = function($) {
+    var api = {};
+    var tram = $.tram;
+    var $doc = $(document);
+    var $tabs;
+    var design;
+    var env = Webflow.env;
+    var safari = env.safari;
+    var inApp = env();
+    var tabAttr = 'data-w-tab';
+    var namespace = '.w-tabs';
+    var linkCurrent = 'w--current';
+    var tabActive = 'w--tab-active';
+    var ix = IXEvents.triggers;
+    var inRedraw = false;
+
+    // -----------------------------------
+    // Module methods
+
+    api.ready = api.design = api.preview = init;
+
+    api.redraw = function() {
+      inRedraw = true;
+      init();
+      inRedraw = false;
+    };
+
+    api.destroy = function() {
+      $tabs = $doc.find(namespace);
+      if (!$tabs.length) return;
+      $tabs.each(resetIX);
+      removeListeners();
+    };
+
+    // -----------------------------------
+    // Private methods
+
+    function init() {
+      design = inApp && Webflow.env('design');
+
+      // Find all instances on the page
+      $tabs = $doc.find(namespace);
+      if (!$tabs.length) return;
+      $tabs.each(build);
+      if (Webflow.env('preview') && !inRedraw) {
+        $tabs.each(resetIX);
+      }
+
+      removeListeners();
+      addListeners();
+    }
+
+    function removeListeners() {
+      Webflow.redraw.off(api.redraw);
+    }
+
+    function addListeners() {
+      Webflow.redraw.on(api.redraw);
+    }
+
+    function resetIX(i, el) {
+      var data = $.data(el, namespace);
+      if (!data) return;
+      data.links && data.links.each(ix.reset);
+      data.panes && data.panes.each(ix.reset);
+    }
+
+    function build(i, el) {
+      var $el = $(el);
+
+      // Store state in data
+      var data = $.data(el, namespace);
+      if (!data) data = $.data(el, namespace, { el: $el, config: {} });
+      data.current = null;
+      data.menu = $el.children('.w-tab-menu');
+      data.links = data.menu.children('.w-tab-link');
+      data.content = $el.children('.w-tab-content');
+      data.panes = data.content.children('.w-tab-pane');
+
+      // Remove old events
+      data.el.off(namespace);
+      data.links.off(namespace);
+
+      // Set config from data attributes
+      configure(data);
+
+      // Wire up events when not in design mode
+      if (!design) {
+        data.links.on('click' + namespace, linkSelect(data));
+
+        // Trigger first intro event from current tab
+        var $link = data.links.filter('.' + linkCurrent);
+        var tab = $link.attr(tabAttr);
+        tab && changeTab(data, { tab: tab, immediate: true });
+      }
+    }
+
+    function configure(data) {
+      var config = {};
+
+      // Set config options from data attributes
+      config.easing = data.el.attr('data-easing') || 'ease';
+
+      var intro = parseInt(data.el.attr('data-duration-in'), 10);
+      intro = config.intro = intro === intro ? intro : 0;
+
+      var outro = parseInt(data.el.attr('data-duration-out'), 10);
+      outro = config.outro = outro === outro ? outro : 0;
+
+      config.immediate = !intro && !outro;
+
+      // Store config in data
+      data.config = config;
+    }
+
+    function linkSelect(data) {
+      return function(evt) {
+        var tab = evt.currentTarget.getAttribute(tabAttr);
+        tab && changeTab(data, { tab: tab });
+      };
+    }
+
+    function changeTab(data, options) {
+      options = options || {};
+
+      var config = data.config;
+      var easing = config.easing;
+      var tab = options.tab;
+
+      // Don't select the same tab twice
+      if (tab === data.current) return;
+      data.current = tab;
+
+      // Select the current link
+      data.links.each(function(i, el) {
+        var $el = $(el);
+        if (el.getAttribute(tabAttr) === tab) $el.addClass(linkCurrent).each(ix.intro);
+        else if ($el.hasClass(linkCurrent)) $el.removeClass(linkCurrent).each(ix.outro);
+      });
+
+      // Find the new tab panes and keep track of previous
+      var targets = [];
+      var previous = [];
+      data.panes.each(function(i, el) {
+        var $el = $(el);
+        if (el.getAttribute(tabAttr) === tab) {
+          targets.push(el);
+        } else if ($el.hasClass(tabActive)) {
+          previous.push(el);
+        }
+      });
+
+      var $targets = $(targets);
+      var $previous = $(previous);
+
+      // Switch tabs immediately and bypass transitions
+      if (options.immediate || config.immediate) {
+        $targets.addClass(tabActive).each(ix.intro);
+        $previous.removeClass(tabActive);
+        // Redraw to benefit components in the hidden tab pane
+        // But only if not currently in the middle of a redraw
+        if (!inRedraw) Webflow.redraw.up();
+        return;
+      }
+
+      // Fade out the currently active tab before intro
+      if ($previous.length && config.outro) {
+        $previous.each(ix.outro);
+        tram($previous)
+          .add('opacity ' + config.outro + 'ms ' + easing, { fallback: safari })
+          .start({ opacity: 0 })
+          .then(intro);
+      } else {
+        // Skip the outro and play intro
+        intro();
+      }
+
+      // Fade in the new target
+      function intro() {
+        // Clear previous active class + styles touched by tram
+        // We cannot remove the whole inline style because it could be dynamically bound
+        $previous.removeClass(tabActive).css({
+          opacity: '',
+          transition: '',
+          transform: '',
+          width: '',
+          height: ''
+        });
+
+        // Add active class to new target
+        $targets.addClass(tabActive).each(ix.intro);
+        Webflow.redraw.up();
+
+        // Set opacity immediately if intro is zero
+        if (!config.intro) return tram($targets).set({ opacity: 1 });
+
+        // Otherwise fade in opacity
+        tram($targets)
+          .set({ opacity: 0 })
+          .redraw()
+          .add('opacity ' + config.intro + 'ms ' + easing, { fallback: safari })
+          .start({ opacity: 1 });
+      }
+    }
+
+    // Export module
+    return api;
+  });
+  });
+
   var webflowTouch = __commonjs(function (module) {
   /**
    * Webflow: Touch events
@@ -2114,17 +2640,6 @@
 
 }());
 
-
-/* Style scrollbar */
-(function($){
-    $(window).on("load",function(){
-        $(".paragraph-3").mCustomScrollbar({
-			theme:"minimal"
-		});
-    });
-})(jQuery);
-
-
 /**
  * ----------------------------------------------------------------------
  * Webflow: Interactions: Init
@@ -2132,7 +2647,8 @@
 Webflow.require('ix').init([
   {"slug":"logo-hover","name":"logo hover","value":{"style":{},"triggers":[{"type":"hover","stepsA":[{"transition":"transform 308ms ease 0","scaleX":1.15,"scaleY":1.15,"scaleZ":1}],"stepsB":[{"transition":"transform 200 ease 0","scaleX":1,"scaleY":1,"scaleZ":1}]}]}},
   {"slug":"movetoright","name":"movetoright","value":{"style":{"opacity":0,"x":"-100px","y":"0px","z":"0px"},"triggers":[{"type":"load","stepsA":[{"wait":"300ms"},{"opacity":1,"transition":"transform 904ms ease 0, opacity 837ms ease-in 0","x":"0px","y":"0px","z":"0px"}],"stepsB":[]}]}},
-  {"slug":"movetoleft","name":"movetoleft","value":{"style":{"opacity":0,"x":"100px","y":"0px","z":"0px"},"triggers":[{"type":"load","stepsA":[{"wait":"700ms"},{"opacity":1,"transition":"transform 1100ms ease 0, opacity 1000ms ease 0","x":"0px","y":"0px","z":"0px"}],"stepsB":[]}]}},
+  {"slug":"movetoright-2","name":"movetoright 2","value":{"style":{"opacity":0,"x":"-100px","y":"0px","z":"0px"},"triggers":[{"type":"load","stepsA":[{"wait":"700ms"},{"opacity":1,"transition":"transform 904ms ease 0, opacity 837ms ease-in 0","x":"0px","y":"0px","z":"0px"}],"stepsB":[]}]}},
+  {"slug":"movetoleft","name":"movetoleft","value":{"style":{"opacity":0,"x":"100px","y":"0px","z":"0px"},"triggers":[{"type":"load","stepsA":[{"wait":"1200ms"},{"opacity":1,"transition":"transform 1100ms ease 0, opacity 1000ms ease 0","x":"0px","y":"0px","z":"0px"}],"stepsB":[]}]}},
   {"slug":"movetoleft-2","name":"movetoleft 2","value":{"style":{"opacity":0,"x":"100px","y":"0px","z":"0px"},"triggers":[{"type":"load","stepsA":[{"wait":"1100ms"},{"opacity":1,"transition":"transform 1100ms ease 0, opacity 1000ms ease 0","x":"0px","y":"0px","z":"0px"}],"stepsB":[]}]}},
   {"slug":"fadedown","name":"fadedown","value":{"style":{"opacity":0,"x":"0px","y":"-40px","z":"0px"},"triggers":[{"type":"load","stepsA":[{"wait":"300ms"},{"wait":"800ms","opacity":0,"transition":"opacity 200 ease 0"},{"opacity":1,"transition":"opacity 700ms ease 0, transform 600ms ease 0","x":"0px","y":"0px","z":"0px"}],"stepsB":[]}]}},
   {"slug":"fadedown-2","name":"fadedown 2","value":{"style":{"opacity":0,"x":"0px","y":"-40px","z":"0px"},"triggers":[{"type":"load","stepsA":[{"wait":"300ms"},{"wait":"900ms","opacity":0,"transition":"opacity 200 ease 0"},{"opacity":1,"transition":"opacity 700ms ease 0, transform 600ms ease 0","x":"0px","y":"0px","z":"0px"}],"stepsB":[]}]}},
@@ -2158,5 +2674,8 @@ Webflow.require('ix').init([
   {"slug":"click-bouton-inscription","name":"Click_bouton_inscription","value":{"style":{},"triggers":[{"type":"click","selector":".popup_wrapper2","preserve3d":true,"stepsA":[{"display":"block"},{"opacity":1,"transition":"opacity 200 ease 0, transform 200 ease 0","scaleX":1,"scaleY":1,"scaleZ":1}],"stepsB":[]}]}},
   {"slug":"click-bouton-connexion","name":"Click_bouton_connexion","value":{"style":{},"triggers":[{"type":"click","selector":".popup_wrapper","preserve3d":true,"stepsA":[{"display":"block"},{"opacity":1,"transition":"opacity 200 ease 0, transform 200 ease 0","scaleX":1,"scaleY":1,"scaleZ":1}],"stepsB":[]}]}},
   {"slug":"close-inscription","name":"Close_inscription","value":{"style":{},"triggers":[{"type":"click","selector":".popup_wrapper2","preserve3d":true,"stepsA":[{"display":"none","opacity":0,"transition":"opacity 200 ease 0, transform 200 ease 0","scaleX":1,"scaleY":1,"scaleZ":1}],"stepsB":[]}]}},
-  {"slug":"close-connexion","name":"Close_connexion","value":{"style":{},"triggers":[{"type":"click","selector":".popup_wrapper","preserve3d":true,"stepsA":[{"display":"none","opacity":0,"transition":"opacity 200 ease 0, transform 200 ease 0","scaleX":1,"scaleY":1,"scaleZ":1}],"stepsB":[]}]}}
+  {"slug":"close-connexion","name":"Close_connexion","value":{"style":{},"triggers":[{"type":"click","selector":".popup_wrapper","preserve3d":true,"stepsA":[{"display":"none","opacity":0,"transition":"opacity 200 ease 0, transform 200 ease 0","scaleX":1,"scaleY":1,"scaleZ":1}],"stepsB":[]}]}},
+  {"slug":"tab-bounce","name":"tab bounce","value":{"style":{},"triggers":[{"type":"tabs","stepsA":[{"opacity":1,"transition":"transform 300ms ease 0, opacity 200 ease 0","x":"0px","y":"-8px","z":"0px"},{"opacity":1,"transition":"transform 300ms ease 0, opacity 200 ease 0","x":"0px","y":"1px","z":"0px"},{"opacity":1,"transition":"transform 300ms ease 0, opacity 200 ease 0","x":"0px","y":"0px","z":"0px"}],"stepsB":[{"opacity":0.7,"transition":"opacity 200 ease 0"}]}]}},
+  {"slug":"desinscription","name":"desinscription","value":{"style":{},"triggers":[{"type":"click","selector":".desinscription_check","stepsA":[{"display":"inline-block"}],"stepsB":[]},{"type":"click","selector":".desinscription_close","stepsA":[{"display":"inline-block"}],"stepsB":[]}]}},
+  {"slug":"desinscription-close","name":"desinscription_close","value":{"style":{},"triggers":[{"type":"click","stepsA":[{"display":"none","opacity":0.32,"transition":"opacity 200 ease 0"}],"stepsB":[]},{"type":"click","selector":".desinscription_check","stepsA":[{"wait":"800ms","display":"none"}],"stepsB":[]}]}}
 ]);

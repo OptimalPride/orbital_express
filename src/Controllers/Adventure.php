@@ -77,27 +77,26 @@ class Adventure
 	}
 
 	public function modifyAdventure(Application $app, Request $request, $id_adventure){
+		$adventure = $app["dao.adventure"]->getAdventureById($id_adventure);
     $data = array(
-        "name" => "Nom de l'aventure",
-        "description" => "Description de l'aventure",
-        "pitch" => "Pitch de l'aventure, l'accroche"
+        "name" => $adventure['name'],
+        "description" => $adventure['description'],
+        "pitch" => $adventure['pitch']
     );
     $form = $app['form.factory']->createBuilder(FormType::class, $data)
         ->add('name')
         ->add('description')
         ->add('pitch')
         ->add('submit', SubmitType::class, [
-            'label' => 'Ajouter aventure',
+            'label' => 'Modifier aventure',
         ])
         ->getForm();
 
     $form->handleRequest($request);
 
-    if ($form->isValid()) {
-        $data = $form->getData();
-
-    }
-    return $app['twig']->render('backoffice/modifyAdventure.html.twig', array('form' => $form->createView()));
+		if ($form->isValid()) {
+	
+		}
+    return $app['twig']->render('backoffice/modifyadventure.html.twig', array('form' => $form->createView()));
 	}
 }
-
