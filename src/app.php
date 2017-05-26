@@ -29,7 +29,7 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
             'anonymous' => true,
             'logout' => true,
             'form' => array('login' => '/login', 'check_path' => '/login_check',
-              'default_target_path' => '/profil',
+              'default_target_path' => '/goprofil',
               'always_use_default_target_path' => true),
             'users' => function () use ($app) {
                 return new OrbitalExpress\DAO\UserDAO($app['db']);
