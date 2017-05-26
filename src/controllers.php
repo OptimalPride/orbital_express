@@ -59,7 +59,7 @@ $app->match("/gestionuser/", "OrbitalExpress\\Controllers\\Adventure::afficheGes
 
 $app->match("/gestionadventure/", "OrbitalExpress\\Controllers\\Adventure::afficheGestionAdventure")->bind("gestionAdventure");
 
-$app->match("/gestionsave/", "OrbitalExpress\\Controllers\\Adventure::afficheGestionAdventure")->bind("gestionSave");
+$app->match("/gestionsave/", "OrbitalExpress\\Controllers\\Adventure::afficheGestionSave")->bind("gestionSave");
 
 
 $app->match("/deleteadventure/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::deleteAdventure")->bind("deleteadventure");
@@ -109,7 +109,7 @@ $app -> match("/register/", function(Request $request) use($app){
 			$app["dao.user"]->save($user);
 			$app["session"]->getFlashBag()->add("success", "votre inscription a été prise en compte");
 			// return $app["twig"]->render("index.html.twig");
-			return "ça marche !!";	
+			return "ça marche !!";
 		}
 
 	}
@@ -135,8 +135,8 @@ $app->match("/profil/", function () use ($app){
 
 $app->match("/contact/", function () use ($app){
     return $app['twig']->render('support.html.twig', array());
-});
+})->bind('contact');
 
 $app->match("/tableau/", function () use ($app){
     return $app['twig']->render('tableau-de-bord.html.twig', array());
-});
+})->bind('tableau');
