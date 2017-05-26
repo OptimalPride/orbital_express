@@ -91,7 +91,6 @@ $(function(){
 				registerData.fail(function( jqXHR, textStatus ) {
 		  			alert( "Request failed: " + textStatus );
 		  		});	
-				
 			});
 		});
 
@@ -101,4 +100,3 @@ $(function(){
 
 	});
 });
- 

@@ -24,7 +24,7 @@ class Home
 	public function index(Application $app){
 		return $app['twig']->render('index.html.twig');
 	}
-
+  
 	public function sessionSet(Application $app){
 		if($_POST){
 			$id_user = $_POST["id_user"];

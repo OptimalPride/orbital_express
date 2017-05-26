@@ -59,7 +59,7 @@ $app->match("/gestionuser/", "OrbitalExpress\\Controllers\\Adventure::afficheGes
 
 $app->match("/gestionadventure/", "OrbitalExpress\\Controllers\\Adventure::afficheGestionAdventure")->bind("gestionAdventure");
 
-$app->match("/gestionsave/", "OrbitalExpress\\Controllers\\Adventure::afficheGestionAdventure")->bind("gestionSave");
+$app->match("/gestionsave/", "OrbitalExpress\\Controllers\\Adventure::afficheGestionSave")->bind("gestionSave");
 
 
 $app->match("/deleteadventure/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::deleteAdventure")->bind("deleteadventure");
@@ -87,7 +87,7 @@ $app->match("/login/redirect" , "OrbitalExpress\\Controllers\\Home::index")
 
 // START REGISTER
 $app -> match("/register/", function(Request $request) use($app){
-  
+
 	$user = new OrbitalExpress\Entity\User;
 	$userForm = $app["form.factory"] -> create(OrbitalExpress\Form\Type\Usertype::class, $user);
 	$userForm -> handleRequest($request);
@@ -101,7 +101,6 @@ $app -> match("/register/", function(Request $request) use($app){
 		else{
 			$salt = substr(md5(time()), 0, 23);
 			$user -> setSalt($salt);
-
 			$password = $user-> getPassword(); // 'Bonjour'
 			$password_encode = $app["security.encoder.bcrypt"]->encodePassword($password, $user->getSalt());
 
@@ -109,7 +108,8 @@ $app -> match("/register/", function(Request $request) use($app){
 			$app["dao.user"]->save($user);
 			$app["session"]->getFlashBag()->add("success", "votre inscription a été prise en compte");
 			// return $app["twig"]->render("index.html.twig");
-			return "ça marche !!";	
+
+			return "ça marche !!";
 		}
 
 	}
@@ -136,10 +136,10 @@ $app->match("/profil/", function () use ($app){
 
 $app->match("/contact/", function () use ($app){
     return $app['twig']->render('support.html.twig', array());
-});
+})->bind('contact');
 
 $app->match("/tableau/", function () use ($app){
     return $app['twig']->render('tableau-de-bord.html.twig', array());
-});
+})->bind('tableau');
 
 $app->match("/sessionset/", "OrbitalExpress\\Controllers\\Home::sessionSet");
