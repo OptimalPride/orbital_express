@@ -59,7 +59,7 @@ $app->match("/gestionuser/", "OrbitalExpress\\Controllers\\Adventure::afficheGes
 
 $app->match("/gestionadventure/", "OrbitalExpress\\Controllers\\Adventure::afficheGestionAdventure")->bind("gestionAdventure");
 
-$app->match("/gestionsave/", "OrbitalExpress\\Controllers\\Adventure::afficheGestionSave")->bind("gestionSave");
+$app->match("/gestionsave/", "OrbitalExpress\\Controllers\\Save::afficheGestionSave")->bind("gestionSave");
 
 
 $app->match("/deleteadventure/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::deleteAdventure")->bind("deleteadventure");

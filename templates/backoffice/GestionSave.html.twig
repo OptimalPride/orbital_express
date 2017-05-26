@@ -9,14 +9,12 @@
 	{% for key, value in save[0] %}
 		<th>{{ key }}</th>
 	{% endfor %}
-	<th>Actions</th>
 	</tr>
-			<td>{{ i }}</td>
-			<td>
-				<a href="{{ path('deleteadventure', {'id_adventure' : key.id_save}) }}"><img src="{{ asset('img/delete.png') }}"></a>
-				<a href="{{ path('modifyadventure', {'id_adventure' : key.id_save}) }}"><img src="{{ asset('img/edit.png') }}"></a>
-				<a href="{{ path('displayadventure', {'id_adventure' : key.id_save}) }}"><img src="{{ asset('img/info.png') }}"></a>
-			</td>
+	{% for key in save %}
+		<tr>
+			{% for value in key %}
+				<td>{{ value }}</td>
+			{% endfor %}
 		</tr>
 	{% endfor %}
 </table>

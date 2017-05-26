@@ -13,5 +13,8 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class Save
 {
-
+    public function afficheGestionSave(Application $app){
+        $save = $app['dao.save']->getAllSaves();
+        return $app['twig']->render('backoffice/gestionSave.html.twig', array("save" => $save, "msg" => ""));
+    }
 }
