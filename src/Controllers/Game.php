@@ -41,4 +41,11 @@ class Game
 		$app["session"]->set("id_save", $id_save);
 		return $app['twig']->render('/game/page-jeu.html.twig', array("id_current_page"=>$id_current_page));
 	}
+
+	public function continueGame(Application $app, $id_save){
+		$app["session"]->set("id_save", $id_save);
+		$save = $app["dao.save"]->getSaveByIdSave($id_save);
+		$id_current_page = $save["id_current_page"];
+		return $app['twig']->render('/game/page-jeu.html.twig', array("id_current_page"=>$id_current_page));
+	}
 }

@@ -78,6 +78,31 @@ class SaveDAO extends DAO
 		return $id_save;
 	}
 
+	public function verfifySaveOwnership(array $infos){
+		$id_save = $infos["id_save"];
+		$id_user = $infos["id_user"];
+		$requete = "SELECT * FROM save WHERE id_save = ? AND id_user = ?";
+		$resultat = $this->getDb()->fetchAssoc($requete, array($id_save, $id_user));
+		if($resultat){
+			return TRUE;
+		}
+		else{
+			return FALSE;
+		}
+	}
+
+	public function deleteSave($id_save){
+		$requete = "DELETE FROM save WHERE id_save = ?";
+		if ($this->getDb()->executeUpdate($requete, array($id_save))){
+			$msg = "Sauvegarde supprimée";
+		}
+		else {
+			$msg = "Erreur pendant la suppression";
+		}
+		return $msg;
+		;
+	}
+
 	protected function buildEntityObject(array $value){
 		$save = new save;
 

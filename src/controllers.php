@@ -147,4 +147,10 @@ $app->match("/getavailableadventures/", "OrbitalExpress\\Controllers\\Adventure:
 
 $app->match("/newgame/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::newAdventure");
 
-$app->match("/continue/", "OrbitalExpress\\Controllers\\Save::continueAdventure");
+$app->match("/continue/", "OrbitalExpress\\Controllers\\Save::loadSavesByUser");
+
+$app->match("/load/{id_save}", "OrbitalExpress\\Controllers\\Game::continueGame" );
+
+$app->match("/gestionusersaves/", "OrbitalExpress\\Controllers\\Save::gestionUserSaves" );
+
+$app->match("/deleteusersave/{id_save}", "OrbitalExpress\\Controllers\\Save::deleteUserSave" );
