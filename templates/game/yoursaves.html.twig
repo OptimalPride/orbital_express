@@ -1,15 +1,6 @@
 <h3>Vos sauvegardes :</h3>
 <table border="1">
-	<tr>
-		<th>Nom de l'aventure</th>
-		<th>Description de l'aventure</th>
-	<th>New Game</th>
-	</tr>
-	{% for key in adventures %}
-		<tr>
-			<td>{{key["name"]}}</td>
-			<td>{{key["description"]}}</td>
-			<td><a href="{{path('homepage')}}newgame/{{key.id_adventure}}">Launch!</a></td>
-		</tr>
-	{% endfor %}
+{% for key in saves %}
+<button>Save n°{{loop.index}}<br>{{key["adventure_name"]}}<br>{{key["time_frame"]}}</button>
+{% endfor %}
 </table>
