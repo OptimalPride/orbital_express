@@ -39,6 +39,8 @@ CREATE TABLE IF NOT EXISTS Save (
   id_user INT(5) NOT NULL,
   id_current_page INT(5) NOT NULL,
   historic VARCHAR(50) NOT NULL,
+  time_frame VARCHAR(30) NOT NULL,
+  adventure_name VARCHAR(20) NOT NULL,
   PRIMARY KEY (id_save),
   FOREIGN KEY (id_user) REFERENCES User (id_user) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (id_current_page) REFERENCES page (id_page) ON DELETE CASCADE ON UPDATE CASCADE

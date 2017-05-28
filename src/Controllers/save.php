@@ -13,5 +13,9 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class Save
 {
-
+	public function continueAdventure(){
+		$id_user = $app['security.token_storage']->getToken()->getUser()->getId_User();
+		$saves = $app["dao.save"]->getAllSavesByIdUser($id_user);
+		return $app['twig']->render('/game/yoursaves.html.twig', array("saves"=>$saves));
+	}
 }

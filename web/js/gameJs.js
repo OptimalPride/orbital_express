@@ -35,14 +35,14 @@ $(function(){
 		});		
 	}
 
-	var id_landing_page = 1;
-	var id_current_page = id_landing_page;
+	var id_landing_page = id_current_page;
 	gameFunction(id_landing_page, id_current_page);
 
 	$("div.linkchoice").click(function(e) {
 		id_current_page = id_landing_page;
 		id_landing_page = $(this).attr('data_id');
 		gameFunction(id_landing_page, id_current_page);
+		console.log(id_current_page, id_landing_page);
 	});
 	
 
