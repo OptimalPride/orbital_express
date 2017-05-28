@@ -130,7 +130,8 @@ $app->match("/goprofil/", function () use ($app){
 });
 
 $app->match("/profil/", function () use ($app){
-	$userTest = $app["session"]->get("user");
+	$user = $app['security.token_storage']->getToken()->getUser();
+	$userTest = $user->getUsername();
     return $app['twig']->render('profil.html.twig', array("userTest" =>$userTest));
 })->bind('profil');
 
@@ -142,4 +143,4 @@ $app->match("/tableau/", function () use ($app){
     return $app['twig']->render('tableau-de-bord.html.twig', array());
 })->bind('tableau');
 
-$app->match("/unregister/{id_user}", "OrbitalExpress\\Controllers\\User::unregister")->bind("unregister");
+$app->match("/unregister/", "OrbitalExpress\\Controllers\\User::unregister")->bind("unregister");
