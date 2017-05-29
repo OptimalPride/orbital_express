@@ -51,7 +51,27 @@
           </a>
         </div>
         <div class="w-tab-content">
-          <div class="contenu_nouvelle_aventure w-tab-pane" data-w-tab="Tab 1"></div>
+          <div class="contenu_nouvelle_aventure w-tab-pane" data-w-tab="Tab 1">
+
+            <script>
+              $(function(){
+                var new_adventure = $.ajax({  
+                  url: baseUrl+"new-adventure/",
+                  method: "POST",
+                });
+
+                new_adventure.done(function( msg ) {
+                  if($adventures["active"]==1){
+                    $.html($adventures["name"])
+                  }
+                  else{
+                    console.log('Nooo');
+                  }
+
+                });
+              });
+            </script>
+          </div>
           <div class="contenu_continuer_aventure w-tab-pane" data-w-tab="Tab 2"></div>
           <div class="contenu_sauvegardes w--tab-active w-tab-pane" data-w-tab="Tab 3"></div>
         </div>
