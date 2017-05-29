@@ -25,4 +25,5 @@ class User
 		$url = $app['url_generator']->generate('gestionUser');
 		return $app->redirect($url);
 	}
+
 }
