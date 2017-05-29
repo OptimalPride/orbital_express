@@ -91,18 +91,6 @@ class SaveDAO extends DAO
 		}
 	}
 
-	public function deleteSave($id_save){
-		$requete = "DELETE FROM save WHERE id_save = ?";
-		if ($this->getDb()->executeUpdate($requete, array($id_save))){
-			$msg = "Sauvegarde supprimée";
-		}
-		else {
-			$msg = "Erreur pendant la suppression";
-		}
-		return $msg;
-		;
-	}
-
 	protected function buildEntityObject(array $value){
 		$save = new save;
 

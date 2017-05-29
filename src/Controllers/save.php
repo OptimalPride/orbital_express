@@ -30,7 +30,7 @@ class Save
 		$infos = array("id_user"=>$id_user, "id_save"=>$id_save);
 		$verify_save_owner = $app["dao.save"]->verfifySaveOwnership($infos);
 		if($verify_save_owner){
-			$msg = $app["dao.save"]->deleteSave($id_save);
+			$msg = $app["dao.save"]->deleteSaveById($id_save);
 		}
 		else{
 			$msg = "Ceci n'est pas votre sauvegarde.";
