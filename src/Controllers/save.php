@@ -17,4 +17,10 @@ class Save
         $save = $app['dao.save']->getAllSaves();
         return $app['twig']->render('backoffice/gestionSave.html.twig', array("save" => $save, "msg" => ""));
     }
+
+    public function deleteSave(Application $app, $id_save){
+  		$msg = $app["dao.save"]->deleteSaveById($id_save);
+  		$saves = $app["dao.save"]->getAllSaves();
+  		return $app['twig']->render('backoffice/GestionSave.html.twig', array("saves" => $saves, "msg" => $msg));
+  	}
 }

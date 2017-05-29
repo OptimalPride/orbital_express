@@ -9,12 +9,16 @@
 	{% for key, value in save[0] %}
 		<th>{{ key }}</th>
 	{% endfor %}
+		<th>action</th>
 	</tr>
 	{% for key in save %}
 		<tr>
 			{% for value in key %}
 				<td>{{ value }}</td>
 			{% endfor %}
+				<td>
+			  <a href="{{ path('deletesave', {'id_save' : key.id_save}) }}"><img src="{{ asset('img/delete.png') }}"></a>
+				</td>
 		</tr>
 	{% endfor %}
 </table>
