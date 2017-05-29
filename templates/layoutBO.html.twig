@@ -4,19 +4,19 @@
       <title>{% block title '' %} - admin orbital express</title>
     </head>
     <body>
-        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-          <a href="{{ path('profil', {id: app.user.id_user}) }}">Profil</a>
-          <a href="{{ path("logout") }}">Deconnexion</a>
-          {% else %}
-          <a href="{{ path("login") }}">Connexion</a>
-          <a href="{{ path("register") }}">Inscription</a>
-        {% endif %}
-
-        <div>
-          <a href="{{ path('gestionUser') }}">Gestion des membres</a>
-          <a href="{{ path('gestionAdventure') }}">Gestion des aventures</a>
-          <a href="{{ path('gestionSave') }}">Gestion des sauvegardes</a>
-        </div>
+      {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+        <div class="nav_link"><a href="{{ path("tableau") }}">Profil</a></div>
+        <div class="nav_link"><a href="{{ path("logout") }}">Deconnexion</a></div>
+      {% else %}
+        <div class="nav_link"><a href="#">Connexion</a></div>
+      {% endif %}
+        <div class="nav_link"><a href="{{ path("contact") }}">Contact</a></div>
+        <div class="nav_link"><a href="#">Regles du jeu</a></div>
+      {% if is_granted('ROLE_ADMIN') %}
+        <div class="nav_link"><a href="{{ path("gestionUser") }}">Gestion membres</a></div>
+        <div class="nav_link"><a href="{{ path("gestionAdventure") }}">Gestion aventures</a></div>
+        <div class="nav_link"><a href="{{ path("gestionSave") }}">Gestion sauvegardes</a></div>
+      {% endif %}
 
         <div id="load_gestion">{% block content %}{% endblock %}</div>
 
