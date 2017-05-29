@@ -46,6 +46,17 @@ class UserDAO extends DAO implements UserProviderInterface
 		}
 	}
 
+  public function getAllUser(){
+		$requete = "SELECT id_user, username, email, role FROM user";
+		$resultat = $this->getDb()->fetchAll($requete, array());
+		if($resultat){
+			return $resultat;
+		}
+		else{
+			throw new \Exception("Aucun membre dans la base de donnée");
+		}
+	}
+
   public function findAll(){
 		$requete = "SELECT * FROM user";
 		$resultat = $this -> getDb() -> fetchAll($requete);
@@ -78,6 +89,7 @@ class UserDAO extends DAO implements UserProviderInterface
       throw new \Exception("Aucun membre à l'id:" . $id_user);
     }
   }
+
 
   protected function buildEntityObject(array $resultat){
     $user = new User();

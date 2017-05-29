@@ -30,7 +30,7 @@ class PageDAO extends DAO
 		}
 	}
 
-	
+
 	public function getPagesByIdAdventure($id_adventure){
 		$requete = "SELECT * FROM page where id_adventure = ?";
 		$resultat = $this->getDb()->fetchAll($requete, array($id_adventure));
@@ -40,6 +40,18 @@ class PageDAO extends DAO
 		else{
 			throw new \Exception("Aucune pages à l'id:$id_adventure");
 		}
+	}
+
+	public function deletePageById($id_page){
+		$requete = "DELETE FROM page WHERE id_page = ?";
+		if ($this->getDb()->executeUpdate($requete, array($id_page))){
+			$msg = "Page supprimée";
+		}
+		else {
+			$msg = "Erreur pendant la suppression";
+		}
+		return $msg;
+		;
 	}
 
 	public function getFirstPageByIdAdventure($id_adventure){
