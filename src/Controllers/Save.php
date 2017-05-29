@@ -21,10 +21,9 @@ class Save
     public function deleteSave(Application $app, $id_save){
   		$msg = $app["dao.save"]->deleteSaveById($id_save);
   		$saves = $app["dao.save"]->getAllSaves();
-      $url = $app['url_generator']->generate('gestionSave');
-  		return $app->redirect($url);
-    }
-    
+  		return $app['twig']->render('backoffice/GestionSave.html.twig', array("saves" => $saves, "msg" => $msg));
+  	}
+  
 	public function loadSavesByUser(Application $app){
 		$id_user = $app['security.token_storage']->getToken()->getUser()->getId_User();
 		$saves = $app["dao.save"]->getAllSavesByIdUser($id_user);

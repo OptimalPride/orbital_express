@@ -1,12 +1,12 @@
 {% extends 'layoutBO.html.twig' %}
 
 {% block content %}
+<script>var id_adventure = {{id_adventure}};</script>
+<div id="adventure_edit_form"></div>
 
-<form action="#" method="post">
-    {{ form_widget(form) }}
+<div id="adventure_pages"></div>
 
+<div id="page_edit_form"></div>
 
-</form>
-
-
+<script  type="text/javascript" src="{{ asset('js/modifyadventure.js') }}"></script>
 {% endblock %}
