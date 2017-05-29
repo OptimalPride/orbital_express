@@ -3,7 +3,7 @@ $(function(){
 	var loginInit = $.ajax({ 	
 		url: baseUrl+"login/",
 		method: "POST",
-	});
+	}); 
 	loginInit.done(function( msg ) {
 		msg = JSON.parse(msg);
 		$(".contenu_popup_connexion").html(msg['display']);
@@ -29,7 +29,6 @@ $(function(){
 
 				loginData.done(function(reg){
 					reg = JSON.parse(reg);
-					console.log(loginData);
 					if(reg["redirect"] == "true"){
 						window.location.href=baseUrl+'tableau';
 					}

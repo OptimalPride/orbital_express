@@ -2,22 +2,22 @@
 
 {% block content %}
 
-<h2>Gestion des sauvegardes</h2>
+<h2>Gestion des membres</h2>
 
 <table border="1">
 	<tr>
-	{% for key, value in save[0] %}
+	{% for key, value in user[0] %}
 		<th>{{ key }}</th>
 	{% endfor %}
 		<th>action</th>
 	</tr>
-	{% for key in save %}
+	{% for key in user %}
 		<tr>
 			{% for value in key %}
 				<td>{{ value }}</td>
 			{% endfor %}
 				<td>
-			  <a href="{{ path('deletesave', {'id_save' : key.id_save}) }}"><img src="{{ asset('img/delete.png') }}"></a>
+			  <a href="{{ path('deleteuser', {'id_user' : key.id_user}) }}"><img src="{{ asset('img/delete.png') }}"></a>
 				</td>
 		</tr>
 	{% endfor %}

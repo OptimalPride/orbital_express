@@ -36,9 +36,7 @@ $app->error(function (\Exception $e, Request $request, $code) use ($app) {
     return new Response($app['twig']->resolveTemplate($templates)->render(array('code' => $code)), $code);
 });
 
-$app->match("/page/", function () use ($app){
-    return $app['twig']->render('page-jeu.html.twig', array());
-});
+$app->match("/page/{id_adventure}", "OrbitalExpress\\Controllers\\Game::startNewGame");
 
 
 $app->view(function(array $results) {
@@ -54,21 +52,26 @@ $app->get("/backoffice/", function () use ($app){
     return $app['twig']->render('backoffice/gestion.html.twig', array());
 });
 
-
 $app->match("/gestionuser/", "OrbitalExpress\\Controllers\\Adventure::afficheGestionUser")->bind("gestionUser");
 
 $app->match("/gestionadventure/", "OrbitalExpress\\Controllers\\Adventure::afficheGestionAdventure")->bind("gestionAdventure");
 
-$app->match("/gestionsave/", "OrbitalExpress\\Controllers\\Adventure::afficheGestionSave")->bind("gestionSave");
+$app->match("/gestionsave/", "OrbitalExpress\\Controllers\\Save::afficheGestionSave")->bind("gestionSave");
 
+
+$app->match("/deletesave/{id_save}", "OrbitalExpress\\Controllers\\Save::deleteSave")->bind("deletesave");
 
 $app->match("/deleteadventure/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::deleteAdventure")->bind("deleteadventure");
+
+$app->match("/deletepage/{id_adventure}/{id_page}", "OrbitalExpress\\Controllers\\Page::deletePage")->bind("deletepage");
 
 $app->match("/modifyadventure/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::modifyAdventure")->bind("modifyadventure");
 
 $app->match("/displayadventure/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::displayAdventure")->bind("displayadventure");
 
 $app->match("/createadventure/", "OrbitalExpress\\Controllers\\Adventure::createAdventure")->bind("createadventure");
+
+$app->match("/listepage/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::getAdventureById")->bind("listepage");
 
 $app->match("/login/" , "OrbitalExpress\\Controllers\\Home::login")
 ->bind('login');
@@ -130,7 +133,9 @@ $app->match("/goprofil/", function () use ($app){
 });
 
 $app->match("/profil/", function () use ($app){
-	$userTest = $app["session"]->get("user");
+	$user = $app['security.token_storage']->getToken()->getUser();
+	$userTest = $user->getRole();
+	$time = date('d/m/Y H\hi');
     return $app['twig']->render('profil.html.twig', array("userTest" =>$userTest));
 })->bind('profil');
 
@@ -142,7 +147,18 @@ $app->match("/tableau/", function () use ($app){
     return $app['twig']->render('tableau-de-bord.html.twig', array());
 })->bind('tableau');
 
-$app->match("/sessionset/", "OrbitalExpress\\Controllers\\Home::sessionSet");
+$app->match("/unregister/", "OrbitalExpress\\Controllers\\User::unregister")->bind("unregister");
 
+$app->match("/getavailableadventures/", "OrbitalExpress\\Controllers\\Adventure::getAvailableAdventures");
 
-$app->match("/new-adventure/", "OrbitalExpress\\Controllers\\Adventure::getAdventures");
+$app->match("/newgame/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::newAdventure");
+
+$app->match("/continue/", "OrbitalExpress\\Controllers\\Save::loadSavesByUser");
+
+$app->match("/load/{id_save}", "OrbitalExpress\\Controllers\\Game::continueGame" );
+
+$app->match("/gestionusersaves/", "OrbitalExpress\\Controllers\\Save::gestionUserSaves" );
+
+$app->match("/deleteusersave/{id_save}", "OrbitalExpress\\Controllers\\Save::deleteUserSave" );
+
+$app->match("/adventureeditform/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::adventureEditForm" )->bind("adventureeditform");
