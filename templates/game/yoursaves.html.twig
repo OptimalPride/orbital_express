@@ -1,0 +1,5 @@
+<h3>Vos sauvegardes :</h3>
+
+{% for key in saves %}
+<a href="{{path('homepage')}}load/{{key["id_save"]}}"><button>Save n°{{loop.index}}<br>{{key["adventure_name"]}}<br>{{key["time_frame"]}}</button></a><br><br>
+{% endfor %}

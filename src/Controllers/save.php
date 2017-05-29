@@ -23,4 +23,30 @@ class Save
   		$saves = $app["dao.save"]->getAllSaves();
   		return $app['twig']->render('backoffice/GestionSave.html.twig', array("saves" => $saves, "msg" => $msg));
   	}
+  
+	public function loadSavesByUser(Application $app){
+		$id_user = $app['security.token_storage']->getToken()->getUser()->getId_User();
+		$saves = $app["dao.save"]->getAllSavesByIdUser($id_user);
+		return $app['twig']->render('/game/yoursaves.html.twig', array("saves"=>$saves));
+	}
+
+	public function gestionUserSaves(Application $app){
+		$id_user = $app['security.token_storage']->getToken()->getUser()->getId_User();
+		$saves = $app["dao.save"]->getAllSavesByIdUser($id_user);
+		return $app['twig']->render('/game/manageyoursaves.html.twig', array("saves"=>$saves));	
+	}
+
+	public function deleteUserSave(Application $app, $id_save){
+		$id_user = $app['security.token_storage']->getToken()->getUser()->getId_User();
+		$infos = array("id_user"=>$id_user, "id_save"=>$id_save);
+		$verify_save_owner = $app["dao.save"]->verfifySaveOwnership($infos);
+		if($verify_save_owner){
+			$msg = $app["dao.save"]->deleteSaveById($id_save);
+		}
+		else{
+			$msg = "Ceci n'est pas votre sauvegarde.";
+		}
+		$url = $app['url_generator']->generate('tableau');
+		return $app->redirect($url);
+	}
 }
