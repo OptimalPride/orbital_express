@@ -11,6 +11,11 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class Adventure
 {
@@ -51,19 +56,43 @@ class Adventure
 	        "description" => "Description de l'aventure",
 	        "pitch" => "Pitch de l'aventure, l'accroche"
 	    );
-	    $form = $app['form.factory']->createBuilder(FormType::class, $data)
-	        ->add('name')
-	        ->add('description')
-	        ->add('pitch')
+	    $adventureform = $app['form.factory']->createBuilder(FormType::class, $data)
+			->add("name", TextType::class, array(
+				"constraints" => array(
+					new Assert\NotBlank(),
+					new Assert\Length(array(
+						"min" => 3,
+						"max" => 20
+					))
+				)
+			))
+			-> add('description', TextareaType::class, Array(
+				"constraints" => array(
+					new Assert\NotBlank(),
+					new Assert\Length(array(
+						"min" => 5,
+						"max" => 200
+					)
+				))
+			))
+			-> add('pitch', TextareaType::class, Array(
+				"constraints" => array(
+					new Assert\NotBlank(),
+					new Assert\Length(array(
+						"min" => 3,
+						"max" => 2000
+					)
+				))
+			))
 	        ->add('submit', SubmitType::class, [
 	            'label' => 'Ajouter aventure',
 	        ])
 	        ->getForm();
 
-	    $form->handleRequest($request);
+	    $adventureform->handleRequest($request);
 
-	    if ($form->isValid()) {
-	        $data = $form->getData();
+	    if ($adventureform->isValid()) {
+	        $data = $adventureform->getData();
 	        if (isset($data["name"]) && isset($data["description"]) && isset($data["pitch"])) {
 	            $information = array("name" => $data["name"], "description" => $data["description"], "pitch" => $data["pitch"]);
 	            $msg = $app["dao.adventure"]->addNewAdventure($information);

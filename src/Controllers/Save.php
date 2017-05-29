@@ -34,7 +34,7 @@ class Save
 	public function gestionUserSaves(Application $app){
 		$id_user = $app['security.token_storage']->getToken()->getUser()->getId_User();
 		$saves = $app["dao.save"]->getAllSavesByIdUser($id_user);
-		return $app['twig']->render('/game/manageyoursaves.html.twig', array("saves"=>$saves));
+		return $app['twig']->render('/game/manageyoursaves.html.twig', array("saves"=>$saves));	
 	}
 
 	public function deleteUserSave(Application $app, $id_save){
