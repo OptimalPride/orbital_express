@@ -11,20 +11,6 @@
 
 
 {% block content %}
-  <script  type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-<script>
-$(function(){
-    var session = $.ajax({  
-      url: baseUrl+"sessionset/",
-      method: "POST",
-      data : {id_user : {{app.user.id_user}},
-       username : '{{app.user.username}}', email : '{{app.user.email}}', role : '{{app.user.role}}'}
-    }); 
-    session.done(function( msg ) {
-      console.log(msg);
-    });
-});
-</script>
   <div class="section-7">
     <div class="container-4 w-container">
       <h1 class="heading-5" data-ix="fadedown">Tableau de bord</h1>
@@ -43,7 +29,7 @@ $(function(){
         <p class="paragraph-desinscription">Se desinscrire</p>
       </a>
       <div class="desinscription_actions">
-        <a class="desinscription_check w-inline-block" href="#"><img class="image-16" src="{{ asset('img/success.png') }}" width="50">
+        <a class="desinscription_check w-inline-block" href="{{path('homepage')}}unregister/"><img class="image-16" src="{{ asset('img/success.png') }}" width="50">
         </a>
         <a class="desinscription_close w-inline-block" data-ix="desinscription-close" href="#"><img src="{{ asset('img/001-error.png') }}" width="50">
         </a>
@@ -72,5 +58,6 @@ $(function(){
       </div>
     </div>
   </div>
-
+<script  type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/profil.js') }}"></script>
 {% endblock %}

@@ -24,22 +24,6 @@ class Home
 	public function index(Application $app){
 		return $app['twig']->render('index.html.twig');
 	}
-  
-	public function sessionSet(Application $app){
-		if($_POST){
-			$id_user = $_POST["id_user"];
-			$username = $_POST["username"];
-			$email = $_POST["email"];
-			$role = $_POST["role"];
-			$app['session']->set("user", array(
-				"id_user" => $id_user,
-				"username" => $username,
-				"email" => $email,
-				"role" => $role
-			));
-		}
-		return "session set done";
-	}
 }
 
 ?>

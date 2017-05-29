@@ -36,9 +36,7 @@ $app->error(function (\Exception $e, Request $request, $code) use ($app) {
     return new Response($app['twig']->resolveTemplate($templates)->render(array('code' => $code)), $code);
 });
 
-$app->match("/page/", function () use ($app){
-    return $app['twig']->render('page-jeu.html.twig', array());
-});
+$app->match("/page/{id_adventure}", "OrbitalExpress\\Controllers\\Game::startNewGame");
 
 
 $app->view(function(array $results) {
@@ -53,7 +51,6 @@ $app->match("/gamefunction/", "OrbitalExpress\\Controllers\\Game::getPageInfo");
 $app->get("/backoffice/", function () use ($app){
     return $app['twig']->render('backoffice/gestion.html.twig', array());
 });
-
 
 $app->match("/gestionuser/", "OrbitalExpress\\Controllers\\Adventure::afficheGestionUser")->bind("gestionUser");
 
@@ -130,8 +127,10 @@ $app->match("/goprofil/", function () use ($app){
 });
 
 $app->match("/profil/", function () use ($app){
-	$userTest = $app["session"]->get("user");
-    return $app['twig']->render('profil.html.twig', array("userTest" =>$userTest));
+	$user = $app['security.token_storage']->getToken()->getUser();
+	$userTest = $user->getUsername();
+	$time = date('d/m/Y H\hi');
+    return $app['twig']->render('profil.html.twig', array("userTest" =>$time));
 })->bind('profil');
 
 $app->match("/contact/", function () use ($app){
@@ -142,4 +141,16 @@ $app->match("/tableau/", function () use ($app){
     return $app['twig']->render('tableau-de-bord.html.twig', array());
 })->bind('tableau');
 
-$app->match("/sessionset/", "OrbitalExpress\\Controllers\\Home::sessionSet");
+$app->match("/unregister/", "OrbitalExpress\\Controllers\\User::unregister")->bind("unregister");
+
+$app->match("/getavailableadventures/", "OrbitalExpress\\Controllers\\Adventure::getAvailableAdventures");
+
+$app->match("/newgame/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::newAdventure");
+
+$app->match("/continue/", "OrbitalExpress\\Controllers\\Save::loadSavesByUser");
+
+$app->match("/load/{id_save}", "OrbitalExpress\\Controllers\\Game::continueGame" );
+
+$app->match("/gestionusersaves/", "OrbitalExpress\\Controllers\\Save::gestionUserSaves" );
+
+$app->match("/deleteusersave/{id_save}", "OrbitalExpress\\Controllers\\Save::deleteUserSave" );
