@@ -33,8 +33,9 @@ class Adventure
 
 	public function getAdventureById(Application $app, $id_adventure){
 		$adventure = $app["dao.adventure"]->getAdventureById($id_adventure);
-		$page = $app["dao.page"]->getPagesByIdAdventure($id_adventure);
-		return $app['twig']->render('backoffice/listepage.html.twig', array("adventure" => $adventure, "page" => $page));
+		$pages = $app["dao.page"]->getPagesByIdAdventure($id_adventure);
+		$choices = $app["dao.choice"]->getAllChoices();
+		return $app['twig']->render('backoffice/listepage.html.twig', array("adventure" => $adventure, "page" => $pages, "choices"=>$choices));
 	}
 
 

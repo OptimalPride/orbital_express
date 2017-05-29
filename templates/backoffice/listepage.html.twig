@@ -1,25 +1,24 @@
-{% block content %}
+
 
 <h2>Gestion des pages de l'aventure {{ adventure.id_adventure }}</h2>
 
 <table border="1">
 	<tr>
-	{% for key, value in page[0] %}
-		<th>{{ key }}</th>
-	{% endfor %}
+		<th>Numero de page</th>
+		<th>Pages associées</th>
 		<th>action</th>
 	</tr>
 	{% for key in page %}
 		<tr>
-			{% for value in key %}
-				<td>{{ value }}</td>
-			{% endfor %}
+				<td>{{ key["page_number"] }}</td>
+				<td>{% for choice in choices %}
+					{% if key["id_page"] == choice["id_current_page"] %} - {{choice["id_landing_page"]}}{% endif %}
+				{% endfor %} - </td>
 				<td>
 			  <a href="{{ path('deletepage', {'id_adventure' : adventure.id_adventure,'id_page' : key.id_page}) }}"><img src="{{ asset('img/delete.png') }}"></a>
+			  <a href="{{ path('modifypage', {'id_adventure' : adventure.id_adventure,'id_page' : key.id_page}) }}"><img src="{{ asset('img/edit.png') }}"></a>
 				</td>
 		</tr>
 	{% endfor %}
 </table>
 
-
-{% endblock %}

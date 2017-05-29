@@ -74,6 +74,7 @@ class PageDAO extends DAO
 		$page -> setStory($value["story"]);
 		$page -> setBackground($value["background"]);
 		$page -> setAnimation($value["animation"]);
+		$page -> setEnding($value["ending"]);
 
 		return $page;
 	}
