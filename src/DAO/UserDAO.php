@@ -35,6 +35,17 @@ class UserDAO extends DAO implements UserProviderInterface
 		return $this -> loadUserByUsername($user -> getUsername());
 	}
 
+	public function verifyIfNameTaken($username){
+		$requete = "SELECT * FROM user WHERE username = ?";
+		$resultat = $this -> getDb() -> fetchAssoc($requete, array($username));
+		if($resultat){
+			return TRUE;
+		}
+		else{
+			return FALSE;
+		}
+	}
+
   public function findAll(){
 		$requete = "SELECT * FROM user";
 		$resultat = $this -> getDb() -> fetchAll($requete);
@@ -105,6 +116,22 @@ class UserDAO extends DAO implements UserProviderInterface
 			$this->getDb()->insert("user", $userData);
 
 			$user->setId_User($this->getDb()->lastInsertId());
+		}
+	}
+
+	public function getUserData(){
+		$user = $this->get('security.token_storage')->getToken()->getUser();
+		return $user;
+	}
+
+	public function deleteUserById($id_user){
+		$requete = "DELETE FROM user WHERE id_user = ?";
+		$resultat = $this->getDb()->executeUpdate($requete, array($id_user));
+		if($resultat){
+			return "Utilisateur supprimé";
+		}
+		else{
+			return "Erreur pedant la suppression";
 		}
 	}
 

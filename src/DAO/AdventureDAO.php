@@ -61,8 +61,28 @@ class AdventureDAO extends DAO
 		$name = $information["name"];
 		$description = $information["description"];
 		$pitch = $information["pitch"];
-		$requete = "UPDATE adventure(name, description, pitch) VALUES (:name, :description, :pitch)";
+		$id_adventure = $information["id_adventure"];
+		$requete = "UPDATE adventure SET name = ?, description = ?, pitch = ? WHERE id_adventure = ?";
+		if ($this->getDb()->executeUpdate($requete, array($name, $description, $pitch, $id_adventure))){
+			$msg = "Aventure Modifiée";
+		}
+		else {
+			$msg = "Erreur pendant la modif";
+		}
+		return $msg;
+		;
 		
+	}
+
+	public function getActiveAdventures(){
+		$requete = "SELECT id_adventure, name, description FROM adventure WHERE active = TRUE";
+		$resultat = $this->getDb()->fetchAll($requete);
+		if($resultat){
+			return $resultat;
+		}
+		else{
+			throw new \Exception("Aucune aventure active.");
+		}
 	}
 
 	protected function buildEntityObject(array $value){

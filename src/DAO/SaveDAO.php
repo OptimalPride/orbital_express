@@ -55,7 +55,7 @@ class SaveDAO extends DAO
 	}
 
 	public function updateSave(array $infos){
-		$requete "UPDATE save SET id_current_page = ? WHERE id_save = ?";
+		$requete = "UPDATE save SET id_current_page = ? WHERE id_save = ?";
 		$id_current_page = $infos["id_current_page"];
 		$id_save = $infos["id_save"];
 		if ($this->getDb()->executeUpdate($requete, array($id_current_page, $id_save))){
@@ -67,6 +67,42 @@ class SaveDAO extends DAO
 		return $msg;
 	}
 
+	public function deleteSaveById($id_save){
+		$requete = "DELETE FROM save WHERE id_save = ?";
+		if ($this->getDb()->executeUpdate($requete, array($id_save))){
+			$msg = "Progression supprimée";
+		}
+		else {
+			$msg = "Erreur pendant la suppression";
+		}
+		return $msg;
+		;
+	}
+	
+	public function createNewSave(array $infos){
+		$id_user = $infos["id_user"];
+		$id_current_page = $infos["id_current_page"];
+		$adventure_name = $infos["adventure_name"];
+		$time_frame = date('d/m/Y H\hi');
+		$requete = "INSERT INTO save (id_user, id_current_page, adventure_name, time_frame) VALUES (?, ?, ?, ?)";
+		$resultat = $this->getDb()->executeUpdate($requete, array($id_user, $id_current_page, $adventure_name, $time_frame));
+		$id_save = $this->getDb()->lastInsertId();
+		return $id_save;
+	}
+
+	public function verfifySaveOwnership(array $infos){
+		$id_save = $infos["id_save"];
+		$id_user = $infos["id_user"];
+		$requete = "SELECT * FROM save WHERE id_save = ? AND id_user = ?";
+		$resultat = $this->getDb()->fetchAssoc($requete, array($id_save, $id_user));
+		if($resultat){
+			return TRUE;
+		}
+		else{
+			return FALSE;
+		}
+	}
+
 	protected function buildEntityObject(array $value){
 		$save = new save;
 
@@ -74,6 +110,8 @@ class SaveDAO extends DAO
 		$save -> setId_User($value["id_user"]);
 		$save -> setId_Current_Page($value["id_current_page"]);
 		$save -> setHistoric($value["historic"]);
+		$save -> setTime_Frame($value["time_frame"]);
+		$save -> setAdventure_Name($value["adventure_name"]);
 
 		return $save;
 	}

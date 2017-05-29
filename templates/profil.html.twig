@@ -1,7 +1,10 @@
-{% extends "layout.html.twig" %}
+<script>
+var username =  '{{ app.user.username }}';
+console.log(username)
+</script>
 
-{% block title %}Profil{% endblock %}
+<h1>Ceci est le profil de {{ app.user.username }}</h1>
+<p>La permission de cet utilisateur est: {{ app.user.role }}</p>
+{{ app.user.id_user }}
 
-{% block content %}
-<h1>Profil de {{user.username}}</h1>
-{% endblock %}
+{{ dump(userTest)}}

@@ -1,0 +1,19 @@
+<h2>Gestion de vos sauvegardes</h2>
+
+<table border="1">
+	<tr>
+		<th>N° de save</th>
+		<th>Nom de l'aventure</th>
+		<th>Date de creation</th>
+		<th>Actions</th>
+	</tr>
+
+{% for key in saves %}
+	<tr>
+		<td>{{loop.index}}</td>
+		<td>{{key["adventure_name"]}}</td>
+		<td>{{key["time_frame"]}}</td>
+		<td><a href="{{path('homepage')}}deleteusersave/{{key["id_save"]}}">Supprimer</a></td>
+	</tr>
+{% endfor %}
+</table>

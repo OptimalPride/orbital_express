@@ -11,7 +11,6 @@
 
 
 {% block content %}
-
   <div class="section-7">
     <div class="container-4 w-container">
       <h1 class="heading-5" data-ix="fadedown">Tableau de bord</h1>
@@ -21,8 +20,8 @@
   <div class="infos_user" data-ix="fadedown-4">
     <div class="container_infos_user w-container">
       <div>
-        <p class="login_pseudo">Pseudo : janinedragonforce</p>
-        <p class="email">Email : janine@dragonforce.com</p>
+        <p class="login_pseudo">Pseudo : {{app.user.username}}</p>
+        <p class="email">Email : {{app.user.email}}</p>
       </div>
     </div>
     <div class="div-block-18">
@@ -30,7 +29,7 @@
         <p class="paragraph-desinscription">Se desinscrire</p>
       </a>
       <div class="desinscription_actions">
-        <a class="desinscription_check w-inline-block" href="#"><img class="image-16" src="{{ asset('img/success.png') }}" width="50">
+        <a class="desinscription_check w-inline-block" href="{{path('homepage')}}unregister/"><img class="image-16" src="{{ asset('img/success.png') }}" width="50">
         </a>
         <a class="desinscription_close w-inline-block" data-ix="desinscription-close" href="#"><img src="{{ asset('img/001-error.png') }}" width="50">
         </a>
@@ -59,5 +58,6 @@
       </div>
     </div>
   </div>
-
+<script  type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/profil.js') }}"></script>
 {% endblock %}

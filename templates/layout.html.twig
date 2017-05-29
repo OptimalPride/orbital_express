@@ -1,3 +1,4 @@
+{% if is_granted("IS_AUTHENTICATED_FULLY") %}
 <!DOCTYPE html>
 <html {% block data_html %}{% endblock %}>
     <!-- Header -->
@@ -13,7 +14,7 @@
         <link href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png" rel="apple-touch-icon">
         <link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('css/form-orbital.webflow.css') }}" rel="stylesheet" type="text/css" />
-       
+
         <title>{% block title %}{% endblock %} - orbital express</title>
 
         <script>
@@ -23,18 +24,24 @@
 
     <!-- Contenu page -->
     <body {% block body_class %}{% endblock %}>
-        
+
         <div class="div-block-15" data-ix="hide-nav-menu">
             <div class="nav_menu_flex">
                 <a class="w-inline-block" href="#"><img class="close_menu" data-ix="close-menu" src="{{ asset('img/001-error.png') }}"></a>
                 <a class="link-block-9 w-inline-block" href="#">
-                    <div class="nav_link"><a href="#">Profil</a></div>
-                    <div class="nav_link"><a href="#">Contact</a></div>
+                  {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                    <div class="nav_link"><a href="{{ path("tableau") }}">Profil</a></div>
+                    <div class="nav_link"><a href="{{ path("logout") }}">Deconnexion</a></div>
+                  {% else %}
+                    <div class="nav_link"><a href="#">Connexion</a></div>
+                  {% endif %}
+                    <div class="nav_link"><a href="{{ path("contact") }}">Contact</a></div>
                     <div class="nav_link"><a href="#">Regles du jeu</a></div>
-                    <div class="nav_link"><a href="#">Deconnexion</a></div>
-                    <div class="nav_link"><a href="#">Gestion membres</a></div>
-                    <div class="nav_link"><a href="#">Gestion aventures</a></div>
-                    <div class="nav_link"><a href="#">Gestion sauvegardes</a></div>
+                  {% if is_granted('ROLE_ADMIN') %}
+                    <div class="nav_link"><a href="{{ path("gestionUser") }}">Gestion membres</a></div>
+                    <div class="nav_link"><a href="{{ path("gestionAdventure") }}">Gestion aventures</a></div>
+                    <div class="nav_link"><a href="{{ path("gestionSave") }}">Gestion sauvegardes</a></div>
+                  {% endif %}
                 </a>
             </div>
         </div>
@@ -49,7 +56,7 @@
         </div>
 
         {% block content %}{% endblock %}
-    
+
         <!-- Footer -->
         <div class="section-5">
             <div class="div-block-5" data-ix="fadeup">
@@ -75,3 +82,6 @@
         <script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
     </body>
 </html>
+{% else %}
+  <script>window.location.href = "{{ path("homepage") }}"</script>
+{% endif %}

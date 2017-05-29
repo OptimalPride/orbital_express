@@ -1,0 +1,28 @@
+{% extends "layoutBO.html.twig" %}
+
+{% block content %}
+
+<h2>Gestion des membres</h2>
+
+<table border="1">
+	<tr>
+	{% for key, value in user[0] %}
+		<th>{{ key }}</th>
+	{% endfor %}
+		<th>action</th>
+	</tr>
+	{% for key in user %}
+		<tr>
+			{% for value in key %}
+				<td>{{ value }}</td>
+			{% endfor %}
+				<td>
+			  <a href="{{ path('deleteuser', {'id_user' : key.id_user}) }}"><img src="{{ asset('img/delete.png') }}"></a>
+				</td>
+		</tr>
+	{% endfor %}
+</table>
+
+{{ msg }}
+
+{% endblock %}
