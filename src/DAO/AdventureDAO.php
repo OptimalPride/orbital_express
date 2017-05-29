@@ -62,7 +62,14 @@ class AdventureDAO extends DAO
 		$description = $information["description"];
 		$pitch = $information["pitch"];
 		$requete = "UPDATE adventure(name, description, pitch) VALUES (:name, :description, :pitch)";
-		
+		if ($this->getDb()->executeUpdate($requete, array($name, $description, $pitch))){
+			$msg = "Aventure Modifié";
+		}
+		else {
+			$msg = "Erreur pendant la modification";
+		}
+		return $msg;
+		;
 	}
 
 	public function getActiveAdventures(){

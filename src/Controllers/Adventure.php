@@ -41,7 +41,8 @@ class Adventure
 	public function deleteAdventure(Application $app, $id_adventure){
 		$msg = $app["dao.adventure"]->deleteAdventureById($id_adventure);
 		$adventures = $app["dao.adventure"]->getAllAdventures();
-		return $app['twig']->render('backoffice/gestionadventure.html.twig', array("adventures" => $adventures, "msg" => $msg));
+		$url = $app['url_generator']->generate('gestionAdventure');
+		return $app->redirect($url);
 	}
 
 	public function displayAdventure(Application $app, $id_adventure){
@@ -102,7 +103,8 @@ class Adventure
 	            throw new \Exception("Veuillez remplir toutes les informations");
 	        }
 	    }
-	    return $app['twig']->render('backoffice/createadventure.html.twig', array('adventureform' => $adventureform->createView()));
+			$url = $app['url_generator']->generate('gestionAdventure');
+			return $app->redirect($url);
 	}
 
 	public function modifyAdventure(Application $app, Request $request, $id_adventure){
@@ -124,7 +126,7 @@ class Adventure
     $form->handleRequest($request);
 
 		if ($form->isValid()) {
-	
+
 		}
     return $app['twig']->render('backoffice/modifyadventure.html.twig', array('form' => $form->createView()));
 	}
