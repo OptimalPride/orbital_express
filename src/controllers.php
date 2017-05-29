@@ -143,3 +143,6 @@ $app->match("/tableau/", function () use ($app){
 })->bind('tableau');
 
 $app->match("/sessionset/", "OrbitalExpress\\Controllers\\Home::sessionSet");
+
+
+$app->match("/new-adventure/", "OrbitalExpress\\Controllers\\Adventure::getAdventures");
