@@ -31,12 +31,12 @@ class Adventure
 		return array("adventures" => $adventures);
 	}
 
-	public function getAdventureById(Application $app){
-		$id_adventure = $_POST["id_adventure"];
+	public function getAdventureById(Application $app, $id_adventure){
 		$adventure = $app["dao.adventure"]->getAdventureById($id_adventure);
 		$page = $app["dao.page"]->getPagesByIdAdventure($id_adventure);
-		return array("adventure" => $adventure, "page" => $page);
+		return $app['twig']->render('backoffice/listepage.html.twig', array("adventure" => $adventure, "page" => $page));
 	}
+
 
 	public function deleteAdventure(Application $app, $id_adventure){
 		$msg = $app["dao.adventure"]->deleteAdventureById($id_adventure);

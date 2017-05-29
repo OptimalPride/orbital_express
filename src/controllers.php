@@ -65,11 +65,15 @@ $app->match("/deletesave/{id_save}", "OrbitalExpress\\Controllers\\Save::deleteS
 
 $app->match("/deleteadventure/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::deleteAdventure")->bind("deleteadventure");
 
+$app->match("/deletepage/{id_adventure}/{id_page}", "OrbitalExpress\\Controllers\\Page::deletePage")->bind("deletepage");
+
 $app->match("/modifyadventure/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::modifyAdventure")->bind("modifyadventure");
 
 $app->match("/displayadventure/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::displayAdventure")->bind("displayadventure");
 
 $app->match("/createadventure/", "OrbitalExpress\\Controllers\\Adventure::createAdventure")->bind("createadventure");
+
+$app->match("/listepage/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::getAdventureById")->bind("listepage");
 
 $app->match("/login/" , "OrbitalExpress\\Controllers\\Home::login")
 ->bind('login');
