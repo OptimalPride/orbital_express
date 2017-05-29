@@ -13,6 +13,17 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class Save
 {
+    public function afficheGestionSave(Application $app){
+        $save = $app['dao.save']->getAllSaves();
+        return $app['twig']->render('backoffice/gestionSave.html.twig', array("save" => $save, "msg" => ""));
+    }
+
+    public function deleteSave(Application $app, $id_save){
+  		$msg = $app["dao.save"]->deleteSaveById($id_save);
+  		$saves = $app["dao.save"]->getAllSaves();
+  		return $app['twig']->render('backoffice/GestionSave.html.twig', array("saves" => $saves, "msg" => $msg));
+  	}
+  
 	public function loadSavesByUser(Application $app){
 		$id_user = $app['security.token_storage']->getToken()->getUser()->getId_User();
 		$saves = $app["dao.save"]->getAllSavesByIdUser($id_user);

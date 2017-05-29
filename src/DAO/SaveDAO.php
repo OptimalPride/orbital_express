@@ -67,6 +67,17 @@ class SaveDAO extends DAO
 		return $msg;
 	}
 
+	public function deleteSaveById($id_save){
+		$requete = "DELETE FROM save WHERE id_save = ?";
+		if ($this->getDb()->executeUpdate($requete, array($id_save))){
+			$msg = "Progression supprimée";
+		}
+		else {
+			$msg = "Erreur pendant la suppression";
+		}
+		return $msg;
+		;
+
 	public function createNewSave(array $infos){
 		$id_user = $infos["id_user"];
 		$id_current_page = $infos["id_current_page"];
