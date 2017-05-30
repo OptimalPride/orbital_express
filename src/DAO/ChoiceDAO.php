@@ -18,6 +18,17 @@ class ChoiceDAO extends DAO
 		}
 	}
 
+	public function getAllChoices(){
+		$requete = "SELECT * FROM choice";
+		$resultat = $this->getDb()->fetchAll($requete, array());
+		if($resultat){
+			return $resultat;
+		}
+		else{
+			throw new \Exception("Aucun choix dans la bdd");
+		}
+	}
+
 	protected function buildEntityObject(array $value){
 		$choice = new choice;
 

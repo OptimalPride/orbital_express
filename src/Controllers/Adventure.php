@@ -21,6 +21,11 @@ class Adventure
 {
 
 	public function afficheGestionAdventure(Application $app){
+		$role = $app['security.token_storage']->getToken()->getUser()->getRole();
+		if($role != "ROLE_ADMIN"){
+			$url = $app['url_generator']->generate('logout');
+			return $app->redirect($url);
+		}
 		$pages = $app["dao.page"]->getAllPages();
 		$adventures = $app["dao.adventure"]->getAllAdventures();
 		return $app['twig']->render('backoffice/gestionadventure.html.twig', array("adventures" => $adventures, "pages" => $pages, "msg" => ""));
@@ -33,23 +38,39 @@ class Adventure
 
 	public function getAdventureById(Application $app, $id_adventure){
 		$adventure = $app["dao.adventure"]->getAdventureById($id_adventure);
-		$page = $app["dao.page"]->getPagesByIdAdventure($id_adventure);
-		return $app['twig']->render('backoffice/listepage.html.twig', array("adventure" => $adventure, "page" => $page));
+		$pages = $app["dao.page"]->getPagesByIdAdventure($id_adventure);
+		$choices = $app["dao.choice"]->getAllChoices();
+		return $app['twig']->render('backoffice/listepage.html.twig', array("adventure" => $adventure, "page" => $pages, "choices"=>$choices));
 	}
 
 
 	public function deleteAdventure(Application $app, $id_adventure){
+		$role = $app['security.token_storage']->getToken()->getUser()->getRole();
+		if($role != "ROLE_ADMIN"){
+			$url = $app['url_generator']->generate('logout');
+			return $app->redirect($url);
+		}
 		$msg = $app["dao.adventure"]->deleteAdventureById($id_adventure);
 		$adventures = $app["dao.adventure"]->getAllAdventures();
 		return $app['twig']->render('backoffice/gestionadventure.html.twig', array("adventures" => $adventures, "msg" => $msg));
 	}
 
 	public function displayAdventure(Application $app, $id_adventure){
+		$role = $app['security.token_storage']->getToken()->getUser()->getRole();
+		if($role != "ROLE_ADMIN"){
+			$url = $app['url_generator']->generate('logout');
+			return $app->redirect($url);
+		}
 		$pages =  $app["dao.page"]->getPagesByIdAdventure($id_adventure);
 		return $app['twig']->render('backoffice/displayadventure.html.twig', array("pages" => $pages));
 	}
 
 	public function createAdventure(Application $app, Request $request){
+		$role = $app['security.token_storage']->getToken()->getUser()->getRole();
+		if($role != "ROLE_ADMIN"){
+			$url = $app['url_generator']->generate('logout');
+			return $app->redirect($url);
+		}
 	    $data = array(
 	        "name" => "Nom de l'aventure",
 	        "description" => "Description de l'aventure",
@@ -74,20 +95,40 @@ class Adventure
 	}
 
 	public function modifyAdventure(Application $app, Request $request, $id_adventure){
+		$role = $app['security.token_storage']->getToken()->getUser()->getRole();
+		if($role != "ROLE_ADMIN"){
+			$url = $app['url_generator']->generate('logout');
+			return $app->redirect($url);
+		}
 	    return $app['twig']->render('backoffice/modifyadventure.html.twig', array('id_adventure' => $id_adventure));
 	}
 
 	public function getAvailableAdventures(Application $app){
+		$role = $app['security.token_storage']->getToken()->getUser()->getRole();
+		if($role != "ROLE_ADMIN"){
+			$url = $app['url_generator']->generate('logout');
+			return $app->redirect($url);
+		}
 		$adventures = $app["dao.adventure"]->getActiveAdventures();
 		return $app['twig']->render('game/newadventure.html.twig', array("adventures" => $adventures));
 	}
 
 	public function newAdventure(Application $app, $id_adventure){
+		$role = $app['security.token_storage']->getToken()->getUser()->getRole();
+		if($role != "ROLE_ADMIN"){
+			$url = $app['url_generator']->generate('logout');
+			return $app->redirect($url);
+		}
 		$adventure = $app["dao.adventure"]->getAdventureById($id_adventure);
 		return $app['twig']->render('game/intro.html.twig', array("adventure" => $adventure));
 	}
 
-	public function adventureEditForm(Application $app,Request $request, $id_adventure){;
+	public function adventureEditForm(Application $app,Request $request, $id_adventure){
+		$role = $app['security.token_storage']->getToken()->getUser()->getRole();
+		if($role != "ROLE_ADMIN"){
+			$url = $app['url_generator']->generate('logout');
+			return $app->redirect($url);
+		}
 		$adventure = $app["dao.adventure"]->getAdventureById($id_adventure);
 	    $data = array(
 	        "name" => $adventure["name"],

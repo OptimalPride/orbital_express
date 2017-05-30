@@ -25,8 +25,18 @@ class Game
 			);
 			$app["dao.save"]->updateSave($infos_save);
 			$page = $app["dao.page"]->getContentById($id_landing_page);
-			$choices = $app["dao.choice"]->getChoicesByPageId($id_landing_page);
-			return array("cheat" => "false", "page" => $page, "choices" => $choices);
+			if($page["ending"] != NULL){
+				if($page["ending"] == "success"){
+					return array("cheat" => "false", "page" => $page, "choices" => "", "ending"=>"success");
+				}
+				if($page["ending"] == "fail"){
+					return array("cheat" => "false", "page" => $page, "choices" => "", "ending"=>"fail");
+				}
+			}
+			else{
+				$choices = $app["dao.choice"]->getChoicesByPageId($id_landing_page);
+				return array("cheat" => "false", "page" => $page, "choices" => $choices, "ending"=>"");
+			}
 		}
 	}
 
@@ -43,9 +53,17 @@ class Game
 	}
 
 	public function continueGame(Application $app, $id_save){
+		$id_user = $app['security.token_storage']->getToken()->getUser()->getId_User();
+		$infos = array("id_user"=>$id_user, "id_save"=>$id_save);
+		$verify_save_owner = $app["dao.save"]->verfifySaveOwnership($infos);
+		if($verify_save_owner){
 		$app["session"]->set("id_save", $id_save);
 		$save = $app["dao.save"]->getSaveByIdSave($id_save);
 		$id_current_page = $save["id_current_page"];
-		return $app['twig']->render('/game/page-jeu.html.twig', array("id_current_page"=>$id_current_page));
+		return $app['twig']->render('/game/page-jeu.html.twig', array("id_current_page"=>$id_current_page));			
+		}
+		else{
+			return "Ceci n'est pas votre sauvegarde";
+		}
 	}
 }
