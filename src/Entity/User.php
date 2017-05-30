@@ -10,7 +10,6 @@ class User implements UserInterface
 	private $username;
 	private $email;
 	private $password;
-	private $avatar;
 	private $role;
 	private $salt;
 
@@ -44,14 +43,6 @@ class User implements UserInterface
 
     public function setPassword($password) {
         $this->password = $password;
-    }
-
-    public function getAvatar() {
-        return $this ->avatar;
-    }
-
-    public function setAvatar($avatar) {
-        $this->avatar = $avatar;
     }
 
 		public function getRole(){

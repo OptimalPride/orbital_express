@@ -14,16 +14,26 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 class Save
 {
     public function afficheGestionSave(Application $app){
+      $role = $app['security.token_storage']->getToken()->getUser()->getRole();
+      if($role != "ROLE_ADMIN"){
+        $url = $app['url_generator']->generate('homepage');
+        return $app->redirect($url);
+      }
         $save = $app['dao.save']->getAllSaves();
         return $app['twig']->render('backoffice/gestionSave.html.twig', array("save" => $save, "msg" => ""));
     }
 
     public function deleteSave(Application $app, $id_save){
+      $role = $app['security.token_storage']->getToken()->getUser()->getRole();
+      if($role != "ROLE_ADMIN"){
+        $url = $app['url_generator']->generate('homepage');
+        return $app->redirect($url);
+      }
   		$msg = $app["dao.save"]->deleteSaveById($id_save);
   		$saves = $app["dao.save"]->getAllSaves();
   		return $app['twig']->render('backoffice/GestionSave.html.twig', array("saves" => $saves, "msg" => $msg));
   	}
-  
+
 	public function loadSavesByUser(Application $app){
 		$id_user = $app['security.token_storage']->getToken()->getUser()->getId_User();
 		$saves = $app["dao.save"]->getAllSavesByIdUser($id_user);
@@ -31,9 +41,14 @@ class Save
 	}
 
 	public function gestionUserSaves(Application $app){
+    $role = $app['security.token_storage']->getToken()->getUser()->getRole();
+    if($role != "ROLE_ADMIN"){
+      $url = $app['url_generator']->generate('homepage');
+      return $app->redirect($url);
+    }
 		$id_user = $app['security.token_storage']->getToken()->getUser()->getId_User();
 		$saves = $app["dao.save"]->getAllSavesByIdUser($id_user);
-		return $app['twig']->render('/game/manageyoursaves.html.twig', array("saves"=>$saves));	
+		return $app['twig']->render('/game/manageyoursaves.html.twig', array("saves"=>$saves));
 	}
 
 	public function deleteUserSave(Application $app, $id_save){

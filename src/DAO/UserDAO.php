@@ -96,7 +96,6 @@ class UserDAO extends DAO implements UserProviderInterface
     $user -> setUsername($resultat['username']);
     $user -> setEmail($resultat['email']);
     $user -> setPassword($resultat['password']);
-    $user -> setAvatar($resultat['avatar']);
 
     $user -> setRole($resultat['role']);
     $user -> setSalt($resultat['salt']);
@@ -111,7 +110,6 @@ class UserDAO extends DAO implements UserProviderInterface
 			"username" => $user -> getUsername(),
 			"password" => $user -> getPassword(),
 			"email" => $user -> getEmail(),
-      "avatar" => $user -> getAvatar(),
 
       "role" => $user -> getRole(),
 			"salt" => $user -> getSalt()
@@ -145,7 +143,6 @@ class UserDAO extends DAO implements UserProviderInterface
 			return "Erreur pedant la suppression";
 		}
 	}
-
 }
 
 
