@@ -88,7 +88,7 @@ class Adventure
 		return $app['twig']->render('game/intro.html.twig', array("adventure" => $adventure));
 	}
 
-	public function adventureEditForm(Application $app,Request $request, $id_adventure){;
+	public function adventureEditForm(Application $app,Request $request, $id_adventure){
 		$adventure = $app["dao.adventure"]->getAdventureById($id_adventure);
 	    $data = array(
 	        "name" => $adventure["name"],

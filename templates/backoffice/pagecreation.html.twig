@@ -1,10 +1,15 @@
-<form>
+<form id="page_create">
 	<label>Numero de page</label>
-	<input type="number" name="page_number">
-
+	<input type="number"  min="1" name="page_number"><br>
+	
 	<label>Scenario</label>
-	<textarea  rows="10" cols="50" name="story"></textarea>
+	<textarea  rows="10" cols="50" name="story"></textarea><br>
 
+	<label>Page finale?</label>
+	<select>
+		<option>non</option>
+		<option>success</option>
+		<option>fail</option></select>
 
 	<fieldset>
 		<legend>Choix 1</legend>
@@ -15,8 +20,8 @@
 		<label>Reponse</label>
 		<textarea rows="3" cols="30" name="response1"></textarea>
 
-		<label>Lien</label>
-		<input type="number" name="id_landing_page1">
+		<label>Vers la page :</label>
+		<input type="number"  min="1" name="id_landing_page1">
 	</fieldset>
 
 	<fieldset>
@@ -28,8 +33,8 @@
 		<label>Reponse</label>
 		<textarea rows="3" cols="30" name="response2"></textarea>
 
-		<label>Lien</label>
-		<input type="number" name="id_landing_page2">
+		<label>Vers la page :</label>
+		<input type="number"  min="1" name="id_landing_page2">
 	</fieldset>
 
 	<fieldset>
@@ -41,7 +46,9 @@
 		<label>Reponse</label>
 		<textarea rows="3" cols="30" name="response3"></textarea>
 
-		<label>Lien</label>
-		<input type="number" name="id_landing_page3">
+		<label>Vers la page :</label>
+		<input type="number"  min="1" name="id_landing_page3">
 	</fieldset>
+
+	<input type="submit" value="Creer page">
 </form>
