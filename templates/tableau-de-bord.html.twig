@@ -40,24 +40,26 @@
     <div class="container-7 w-container">
       <div class="w-tabs" data-duration-in="300" data-duration-out="100">
         <div class="tabs-menu w-tab-menu">
-          <a class="nouvelle-aventure table-link w-inline-block w-tab-link" data-ix="tab-bounce" data-w-tab="Tab 1">
+          <a class="nouvelle-aventure table-link w--current w-inline-block w-tab-link" data-ix="tab-bounce-2" data-w-tab="Tab 1">
             <div class="text-block">Nouvelle Aventure</div>
           </a>
           <a class="continuer-aventure table-link w-inline-block w-tab-link" data-ix="tab-bounce" data-w-tab="Tab 2">
             <div class="text-block-2">Continuer Aventure</div>
           </a>
-          <a class="sauvegardes table-link w--current w-inline-block w-tab-link" data-ix="tab-bounce" data-w-tab="Tab 3">
-            <div class="text-block-3">gestion de sauvegardes</div>
+          <a class="sauvegardes table-link w-inline-block w-tab-link" data-ix="tab-bounce" data-w-tab="Tab 3">
+            <div class="text-block-3">Gestion de sauvegardes</div>
           </a>
         </div>
         <div class="w-tab-content">
-          <div class="contenu_nouvelle_aventure w-tab-pane" data-w-tab="Tab 1"></div>
+          <div class="contenu_nouvelle_aventure w--tab-active w-tab-pane" data-ix="new-interaction" data-w-tab="Tab 1"></div>
           <div class="contenu_continuer_aventure w-tab-pane" data-w-tab="Tab 2"></div>
-          <div class="contenu_sauvegardes w--tab-active w-tab-pane" data-w-tab="Tab 3"></div>
+          <div class="contenu_sauvegardes w-tab-pane" data-w-tab="Tab 3"></div>
         </div>
       </div>
     </div>
   </div>
+
+
 <script  type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/profil.js') }}"></script>
 {% endblock %}

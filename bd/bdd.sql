@@ -7,7 +7,6 @@ CREATE TABLE IF NOT EXISTS User (
   username VARCHAR(20) NOT NULL,
   email VARCHAR(50) NOT NULL,
   password VARCHAR(128) NOT NULL,
-  avatar VARCHAR(50) DEFAULT NULL,
   role VARCHAR(20) DEFAULT "ROLE_USER",
   salt VARCHAR(50) NOT NULL,
   PRIMARY KEY (id_user)
@@ -59,7 +58,7 @@ CREATE TABLE IF NOT EXISTS Choice (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-INSERT INTO Adventure (id_adventure, name, description, pitch, active) 
+INSERT INTO Adventure (id_adventure, name, description, pitch, active)
 values (1, "test", "test de db", "ceci est un test", true);
 
 INSERT INTO 
@@ -79,11 +78,12 @@ VALUES ('1', '1', '1', 'Ceci est la page une', NULL),
 ('13', '12', '1', 'Ceci est la page 13', 'fail');
 
 
-INSERT INTO 
-`choice` (`id_choice`, `id_current_page`, `id_landing_page`, `crew`, `response`) 
-VALUES ('1', '1', '2', 'Jonhson', 'reponse jonhson'), 
-('2', '1', '3', 'Sabrovich', 'reponse sabrovich'), 
+INSERT INTO
+`choice` (`id_choice`, `id_current_page`, `id_landing_page`, `crew`, `response`)
+VALUES ('1', '1', '2', 'Jonhson', 'reponse jonhson'),
+('2', '1', '3', 'Sabrovich', 'reponse sabrovich'),
 ('3', '1', '4', 'Hans', 'Reponse Hans'),
+
 ('4', '2', '5', 'Jonhson', 'Reponse Jonhson 2'),
 ('5', '2', '6', 'Sabrovich', 'Reponse Sabrovich 2'),
 ('6', '2', '7', 'Hans', 'Reponse Hans 2'),

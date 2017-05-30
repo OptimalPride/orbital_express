@@ -2640,6 +2640,20 @@
 
 }());
 
+
+
+/* Style scrollbar */
+(function($){
+    $(window).on("load",function(){
+        $(".paragraph-3").mCustomScrollbar({
+			theme:"minimal"
+		});
+    });
+})(jQuery);
+
+
+
+
 /**
  * ----------------------------------------------------------------------
  * Webflow: Interactions: Init
@@ -2665,7 +2679,7 @@ Webflow.require('ix').init([
   {"slug":"planete-3","name":"planete 3","value":{"style":{},"triggers":[{"type":"load","loopA":true,"stepsA":[{"transition":"transform 3000ms ease 0, width 600ms ease 0","x":"0px","y":"40px","z":"0px"},{"transition":"transform 4000ms ease 0","x":"0px","y":"0px","z":"0px"}],"stepsB":[]}]}},
   {"slug":"planeteanneau","name":"planeteanneau","value":{"style":{},"triggers":[{"type":"load","loopA":true,"stepsA":[{"transition":"transform 10000ms ease 0","scaleX":0.8,"scaleY":0.8,"scaleZ":1},{"transition":"transform 8000ms ease 0","scaleX":1,"scaleY":1,"scaleZ":1}],"stepsB":[]}]}},
   {"slug":"planete2","name":"planete2","value":{"style":{},"triggers":[{"type":"load","loopA":true,"stepsA":[{"transition":"transform 4000ms ease 0","x":"0px","y":"-15px","z":"0px"},{"transition":"transform 4000ms ease 0","x":"0px","y":"0px","z":"0px"}],"stepsB":[]}]}},
-  {"slug":"slide-navbar-out","name":"slide navbar out","value":{"style":{},"triggers":[{"type":"click","stepsA":[{"transition":"transform 800ms ease 0","x":"100%","y":"0px","z":"0px"}],"stepsB":[]},{"type":"click","selector":".div-block-15","preserve3d":true,"stepsA":[{"opacity":1,"transition":"opacity 800ms ease 0, transform 800ms ease 0","x":"0px","y":"0px","z":"0px"}],"stepsB":[]}]}},
+  {"slug":"slide-navbar-out","name":"slide navbar out","value":{"style":{},"triggers":[{"type":"click","selector":".menuburger","preserve3d":true,"stepsA":[{"transition":"transform 800ms ease 0","x":"100%","y":"0px","z":"0px"}],"stepsB":[]},{"type":"click","selector":".div-block-15","preserve3d":true,"stepsA":[{"opacity":1,"transition":"opacity 800ms ease 0, transform 800ms ease 0","x":"0px","y":"0px","z":"0px"}],"stepsB":[]}]}},
   {"slug":"hide-nav-menu","name":"hide_nav_menu","value":{"style":{"opacity":1,"x":"100%","y":"0px","z":"0px","scaleX":1,"scaleY":1,"scaleZ":1},"triggers":[]}},
   {"slug":"slide-navbar","name":"slide_navbar","value":{"style":{},"triggers":[]}},
   {"slug":"close-menu","name":"close_menu","value":{"style":{},"triggers":[{"type":"click","selector":".div-block-15","preserve3d":true,"stepsA":[{"opacity":0,"transition":"transform 800ms ease 0, opacity 800ms ease 0","x":"100%","y":"0px","z":"0px"}],"stepsB":[]},{"type":"click","selector":".menuburger","preserve3d":true,"stepsA":[{"transition":"transform 800ms ease 0","x":"0px","y":"0px","z":"0px"}],"stepsB":[]}]}},
@@ -2675,7 +2689,8 @@ Webflow.require('ix').init([
   {"slug":"click-bouton-connexion","name":"Click_bouton_connexion","value":{"style":{},"triggers":[{"type":"click","selector":".popup_wrapper","preserve3d":true,"stepsA":[{"display":"block"},{"opacity":1,"transition":"opacity 200 ease 0, transform 200 ease 0","scaleX":1,"scaleY":1,"scaleZ":1}],"stepsB":[]}]}},
   {"slug":"close-inscription","name":"Close_inscription","value":{"style":{},"triggers":[{"type":"click","selector":".popup_wrapper2","preserve3d":true,"stepsA":[{"display":"none","opacity":0,"transition":"opacity 200 ease 0, transform 200 ease 0","scaleX":1,"scaleY":1,"scaleZ":1}],"stepsB":[]}]}},
   {"slug":"close-connexion","name":"Close_connexion","value":{"style":{},"triggers":[{"type":"click","selector":".popup_wrapper","preserve3d":true,"stepsA":[{"display":"none","opacity":0,"transition":"opacity 200 ease 0, transform 200 ease 0","scaleX":1,"scaleY":1,"scaleZ":1}],"stepsB":[]}]}},
-  {"slug":"tab-bounce","name":"tab bounce","value":{"style":{},"triggers":[{"type":"tabs","stepsA":[{"opacity":1,"transition":"transform 300ms ease 0, opacity 200 ease 0","x":"0px","y":"-8px","z":"0px"},{"opacity":1,"transition":"transform 300ms ease 0, opacity 200 ease 0","x":"0px","y":"1px","z":"0px"},{"opacity":1,"transition":"transform 300ms ease 0, opacity 200 ease 0","x":"0px","y":"0px","z":"0px"}],"stepsB":[{"opacity":0.7,"transition":"opacity 200 ease 0"}]}]}},
+  {"slug":"tab-bounce","name":"tab bounce","value":{"style":{},"triggers":[{"type":"tabs","stepsA":[{"opacity":1,"transition":"transform 300ms ease 0, opacity 200 ease 0","x":"0px","y":"-8px","z":"0px"},{"opacity":1,"transition":"transform 300ms ease 0, opacity 200 ease 0","x":"0px","y":"1px","z":"0px"},{"opacity":1,"transition":"transform 300ms ease 0, opacity 200 ease 0","x":"0px","y":"0px","z":"0px"}],"stepsB":[{"opacity":0.7,"transition":"opacity 200 ease 0"}]},{"type":"click","selector":".contenu_nouvelle_aventure","stepsA":[{"display":"none"}],"stepsB":[]}]}},
+  {"slug":"tab-bounce-2","name":"tab bounce 2","value":{"style":{},"triggers":[{"type":"tabs","stepsA":[{"opacity":1,"transition":"transform 300ms ease 0, opacity 200 ease 0","x":"0px","y":"-8px","z":"0px"},{"opacity":1,"transition":"transform 300ms ease 0, opacity 200 ease 0","x":"0px","y":"1px","z":"0px"},{"opacity":1,"transition":"transform 300ms ease 0, opacity 200 ease 0","x":"0px","y":"0px","z":"0px"}],"stepsB":[{"opacity":0.7,"transition":"opacity 200 ease 0"}]},{"type":"click","selector":".contenu_nouvelle_aventure","stepsA":[{"display":"block"}],"stepsB":[]}]}},
   {"slug":"desinscription","name":"desinscription","value":{"style":{},"triggers":[{"type":"click","selector":".desinscription_check","stepsA":[{"display":"inline-block"}],"stepsB":[]},{"type":"click","selector":".desinscription_close","stepsA":[{"display":"inline-block"}],"stepsB":[]}]}},
   {"slug":"desinscription-close","name":"desinscription_close","value":{"style":{},"triggers":[{"type":"click","stepsA":[{"display":"none","opacity":0.32,"transition":"opacity 200 ease 0"}],"stepsB":[]},{"type":"click","selector":".desinscription_check","stepsA":[{"wait":"800ms","display":"none"}],"stepsB":[]}]}}
 ]);

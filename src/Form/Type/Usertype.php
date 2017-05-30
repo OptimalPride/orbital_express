@@ -40,7 +40,6 @@ class Usertype extends AbstractType
 				))
 			))
 		-> add('email', EmailType::class)
-		-> add('avatar', TextType::class)
 		-> setAction($app['url_generator']->generate('register'));
 	}
 }
