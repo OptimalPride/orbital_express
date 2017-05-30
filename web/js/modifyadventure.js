@@ -28,16 +28,21 @@ $(function(){
 
 	listpages.done(function(msg){
 		$("#adventure_pages").html(msg);
+
+		$(".pageedit").click(function(e){
+			e.preventDefault();
+			var id_page = $(this).attr("id");
+			var pageform = $.ajax({
+				url: baseUrl+"modifypage/"+id_adventure+"/"+id_page,
+				method: "POST"
+			});
+
+			pageform.done(function(reg){
+				$("#page_edit_form").html(reg);
+			});		
+		})
 	});
 // -----------------------------
 
-	var pageform = $.ajax({
-		url: baseUrl+"modifypage/",
-		method: "POST",
-		data
-	});
 
-	pageform.done(function(msg){
-		$("#adventure_pages").html(msg);
-	});
 });

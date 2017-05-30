@@ -35,12 +35,26 @@ class Page
   	return $app["twig"]->render('backoffice/pagecreation.html.twig', array("pages" => $pages, "choices" => $choices));
   }
 
-  public function modifypage(Application $app){
-    $role = $app['security.token_storage']->getToken()->getUser()->getRole();
-  			if($role != "ROLE_ADMIN"){
-  				$url = $app['url_generator']->generate('logout');
-  				return $app->redirect($url);
-  			}
 
+  public function modifyPage(Application $app, $id_adventure, $id_page){
+    $role = $app['security.token_storage']->getToken()->getUser()->getRole();
+  		if($role != "ROLE_ADMIN"){
+  			$url = $app['url_generator']->generate('logout');
+  			return $app->redirect($url);
+  		}
+    $page = $app["dao.page"]->getContentById($id_page);
+    $pages = $app["dao.page"]->getPagesByIdAdventure($id_adventure);
+    if($page["ending"] != NULL){
+      if($page["ending"] == "success"){
+        return $app["twig"]->render('backoffice/pagemodification.html.twig', array("page" => $page, "choices" => "", "pages"=>$pages, "ending"=>"success"));
+      }
+      if($page["ending"] == "fail"){
+        return $app["twig"]->render('backoffice/pagemodification.html.twig', array("page" => $page, "choices" => "","pages"=>$pages, "ending"=>"fail"));
+      }
+    }
+    else{
+      $choices = $app["dao.choice"]->getChoicesByPageId($id_page);
+      return $app["twig"]->render('backoffice/pagemodification.html.twig', array("page" => $page, "pages"=>$pages, "choices" => $choices, "ending"=>""));
+    }
   }
 }

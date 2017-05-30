@@ -1,0 +1,55 @@
+<form id="page_modif">
+	<label>Numero de page</label>
+	<input type="number"  min="1" name="page_number" value="{{page.page_number}}"><br>
+
+	<label>Scenario</label>
+	<textarea  rows="10" cols="50" name="story">{{page.story}}</textarea><br>
+
+	<label>Page finale?</label>
+	<select>
+		<option {% if ending == "" %}selected="selected"{% endif %} >non</option>
+		<option {% if ending == "success" %}selected="selected"{% endif %}>success</option>
+		<option {% if ending == "fail" %}selected="selected"{% endif %} >fail</option></select>
+{% if ending == "" %}
+	<fieldset>
+		<legend>Choix 1</legend>
+
+		<label>Personnage</label>
+		<input type="text" name="crew1" value="{{choices[0].crew}}">
+
+		<label>Reponse</label>
+		<textarea rows="3" cols="30" name="response1">{{choices[0].response}}</textarea>
+
+		<label>Vers la page :</label>
+		<input type="number"  min="1" name="id_landing_page1" value="{% for key in pages %}{% if key['id_page'] == choices[0].id_landing_page %}{{key['page_number']}}{% endif %}{% endfor %}">
+	</fieldset>
+
+	<fieldset>
+		<legend>Choix 2</legend>
+
+		<label>Personnage</label>
+		<input type="text" name="crew2" value="{{choices[1].crew}}">
+
+		<label>Reponse</label>
+		<textarea rows="3" cols="30" name="response2">{{choices[1].response}}</textarea>
+
+		<label>Vers la page :</label>
+		<input type="number"  min="1" name="id_landing_page2" value="{% for key in pages %}{% if key['id_page'] == choices[1].id_landing_page %}{{key['page_number']}}{% endif %}{% endfor %}">
+	</fieldset>
+
+	<fieldset>
+		<legend>Choix 3</legend>
+
+		<label>Personnage</label>
+		<input type="text" name="crew3" value="{{choices[2].crew}}">
+
+		<label>Reponse</label>
+		<textarea rows="3" cols="30" name="response3">{{choices[2].response}}</textarea>
+
+		<label>Vers la page :</label>
+		<input type="number"  min="1" name="id_landing_page3" value="{% for key in pages %}{% if key['id_page'] == choices[2].id_landing_page %}{{key['page_number']}}{% endif %}{% endfor %}">
+	</fieldset>
+{% endif %}
+
+	<input type="submit" value="Modifier">
+</form>
