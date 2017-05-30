@@ -10,7 +10,7 @@
 	<textarea  rows="10" cols="50" name="story"></textarea><br>
 
 	<label>Page finale?</label>
-	<select>
+	<select name="ending">
 		<option>non</option>
 		<option>success</option>
 		<option>fail</option></select>
@@ -63,7 +63,7 @@ $(function(){
 	$("#page_create").on("submit", function(e){
 		e.preventDefault();
 		var addpage = $.ajax({ 	
-			url: baseUrl+,
+			url: baseUrl+"addpageformprocessing/"+{{id_adventure}},
 			method: "POST",
 			data: $(this).serialize()
 		});
@@ -80,7 +80,7 @@ $(function(){
 				$("#error_inscription").html(reg);
 			}
 		});
-		registerData.fail(function( jqXHR, textStatus ) {
+		addpage.fail(function( jqXHR, textStatus ) {
   			alert( "Request failed: " + textStatus );
   		});	
 	});

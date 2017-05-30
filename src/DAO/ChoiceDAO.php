@@ -29,6 +29,31 @@ class ChoiceDAO extends DAO
 		}
 	}
 
+	public function createChoicesForAPage($choices){
+
+		$id_current_page = $choices["id_current_page"];
+
+		if($choices["1"]["id_landing_page"] == ""){
+			$choices["1"]["id_landing_page"] = NULL;
+		}
+		if($choices["2"]["id_landing_page"] == ""){
+			$choices["2"]["id_landing_page"] = NULL;
+		}
+		if($choices["3"]["id_landing_page"] == ""){
+			$choices["3"]["id_landing_page"] = NULL;
+		}
+
+		$requete = "INSERT INTO choice(id_current_page, id_landing_page, crew, response) VALUES(?,?,?,?),(?,?,?,?),(?,?,?,?)";
+
+	    $resultat = $this->getDb()->executeUpdate($requete, array($id_current_page, $choices["1"]["id_landing_page"], $choices["1"]["crew"], $choices["1"]["response"], $id_current_page, $choices["2"]["id_landing_page"], $choices["2"]["crew"], $choices["2"]["response"], $id_current_page, $choices["3"]["id_landing_page"], $choices["3"]["crew"], $choices["3"]["response"]));
+	    if($resultat){
+			return "Choix ajoutés";
+		}
+		else{
+			throw new \Exception("Erreur pendant l'ajout des choix");
+		}
+	}
+
 	protected function buildEntityObject(array $value){
 		$choice = new choice;
 

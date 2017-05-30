@@ -164,7 +164,7 @@ $app->match("/adventureeditform/{id_adventure}", "OrbitalExpress\\Controllers\\A
 
 $app->match("/addpage/{id_adventure}", "OrbitalExpress\\Controllers\\Page::addPage" );
 
-$app->match("/addpageformprocessing/{id_adventure}", "OrbitalExpress\\Controllers\\Page::addp=PageFormProcessing" );
+$app->match("/addpageformprocessing/{id_adventure}", "OrbitalExpress\\Controllers\\Page::addPageFormProcessing" );
 
 $app->match("/modifypage/{id_adventure}/{id_page}", "OrbitalExpress\\Controllers\\Page::modifyPage" )->bind('modifypage');
 

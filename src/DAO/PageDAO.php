@@ -65,6 +65,26 @@ class PageDAO extends DAO
 		}
 	}
 
+	public function createPage($infos){
+	    $page_number = $infos["page_number"];
+	    $id_adventure = $infos["id_adventure"];
+	    $story = $infos["story"];
+	    $ending = $infos["ending"];
+	    if ($ending == "non") {
+	    	$ending = NULL;
+	    }
+	    $requete = "INSERT INTO page(page_number, id_adventure, story, ending) VALUES (?,?,?,?)";
+	    $resultat = $this->getDb()->executeUpdate($requete, array($page_number, $id_adventure, $story, $ending));
+	    if($resultat){
+	    	$id_current_page = $this->getDb()->lastInsertId();
+			return $id_current_page;
+		}
+		else{
+			throw new \Exception("Pas de page 1 pour cette aventure");
+		}
+		
+	}
+
 	protected function buildEntityObject(array $value){
 		$page = new page;
 
