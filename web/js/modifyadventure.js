@@ -19,6 +19,7 @@ $(function(){
 			});
 		});
 	});
+// -----------------------------
 
 	var listpages = $.ajax({
 		url: baseUrl+"listepage/"+id_adventure,
@@ -28,5 +29,15 @@ $(function(){
 	listpages.done(function(msg){
 		$("#adventure_pages").html(msg);
 	});
+// -----------------------------
 
+	var pageform = $.ajax({
+		url: baseUrl+"modifypage/",
+		method: "POST",
+		data
+	});
+
+	pageform.done(function(msg){
+		$("#adventure_pages").html(msg);
+	});
 });

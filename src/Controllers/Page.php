@@ -24,4 +24,8 @@ class Page
   	$choices = $app["dao.choice"]->getAllChoices();
   	return $app["twig"]->render('backoffice/pagecreation.html.twig', array("pages" => $pages, "choices" => $choices));
   }
+
+  public function editPageForm(Application $app){
+    
+  }
 }

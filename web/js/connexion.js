@@ -81,7 +81,6 @@ $(function(){
 						$(".contenu_popup_inscription").empty();
 						$("img.image_close_popup_inscription").click();
 						$("a.bouton_connexion").click();
-						// window.location.href=baseUrl+'profil';
 					}
 					else{
 						$("#error_inscription").html(reg);
