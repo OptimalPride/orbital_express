@@ -2,6 +2,7 @@
   background-color:#011C4A;
   background-position: 0px 0px;
   background-size: 1920px 1080px;
+  background-repeat: repeat;
   background-attachment: fixed;
   font-family: Avenir, sans-serif;
   font-size: 100%;
@@ -142,6 +143,7 @@
 }
 
 .section-3 {
+  width: auto;
   margin-top: 33px;
   margin-bottom: 233px;
 }
@@ -194,7 +196,7 @@
 
 .heading-2 {
   display: block;
-  width: 100%;
+  width: 270%;
   background-color: transparent;
   font-family: 'Big john', sans-serif;
   font-size: 3.5em;
@@ -369,7 +371,7 @@
 }
 
 .heading-4 {
-  width: 100%;
+  width: 281%;
   margin-top: 20px;
   margin-bottom: 0px;
   font-family: 'Big john', sans-serif;
@@ -413,7 +415,24 @@
 }
 
 .container-4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   margin-top: 33px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .heading-5 {
@@ -438,6 +457,7 @@
   overflow: scroll;
   max-height: none;
   padding: 30px;
+  opacity: 1;
   font-family: Avenir, sans-serif;
   font-size: 1em;
   text-align: center;
@@ -495,8 +515,8 @@
 
 .paragraph-4 {
   display: block;
-  max-width: 80%;
-  min-width: 80%;
+  max-width: 60%;
+  min-width: 60%;
   margin-right: 0px;
   padding: 16px;
   font-family: Avenir, sans-serif;
@@ -615,7 +635,7 @@
 }
 
 .section-7 {
-  margin-bottom: 8px;
+  margin-bottom: 33px;
 }
 
 .button-4 {
@@ -809,6 +829,11 @@
   text-decoration: none;
 }
 
+.nav_link a{
+  color: #fff;
+  text-decoration:none;
+}
+
 .nav_link:hover {
   border-style: none;
   background-color: #e03a6b;
@@ -816,11 +841,6 @@
   -ms-transform: scale(1.2) translate(0px, 0px);
   transform: scale(1.2) translate(0px, 0px);
   font-size: 0.85em;
-}
-
-.nav_link > a{
-  text-decoration:none;
-  color:#fff;
 }
 
 .link-block-9 {
@@ -995,11 +1015,7 @@
 }
 
 .body-3 {
-  background-color:#011C4A;
-  background-position: 0px 0px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-color: #011c4a;
 }
 
 .paragraph-5 {
@@ -1062,6 +1078,10 @@
   background-image: linear-gradient(180deg, #6ae3e1, rgba(1, 28, 74, .9));
 }
 
+.table-link.nouvelle-aventure {
+  overflow: hidden;
+}
+
 .table-link.continuer-aventure {
   background-image: -webkit-linear-gradient(270deg, #e03a6b, rgba(1, 28, 74, .9));
   background-image: linear-gradient(180deg, #e03a6b, rgba(1, 28, 74, .9));
@@ -1102,12 +1122,35 @@
 
 .contenu_nouvelle_aventure {
   display: block;
+  font-family: Avenir, sans-serif;
+  color: #fff;
+  font-size: 1em;
+}
+
+.contenu_continuer_aventure {
+  font-family: Avenir, sans-serif;
+  color: #fff;
+  font-size: 1em;
 }
 
 .contenu_sauvegardes {
   padding: 40px 10%;
+  font-family: Avenir, sans-serif;
+  color: #fff;
+  font-size: 1em;
+  font-weight: 400;
 }
 
+.contenu_nouvelle_aventure a, .contenu_continuer_aventure a, .contenu_sauvegardes a {
+  color: #fff;
+  text-decoration:none;
+}
+
+.contenu_continuer_aventure button{
+  background-image: -webkit-linear-gradient(270deg, #e03a6b, rgba(1, 28, 74, .9));
+  background-image: linear-gradient(180deg, #e03a6b, rgba(1, 28, 74, .9));
+}
+  
 .infos_user {
   width: 90%;
   margin: 32px auto;
@@ -1183,10 +1226,7 @@
 }
 
 .body-4 {
-  background-color:#011C4A;
-  background-position: 0px 0px;
-  background-size: cover;
-  background-attachment: fixed;
+  background-color: #011c4a;
 }
 
 .form-wrapper {
@@ -1206,15 +1246,184 @@
 }
 
 .paragraph-6 {
+  padding-right: 21px;
+  padding-left: 21px;
   color: #fff;
   font-size: 1em;
+  text-align: left;
 }
 
 .heading-8 {
+  padding-right: 21px;
+  padding-left: 21px;
   font-family: Avenir, sans-serif;
   color: #fff;
   font-size: 2em;
   font-weight: 400;
+}
+
+.heading-9 {
+  padding-right: 21px;
+  padding-left: 21px;
+  font-family: Avenir, sans-serif;
+  color: #fff;
+  font-size: 2em;
+  font-weight: 400;
+}
+
+.paragraph-7 {
+  padding-right: 21px;
+  padding-left: 21px;
+  color: #fff;
+  font-size: 1em;
+}
+
+.description_aventure {
+  margin-top: 33px;
+  margin-bottom: 55px;
+  font-family: Avenir, sans-serif;
+  color: #fff;
+  font-size: 1em;
+  text-align: center;
+}
+
+.titre_aventure {
+  font-family: 'Big john', sans-serif;
+  color: #fff;
+  font-size: 3em;
+  font-weight: 400;
+  text-align: center;
+}
+
+.commencer_aventure {
+  width: 20%;
+  height: 40px;
+  max-height: 40px;
+  max-width: 20%;
+  min-height: 40px;
+  min-width: 20%;
+  padding-top: 12px;
+  border-radius: 20px;
+  background-image: -webkit-linear-gradient(270deg, #e03a6b, rgba(1, 28, 74, .8) 86%);
+  background-image: linear-gradient(180deg, #e03a6b, rgba(1, 28, 74, .8) 86%);
+  font-family: 'Big john', sans-serif;
+  color: #fff;
+  font-size: 1em;
+  text-align: center;
+}
+
+.error_inscription {
+  width: 20%;
+  height: 30px;
+  padding: 10px;
+}
+
+.error_connexion {
+  width: 30%;
+  height: 30px;
+  max-width: 30%;
+  min-width: 30%;
+  padding: 10px;
+}
+
+.titre_victoire {
+  font-family: 'Big john', sans-serif;
+  color: #fff;
+  font-size: 3em;
+}
+
+.text_victoire {
+  margin-top: 55px;
+  margin-bottom: 55px;
+  padding-right: 10%;
+  padding-left: 10%;
+  font-family: Avenir, sans-serif;
+  color: #fff;
+  font-size: 1em;
+  text-align: center;
+}
+
+.retour_tableau_de_bord {
+  width: 20%;
+  height: 40px;
+  max-height: 40px;
+  max-width: 20%;
+  min-height: 40px;
+  min-width: 20%;
+  padding-top: 12px;
+  border-radius: 20px;
+  background-image: -webkit-linear-gradient(270deg, #e03a6b, rgba(1, 28, 74, .8) 86%);
+  background-image: linear-gradient(180deg, #e03a6b, rgba(1, 28, 74, .8) 86%);
+  font-family: 'Big john', sans-serif;
+  color: #fff;
+  font-size: 1em;
+  text-align: center;
+}
+
+.text_fail {
+  margin-top: 55px;
+  margin-bottom: 55px;
+  padding-right: 10%;
+  padding-left: 10%;
+  font-family: Avenir, sans-serif;
+  color: #fff;
+  font-size: 1em;
+  text-align: center;
+}
+
+.titre_fail {
+  font-family: 'Big john', sans-serif;
+  color: #fff;
+  font-size: 3em;
+}
+
+.utility-page-wrap {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  max-height: 100%;
+  max-width: 100%;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.utility-page-content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 260px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  text-align: center;
+}
+
+.utility-page-form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
 }
 
 html.w-mod-js *[data-ix="movetoright"] {
@@ -1492,6 +1701,9 @@ html.w-mod-js *[data-ix="initialstate-connexion"] {
   .nav_menu_flex {
     width: 35%;
   }
+  .div-block-15 {
+    display: none;
+  }
   .popup_connexion {
     width: 70vw;
   }
@@ -1503,6 +1715,26 @@ html.w-mod-js *[data-ix="initialstate-connexion"] {
   }
   .desinscription {
     width: 30%;
+  }
+  .commencer_aventure {
+    width: 30%;
+    max-width: 30%;
+    min-width: 30%;
+  }
+  .error_inscription {
+    width: 40%;
+    max-width: 40%;
+    min-width: 40%;
+  }
+  .error_connexion {
+    width: 40%;
+    max-width: 40%;
+    min-width: 40%;
+  }
+  .retour_tableau_de_bord {
+    width: 30%;
+    max-width: 30%;
+    min-width: 30%;
   }
 }
 
@@ -1679,12 +1911,49 @@ html.w-mod-js *[data-ix="initialstate-connexion"] {
   .desinscription {
     width: 40%;
   }
+  .paragraph-6 {
+    padding-right: 33px;
+    padding-left: 33px;
+  }
+  .heading-8 {
+    padding-right: 33px;
+    padding-left: 33px;
+    font-size: 1.8em;
+  }
+  .heading-9 {
+    padding-right: 33px;
+    padding-left: 33px;
+    font-size: 1.8em;
+  }
+  .paragraph-7 {
+    padding-right: 33px;
+    padding-left: 33px;
+  }
+  .titre_aventure {
+    font-size: 2.5em;
+  }
+  .commencer_aventure {
+    width: 40%;
+    max-width: 40%;
+    min-width: 40%;
+  }
+  .titre_victoire {
+    font-size: 2.5em;
+  }
+  .retour_tableau_de_bord {
+    width: 40%;
+    max-width: 40%;
+    min-width: 40%;
+  }
+  .titre_fail {
+    font-size: 2.5em;
+  }
 }
 
 @media (max-width: 479px) {
   .body {
-    background-size: cover;
-    background-attachment: fixed;
+    background-color: #011c4a;
+    background-image: none;
   }
   .section-3 {
     margin-right: 33px;
@@ -1832,6 +2101,10 @@ html.w-mod-js *[data-ix="initialstate-connexion"] {
     margin: 81px auto 81px 0px;
     border-radius: 50px;
   }
+  .body-2 {
+    background-color: #011c4a;
+    background-image: none;
+  }
   .heading-5 {
     font-size: 2.1em;
   }
@@ -1924,6 +2197,10 @@ html.w-mod-js *[data-ix="initialstate-connexion"] {
     background-image: linear-gradient(180deg, rgba(1, 28, 74, .6), rgba(1, 28, 74, .6));
     text-align: center;
   }
+  .body-3 {
+    background-color: #011c4a;
+    background-image: none;
+  }
   .tabs-menu {
     margin-right: auto;
     margin-left: auto;
@@ -1959,7 +2236,34 @@ html.w-mod-js *[data-ix="initialstate-connexion"] {
   .desinscription {
     width: 65%;
   }
+  .titre_aventure {
+    font-size: 2em;
+  }
+  .commencer_aventure {
+    width: 50%;
+    max-width: 50%;
+    min-width: 50%;
+  }
+  .error_inscription {
+    width: 50%;
+    max-width: 50%;
+    min-width: 50%;
+  }
+  .error_connexion {
+    width: 50%;
+    max-width: 50%;
+    min-width: 50%;
+  }
+  .retour_tableau_de_bord {
+    width: 60%;
+    max-width: 60%;
+    min-width: 60%;
+  }
+  .titre_fail {
+    font-size: 2em;
+  }
 }
+
 
 @font-face {
   font-family: 'Avenir';

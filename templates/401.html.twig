@@ -1,0 +1,39 @@
+{% extends "layout.html.twig" %}
+
+{% block data_html %} data-wf-page="592829aaa24ec109453e0c80" data-wf-site="591dbb2c653bab09628cdd31" {% endblock %}
+
+{% block title %}Protected page{% endblock %}
+
+
+
+
+
+{% block content %}
+
+  <div class="utility-page-wrap">
+    <div class="utility-page-content w-form w-password-page">
+      <form action="/.wf_auth" class="utility-page-form w-password-page" method="post"><img src="https://d3e54v103j8qbb.cloudfront.net/static/password-page-lock.832ca8e2c9.svg">
+        <h2>Protected page</h2>
+        <div class="w-hidden w-password-page">
+          <input type="hidden" name="path" value="<%WF_FORM_VALUE_PATH%>">
+          <input type="hidden" name="page" value="<%WF_FORM_VALUE_PAGE%>">
+        </div>
+        <input autofocus="autofocus" class="w-input w-password-page" maxlength="256" name="pass" placeholder="Enter your password" type="password">
+        <input class="w-button w-password-page" data-wait="Please wait..." type="submit" value="Submit">
+      </form>
+      <div class="w-form-fail w-password-page">
+        <div>Incorrect password. Please try again.</div>
+      </div>
+      <div class="w-password-page" style="display: none">
+        <script type="application/javascript">
+          (function _handlePasswordPageOnload() {
+          	  if (/[?&]e=1(&|$)/.test(document.location.search)) {
+          	    document.querySelector('.w-password-page.w-form-fail').style.display = 'block';
+          	  }
+          	})()
+        </script>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
