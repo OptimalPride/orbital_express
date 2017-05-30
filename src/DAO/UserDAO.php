@@ -11,6 +11,17 @@ use OrbitalExpress\Entity\User;
 
 class UserDAO extends DAO implements UserProviderInterface
 {
+  public function getAllUser(){
+		$requete = "SELECT id_user, username, email, role FROM user";
+		$resultat = $this->getDb()->fetchAll($requete, array());
+		if($resultat){
+			return $resultat;
+		}
+		else{
+			throw new \Exception("Aucun membre dans la base de donnée");
+		}
+	}
+
   public function loadUserByUsername($username){
     $requete = "SELECT * FROM user WHERE username = ?";
     $resultat = $this -> getDb() -> fetchAssoc($requete, array($username));

@@ -52,7 +52,7 @@ $app->get("/backoffice/", function () use ($app){
     return $app['twig']->render('backoffice/gestion.html.twig', array());
 });
 
-$app->match("/gestionuser/", "OrbitalExpress\\Controllers\\Adventure::afficheGestionUser")->bind("gestionUser");
+$app->match("/gestionuser/", "OrbitalExpress\\Controllers\\User::afficheGestionUser")->bind("gestionUser");
 
 $app->match("/gestionadventure/", "OrbitalExpress\\Controllers\\Adventure::afficheGestionAdventure")->bind("gestionAdventure");
 
@@ -166,3 +166,4 @@ $app->match("/addpage/{id_adventure}", "OrbitalExpress\\Controllers\\Page::addPa
 
 $app->match("/modifypage/", "OrbitalExpress\\Controllers\\Page::modifyPage" )->bind('modifypage');
 
+$app->match("/deleteuser/{id_user}", "OrbitalExpress\\Controllers\\User::deleteUser")->bind("deleteuser");
