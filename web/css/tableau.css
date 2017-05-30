@@ -1,5 +1,4 @@
 table {
-
   color:#011c4a;
   font-size:1em;
   background:#011c4a;
@@ -80,4 +79,25 @@ table tr:last-child td:last-child {
 }
 table tr:hover td {
   background: rgba(87, 86, 84, 0.9);
+}
+
+
+
+
+@media (max-width: 479px){
+  
+  table{
+    font-size:0.8em;
+    margin:10px;
+    padding: 0px;
+  }
+
+  table th {
+    padding:2%;
+    font-size:0.9em;
+  }
+  table tr{
+    padding-left:0;
+  }
+
 }
