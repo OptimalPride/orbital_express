@@ -104,21 +104,11 @@ class Adventure
 	}
 
 	public function getAvailableAdventures(Application $app){
-		$role = $app['security.token_storage']->getToken()->getUser()->getRole();
-		if($role != "ROLE_ADMIN"){
-			$url = $app['url_generator']->generate('logout');
-			return $app->redirect($url);
-		}
 		$adventures = $app["dao.adventure"]->getActiveAdventures();
 		return $app['twig']->render('game/newadventure.html.twig', array("adventures" => $adventures));
 	}
 
 	public function newAdventure(Application $app, $id_adventure){
-		$role = $app['security.token_storage']->getToken()->getUser()->getRole();
-		if($role != "ROLE_ADMIN"){
-			$url = $app['url_generator']->generate('logout');
-			return $app->redirect($url);
-		}
 		$adventure = $app["dao.adventure"]->getAdventureById($id_adventure);
 		return $app['twig']->render('game/intro.html.twig', array("adventure" => $adventure));
 	}

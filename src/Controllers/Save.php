@@ -41,11 +41,6 @@ class Save
 	}
 
 	public function gestionUserSaves(Application $app){
-    $role = $app['security.token_storage']->getToken()->getUser()->getRole();
-    if($role != "ROLE_ADMIN"){
-      $url = $app['url_generator']->generate('logout');
-      return $app->redirect($url);
-    }
 		$id_user = $app['security.token_storage']->getToken()->getUser()->getId_User();
 		$saves = $app["dao.save"]->getAllSavesByIdUser($id_user);
 		return $app['twig']->render('/game/manageyoursaves.html.twig', array("saves"=>$saves));
