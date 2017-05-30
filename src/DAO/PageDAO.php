@@ -80,9 +80,27 @@ class PageDAO extends DAO
 			return $id_current_page;
 		}
 		else{
-			throw new \Exception("Pas de page 1 pour cette aventure");
+			throw new \Exception("Erreur pendant la creation de page");
 		}
-		
+	}
+
+	public function updatePage($infos){
+	    $page_number = $infos["page_number"];
+	    $story = $infos["story"];
+	    $ending = $infos["ending"];
+	    $id_page = $infos["id_page"];
+	    if ($ending == "non") {
+	    	$ending = NULL;
+	    }
+	    $requete = "UPDATE page set page_number = ?, story = ?, ending = ? WHERE id_page = ?";
+	    $resultat = $this->getDb()->executeUpdate($requete, array($page_number, $story, $ending, $id_page));
+	    if($resultat){
+			return "Update réussi";
+		}
+		else{
+			// throw new \Exception("Erreur pendant l'update de la page");
+			return "Erreur pendant l'update de la page";
+		}
 	}
 
 	protected function buildEntityObject(array $value){

@@ -6,7 +6,7 @@
 	<textarea  rows="10" cols="50" name="story">{{page.story}}</textarea><br>
 
 	<label>Page finale?</label>
-	<select>
+	<select name="ending">
 		<option {% if ending == "" %}selected="selected"{% endif %} >non</option>
 		<option {% if ending == "success" %}selected="selected"{% endif %}>success</option>
 		<option {% if ending == "fail" %}selected="selected"{% endif %} >fail</option></select>
@@ -22,6 +22,8 @@
 
 		<label>Vers la page :</label>
 		<input type="number"  min="1" name="id_landing_page1" value="{% for key in pages %}{% if key['id_page'] == choices[0].id_landing_page %}{{key['page_number']}}{% endif %}{% endfor %}">
+
+		<input type="hidden" name="id_choice1" value="{{choices[0].id_choice}}">
 	</fieldset>
 
 	<fieldset>
@@ -35,6 +37,8 @@
 
 		<label>Vers la page :</label>
 		<input type="number"  min="1" name="id_landing_page2" value="{% for key in pages %}{% if key['id_page'] == choices[1].id_landing_page %}{{key['page_number']}}{% endif %}{% endfor %}">
+
+		<input type="hidden" name="id_choice2" value="{{choices[1].id_choice}}">
 	</fieldset>
 
 	<fieldset>
@@ -48,8 +52,11 @@
 
 		<label>Vers la page :</label>
 		<input type="number"  min="1" name="id_landing_page3" value="{% for key in pages %}{% if key['id_page'] == choices[2].id_landing_page %}{{key['page_number']}}{% endif %}{% endfor %}">
+		<input type="hidden" name="id_choice3" value="{{choices[2].id_choice}}">
 	</fieldset>
 {% endif %}
 
 	<input type="submit" value="Modifier">
 </form>
+
+<div id="form_message"></div>

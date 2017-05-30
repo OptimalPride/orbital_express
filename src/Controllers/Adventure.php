@@ -52,7 +52,8 @@ class Adventure
 		}
 		$msg = $app["dao.adventure"]->deleteAdventureById($id_adventure);
 		$adventures = $app["dao.adventure"]->getAllAdventures();
-		return $app['twig']->render('backoffice/gestionadventure.html.twig', array("adventures" => $adventures, "msg" => $msg));
+		$url = $app['url_generator']->generate('gestionAdventure');
+		return $app->redirect($url);
 	}
 
 	public function displayAdventure(Application $app, $id_adventure){
@@ -85,7 +86,8 @@ class Adventure
 	            $information = array("name" => $data["name"], "description" => $data["description"], "pitch" => $data["pitch"]);
 	            $msg = $app["dao.adventure"]->addNewAdventure($information);
 	            $adventures = $app["dao.adventure"]->getAllAdventures();
-	            return $app['twig']->render('backoffice/gestionadventure.html.twig', array("adventures" => $adventures, "msg" => $msg));
+				$url = $app['url_generator']->generate('gestionAdventure');
+				return $app->redirect($url);
 	        }
 	        else{
 	            throw new \Exception("Veuillez remplir toutes les informations");
@@ -100,7 +102,8 @@ class Adventure
 			$url = $app['url_generator']->generate('logout');
 			return $app->redirect($url);
 		}
-	    return $app['twig']->render('backoffice/modifyadventure.html.twig', array('id_adventure' => $id_adventure));
+		$adventure = $app["dao.adventure"]->getAdventureById($id_adventure);
+	    return $app['twig']->render('backoffice/modifyadventure.html.twig', array('adventure' => $adventure));
 	}
 
 	public function getAvailableAdventures(Application $app){
@@ -141,5 +144,25 @@ class Adventure
 	        }
 	    }
 	    return $app['twig']->render('backoffice/adventureform.html.twig', array('adventureform' => $adventureform->createView()));
+	}
+
+	public function toggleAdventure(Application $app, $id_adventure){
+		$adventure = $app["dao.adventure"]->getAdventureById($id_adventure);
+		$active = $adventure["active"];
+		if($active == TRUE){
+			$order = FALSE;
+		}
+		elseif($active == FALSE){
+			$order = TRUE;
+		}
+		$infos = array("id_adventure"=>$id_adventure, "active"=>$order);
+		$app["dao.adventure"]->setActiveStatus($infos);
+		$url = $app['url_generator']->generate('modifyadventure', ['id_adventure' =>$id_adventure]);
+		return $app->redirect($url);
+
+	}
+
+	public function createAdventureBackup(Application $app){
+
 	}
 }

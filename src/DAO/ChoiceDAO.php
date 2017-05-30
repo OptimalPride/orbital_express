@@ -54,6 +54,33 @@ class ChoiceDAO extends DAO
 		}
 	}
 
+	public function updateChoicesForAPage($choices){
+
+		$id_current_page = $choices["id_current_page"];
+
+		if($choices["1"]["id_landing_page"] == ""){
+			$choices["1"]["id_landing_page"] = NULL;
+		}
+		if($choices["2"]["id_landing_page"] == ""){
+			$choices["2"]["id_landing_page"] = NULL;
+		}
+		if($choices["3"]["id_landing_page"] == ""){
+			$choices["3"]["id_landing_page"] = NULL;
+		}
+
+		$requete = "UPDATE choice c1 JOIN choice c2 JOIN choice c3 ON c1.id_choice = ? AND c2.id_choice = ? AND c3.id_choice = ? SET c1.id_landing_page = ?, c1.crew = ?, c1.response = ?, c2.id_landing_page = ?, c2.crew = ?, c2.response = ?, c3.id_landing_page = ?, c3.crew = ?, c3.response = ?";
+
+	    $resultat = $this->getDb()->executeUpdate($requete, array($choices["1"]["id_choice"], $choices["2"]["id_choice"], $choices["3"]["id_choice"], $choices["1"]["id_landing_page"], $choices["1"]["crew"], $choices["1"]["response"], $choices["2"]["id_landing_page"], $choices["2"]["crew"], $choices["2"]["response"], $choices["3"]["id_landing_page"], $choices["3"]["crew"], $choices["3"]["response"]));
+
+	    if($resultat){
+			return "Choix modifiés";
+		}
+		else{
+			// throw new \Exception("Erreur pendant la modification des choix");
+			return "Erreur pendant la modification des choix";
+		}
+	}
+
 	protected function buildEntityObject(array $value){
 		$choice = new choice;
 
