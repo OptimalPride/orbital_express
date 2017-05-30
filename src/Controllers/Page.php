@@ -16,7 +16,7 @@ class Page
   public function deletePage(Application $app, $id_page, $id_adventure){
     $role = $app['security.token_storage']->getToken()->getUser()->getRole();
     if($role != "ROLE_ADMIN"){
-      $url = $app['url_generator']->generate('homepage');
+      $url = $app['url_generator']->generate('logout');
       return $app->redirect($url);
     }
     $msg = $app["dao.page"]->deletePagebyId($id_page);
@@ -27,7 +27,7 @@ class Page
   public function addPage(Application $app, $id_adventure){
     $role = $app['security.token_storage']->getToken()->getUser()->getRole();
     if($role != "ROLE_ADMIN"){
-      $url = $app['url_generator']->generate('homepage');
+      $url = $app['url_generator']->generate('logout');
       return $app->redirect($url);
     }
   	$pages = $app["dao.page"]->getPagesByIdAdventure($id_adventure);
@@ -35,9 +35,10 @@ class Page
   	return $app["twig"]->render('backoffice/pagecreation.html.twig', array("pages" => $pages, "choices" => $choices));
   }
 
-  public function modifypage(Application $app){			$role = $app['security.token_storage']->getToken()->getUser()->getRole();
+  public function modifypage(Application $app){
+    $role = $app['security.token_storage']->getToken()->getUser()->getRole();
   			if($role != "ROLE_ADMIN"){
-  				$url = $app['url_generator']->generate('homepage');
+  				$url = $app['url_generator']->generate('logout');
   				return $app->redirect($url);
   			}
 

@@ -143,6 +143,30 @@ class UserDAO extends DAO implements UserProviderInterface
 			return "Erreur pedant la suppression";
 		}
 	}
+
+  public function upgradeRoleById($id_user){
+		$requete = "UPDATE user SET role = 'ROLE_ADMIN' WHERE id_user = ?";
+		if ($this->getDb()->executeUpdate($requete, array($id_user))){
+			$msg = "ce membre est desormais un admin";
+		}
+		else {
+			$msg = "Erreur pendant l'evolution";
+		}
+		return $msg;
+		;
+	}
+
+  public function downgradeRoleById($id_user){
+		$requete = "UPDATE user SET role = 'ROLE_USER' WHERE id_user = ?";
+		if ($this->getDb()->executeUpdate($requete, array($id_user))){
+			$msg = "ce membre est desormais un user";
+		}
+		else {
+			$msg = "Erreur pendant la régression";
+		}
+		return $msg;
+		;
+	}
 }
 
 

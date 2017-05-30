@@ -167,3 +167,7 @@ $app->match("/addpage/{id_adventure}", "OrbitalExpress\\Controllers\\Page::addPa
 $app->match("/modifypage/", "OrbitalExpress\\Controllers\\Page::modifyPage" )->bind('modifypage');
 
 $app->match("/deleteuser/{id_user}", "OrbitalExpress\\Controllers\\User::deleteUser")->bind("deleteuser");
+
+$app->match("/upgraderole/{id_user}", "OrbitalExpress\\Controllers\\User::upgradeRole")->bind("upgraderole");
+
+$app->match("/downgraderole/{id_user}", "OrbitalExpress\\Controllers\\User::downgradeRole")->bind("downgraderole");

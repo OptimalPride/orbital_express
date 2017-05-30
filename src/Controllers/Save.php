@@ -16,7 +16,7 @@ class Save
     public function afficheGestionSave(Application $app){
       $role = $app['security.token_storage']->getToken()->getUser()->getRole();
       if($role != "ROLE_ADMIN"){
-        $url = $app['url_generator']->generate('homepage');
+        $url = $app['url_generator']->generate('logout');
         return $app->redirect($url);
       }
         $save = $app['dao.save']->getAllSaves();
@@ -26,7 +26,7 @@ class Save
     public function deleteSave(Application $app, $id_save){
       $role = $app['security.token_storage']->getToken()->getUser()->getRole();
       if($role != "ROLE_ADMIN"){
-        $url = $app['url_generator']->generate('homepage');
+        $url = $app['url_generator']->generate('logout');
         return $app->redirect($url);
       }
   		$msg = $app["dao.save"]->deleteSaveById($id_save);
@@ -43,7 +43,7 @@ class Save
 	public function gestionUserSaves(Application $app){
     $role = $app['security.token_storage']->getToken()->getUser()->getRole();
     if($role != "ROLE_ADMIN"){
-      $url = $app['url_generator']->generate('homepage');
+      $url = $app['url_generator']->generate('logout');
       return $app->redirect($url);
     }
 		$id_user = $app['security.token_storage']->getToken()->getUser()->getId_User();
