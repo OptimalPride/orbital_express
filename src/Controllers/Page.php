@@ -32,7 +32,7 @@ class Page
     }
   	$pages = $app["dao.page"]->getPagesByIdAdventure($id_adventure);
   	$choices = $app["dao.choice"]->getAllChoices();
-  	return $app["twig"]->render('backoffice/pagecreation.html.twig', array("pages" => $pages, "choices" => $choices));
+  	return $app["twig"]->render('backoffice/pagecreation.html.twig', array("pages" => $pages, "choices" => $choices, "id_adventure"=>$id_adventure ));
   }
 
 
@@ -46,15 +46,20 @@ class Page
     $pages = $app["dao.page"]->getPagesByIdAdventure($id_adventure);
     if($page["ending"] != NULL){
       if($page["ending"] == "success"){
-        return $app["twig"]->render('backoffice/pagemodification.html.twig', array("page" => $page, "choices" => "", "pages"=>$pages, "ending"=>"success"));
+        $ending = "success";
       }
       if($page["ending"] == "fail"){
-        return $app["twig"]->render('backoffice/pagemodification.html.twig', array("page" => $page, "choices" => "","pages"=>$pages, "ending"=>"fail"));
+        $ending = "fail";
       }
+      $choices = "";
     }
     else{
       $choices = $app["dao.choice"]->getChoicesByPageId($id_page);
-      return $app["twig"]->render('backoffice/pagemodification.html.twig', array("page" => $page, "pages"=>$pages, "choices" => $choices, "ending"=>""));
     }
+    return $app["twig"]->render('backoffice/pagemodification.html.twig', array("page" => $page, "pages"=>$pages, "choices" => $choices, "ending"=>$ending));
+  }
+
+  public function PageFormProcessing(Application $app, $id_adventure){
+
   }
 }
