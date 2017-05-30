@@ -8,15 +8,21 @@
 		<th>Pages associées</th>
 		<th>action</th>
 	</tr>
-	{% for key in page %}
+	{% for key in page|sort %}
 		<tr>
 				<td>{{ key["page_number"] }}</td>
-				<td>{% for choice in choices %}
+				<td>
+				{% if key["ending"] == NULL %}
+				{% for choice in choices %}
 					{% if key["id_page"] == choice["id_current_page"] %} - {{choice["id_landing_page"]}}{% endif %}
-				{% endfor %} - </td>
+				{% endfor %} - 
+				{% else %}
+					{{key["ending"]}}
+				{% endif %}
+				</td>
 				<td>
 			  <a href="{{ path('deletepage', {'id_adventure' : adventure.id_adventure,'id_page' : key.id_page}) }}"><img src="{{ asset('img/delete.png') }}"></a>
-			  <a href="{{ path('modifypage', {'id_adventure' : adventure.id_adventure,'id_page' : key.id_page}) }}"><img src="{{ asset('img/edit.png') }}"></a>
+			  <div id="{{key.id_page}}" class="pageedit"><img src="{{ asset('img/edit.png') }}"></a>
 				</td>
 		</tr>
 	{% endfor %}
