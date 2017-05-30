@@ -58,7 +58,6 @@ $app->match("/gestionadventure/", "OrbitalExpress\\Controllers\\Adventure::affic
 
 $app->match("/gestionsave/", "OrbitalExpress\\Controllers\\Save::afficheGestionSave")->bind("gestionSave");
 
-
 $app->match("/deletesave/{id_save}", "OrbitalExpress\\Controllers\\Save::deleteSave")->bind("deletesave");
 
 $app->match("/deleteadventure/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::deleteAdventure")->bind("deleteadventure");
@@ -162,4 +161,8 @@ $app->match("/gestionusersaves/", "OrbitalExpress\\Controllers\\Save::gestionUse
 $app->match("/deleteusersave/{id_save}", "OrbitalExpress\\Controllers\\Save::deleteUserSave" );
 
 $app->match("/adventureeditform/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::adventureEditForm" )->bind("adventureeditform");
+
+$app->match("/addpage/{id_adventure}", "OrbitalExpress\\Controllers\\Page::addPage" );
+
+$app->match("/modifypage/", "OrbitalExpress\\Controllers\\Page::modifyPage" )->bind('modifypage');
 

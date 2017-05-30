@@ -15,8 +15,17 @@ class Page
 {
   public function deletePage(Application $app, $id_page, $id_adventure){
     $msg = $app["dao.page"]->deletePagebyId($id_page);
-    $pages = $app["dao.page"]->getAllPages();
     $url = $app['url_generator']->generate('listepage', ['id_adventure' =>$id_adventure]);
     return $app->redirect($url);
+  }
+
+  public function addPage(Application $app, $id_adventure){
+  	$pages = $app["dao.page"]->getPagesByIdAdventure($id_adventure);
+  	$choices = $app["dao.choice"]->getAllChoices();
+  	return $app["twig"]->render('backoffice/pagecreation.html.twig', array("pages" => $pages, "choices" => $choices));
+  }
+
+  public function editPageForm(Application $app){
+    
   }
 }
