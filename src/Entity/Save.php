@@ -8,6 +8,9 @@ class Save
 	private $id_user;
 	private $id_current_page;
 	private $historic;
+    private $time_frame;
+    private $adventure_name;
+
 
     public function getId_Save() {
         return $this->id_save;

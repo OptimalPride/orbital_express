@@ -18,6 +18,17 @@ class AdventureDAO extends DAO
 		}
 	}
 
+	public function getAllAdventuresInfos(){
+		$requete = "SELECT id_adventure, name, active FROM adventure";
+		$resultat = $this->getDb()->fetchAll($requete);
+		if($resultat){
+			return $resultat;
+		}
+		else{
+			throw new \Exception("Aventures non trouvées.");
+		}
+	}
+
 	public function getAdventureById($id_adventure){
 		$requete = "SELECT * FROM adventure where id_adventure = ?";
 		$resultat = $this->getDb()->fetchAssoc($requete, array($id_adventure));
@@ -83,6 +94,20 @@ class AdventureDAO extends DAO
 		else{
 			throw new \Exception("Aucune aventure active.");
 		}
+	}
+
+	public function setActiveStatus($infos){
+		$id_adventure = $infos["id_adventure"];
+		$active = $infos["active"];
+		$requete = "UPDATE adventure SET active = ? WHERE id_adventure = ?";
+		if ($this->getDb()->executeUpdate($requete, array($active, $id_adventure))){
+			$msg = "Aventure Activée";
+		}
+		else {
+			$msg = "Erreur pendant l'activation";
+		}
+		return $msg;
+		;
 	}
 
 	protected function buildEntityObject(array $value){

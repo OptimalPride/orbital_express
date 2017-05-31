@@ -52,12 +52,11 @@ $app->get("/backoffice/", function () use ($app){
     return $app['twig']->render('backoffice/gestion.html.twig', array());
 });
 
-$app->match("/gestionuser/", "OrbitalExpress\\Controllers\\Adventure::afficheGestionUser")->bind("gestionUser");
+$app->match("/gestionuser/", "OrbitalExpress\\Controllers\\User::afficheGestionUser")->bind("gestionUser");
 
 $app->match("/gestionadventure/", "OrbitalExpress\\Controllers\\Adventure::afficheGestionAdventure")->bind("gestionAdventure");
 
 $app->match("/gestionsave/", "OrbitalExpress\\Controllers\\Save::afficheGestionSave")->bind("gestionSave");
-
 
 $app->match("/deletesave/{id_save}", "OrbitalExpress\\Controllers\\Save::deleteSave")->bind("deletesave");
 
@@ -143,6 +142,10 @@ $app->match("/contact/", function () use ($app){
     return $app['twig']->render('support.html.twig', array());
 })->bind('contact');
 
+$app->match("/regles/", function () use ($app){
+    return $app['twig']->render('regles-du-jeu.html.twig', array());
+})->bind('regles');
+
 $app->match("/tableau/", function () use ($app){
     return $app['twig']->render('tableau-de-bord.html.twig', array());
 })->bind('tableau');
@@ -162,3 +165,25 @@ $app->match("/gestionusersaves/", "OrbitalExpress\\Controllers\\Save::gestionUse
 $app->match("/deleteusersave/{id_save}", "OrbitalExpress\\Controllers\\Save::deleteUserSave" );
 
 $app->match("/adventureeditform/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::adventureEditForm" )->bind("adventureeditform");
+
+$app->match("/addpage/{id_adventure}", "OrbitalExpress\\Controllers\\Page::addPage" );
+
+$app->match("/addpageformprocessing/{id_adventure}", "OrbitalExpress\\Controllers\\Page::addPageFormProcessing" );
+
+$app->match("/modifypageformprocessing/{id_adventure}/{id_page}", "OrbitalExpress\\Controllers\\Page::modifyPageFormProcessing" );
+
+$app->match("/modifypage/{id_adventure}/{id_page}", "OrbitalExpress\\Controllers\\Page::modifyPage" )->bind('modifypage');
+
+$app->match("/deleteuser/{id_user}", "OrbitalExpress\\Controllers\\User::deleteUser")->bind("deleteuser");
+
+$app->match("/upgraderole/{id_user}", "OrbitalExpress\\Controllers\\User::upgradeRole")->bind("upgraderole");
+
+$app->match("/downgraderole/{id_user}", "OrbitalExpress\\Controllers\\User::downgradeRole")->bind("downgraderole");
+
+$app->match("/toggleadventure/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::toggleAdventure")->bind("toggleadventure");
+
+$app->match("/successdisplay/{id_page}", "OrbitalExpress\\Controllers\\Game::successDisplay");
+
+$app->match("/faildisplay/{id_page}", "OrbitalExpress\\Controllers\\Game::failDisplay");
+
+

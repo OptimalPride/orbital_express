@@ -1,9 +1,12 @@
 {% extends 'layoutBO.html.twig' %}
 
 {% block content %}
-<script>var id_adventure = {{id_adventure}};</script>
-<div id="adventure_edit_form"></div>
+<script>var id_adventure = {{adventure["id_adventure"]}};</script>
+<div id="adventure_edit_form"></div><br>
 
+<a href="{{path('homepage')}}toggleadventure/{{adventure["id_adventure"]}}">{% if adventure["active"] == TRUE %}Desactiver aventure{% else %}Activer aventure{% endif %}</a>
+
+<a href="{{path('homepage')}}addpage/{{adventure["id_adventure"]}}">Ajouter une page</a>
 <div id="adventure_pages"></div>
 
 <div id="page_edit_form"></div>

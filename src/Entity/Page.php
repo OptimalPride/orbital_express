@@ -10,6 +10,7 @@ class Page
 	private $story;
 	private $background;
 	private $animation;
+	private $ending;
 
 	public function getId_Page() {
 		return $this->id_page;
@@ -57,6 +58,14 @@ class Page
 
 	public function setAnimation($animation) {
 		$this->animation = $animation;
+	}
+
+	public function getEnding() {
+		return $this->ending;
+	}
+
+	public function setEnding($ending) {
+		$this->ending = $ending;
 	}
 }
 ?>

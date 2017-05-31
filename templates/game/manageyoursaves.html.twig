@@ -13,7 +13,7 @@
 		<td>{{loop.index}}</td>
 		<td>{{key["adventure_name"]}}</td>
 		<td>{{key["time_frame"]}}</td>
-		<td><a href="{{path('homepage')}}deleteusersave/{{key["id_save"]}}">Supprimer</a></td>
+		<td><a class="delete_save_button" href="{{path('homepage')}}deleteusersave/{{key["id_save"]}}"><img src="{{ asset('img/001-error.png') }}" style="width: 50px"></a></td>
 	</tr>
 {% endfor %}
 </table>
