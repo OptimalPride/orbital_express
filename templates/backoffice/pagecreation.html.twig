@@ -62,7 +62,7 @@ $(function(){
 
 	$("#page_create").on("submit", function(e){
 		e.preventDefault();
-		var addpage = $.ajax({ 	
+		var addpage = $.ajax({
 			url: baseUrl+"addpageformprocessing/"+{{id_adventure}},
 			method: "POST",
 			data: $(this).serialize()
@@ -82,7 +82,7 @@ $(function(){
 		});
 		addpage.fail(function( jqXHR, textStatus ) {
   			alert( "Request failed: " + textStatus );
-  		});	
+  		});
 	});
 
 });
