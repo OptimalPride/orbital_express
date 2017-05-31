@@ -170,7 +170,7 @@ $app->match("/addpage/{id_adventure}", "OrbitalExpress\\Controllers\\Page::addPa
 
 $app->match("/addpageformprocessing/{id_adventure}", "OrbitalExpress\\Controllers\\Page::addPageFormProcessing" );
 
-$app->match("/modifypageformprocessing/{id_page}", "OrbitalExpress\\Controllers\\Page::modifyPageFormProcessing" );
+$app->match("/modifypageformprocessing/{id_adventure}/{id_page}", "OrbitalExpress\\Controllers\\Page::modifyPageFormProcessing" );
 
 $app->match("/modifypage/{id_adventure}/{id_page}", "OrbitalExpress\\Controllers\\Page::modifyPage" )->bind('modifypage');
 
@@ -181,3 +181,5 @@ $app->match("/upgraderole/{id_user}", "OrbitalExpress\\Controllers\\User::upgrad
 $app->match("/downgraderole/{id_user}", "OrbitalExpress\\Controllers\\User::downgradeRole")->bind("downgraderole");
 
 $app->match("/toggleadventure/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::toggleAdventure")->bind("toggleadventure");
+
+$app->match("/successdisplay/", "OrbitalExpress\\Controllers\\Game::successDisplay");

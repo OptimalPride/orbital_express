@@ -1,6 +1,5 @@
 $(function(){
-	console.log("Js marche");
-
+	console.log("WTF 2");
 	function gameFunction(id_landing_page, id_current_page){
 		var request = $.ajax({ 	
 			url: baseUrl+"gamefunction/",
@@ -11,18 +10,33 @@ $(function(){
 
 		request.done(function( msg ) {
 			msg = JSON.parse(msg);
-			console.log(msg);
-			console.log("request done");
 			if(msg.cheat == "true"){
 				$("#story").html(msg.message);
 			}
 			else{
 				if(msg.ending != ""){
-					if(msg.ending == "success"){
+					if(msg.ending == "success"){						
+						var win = $.ajax({ 	
+							url: baseUrl+"successdisplay/",
+							method: "POST"
+						});	
 
+						win.done(function( reg ) {
+							console.log(reg);
+							$("main").load(reg);
+							$(".text_victoire").html(msg.page.story);							
+						});
 					}
 					if(msg.ending == "fail"){
-						
+						var fail = $.ajax({ 	
+							url: baseUrl+"successdisplay/",
+							method: "POST"
+						});	
+
+						fail.done(function( reg ) {
+							$("main").html(msg);
+							$(".text_fail").html(msg.page.story);							
+						});	
 					}
 				}
 				else{
@@ -52,7 +66,6 @@ $(function(){
 		id_current_page = id_landing_page;
 		id_landing_page = $(this).attr('data_id');
 		gameFunction(id_landing_page, id_current_page);
-		console.log(id_current_page, id_landing_page);
 	});
 	
 
