@@ -28,7 +28,6 @@ $(function(){
 		});
 		gestionSauvegardes.done(function(msg) {
 			$("div.contenu_sauvegardes").html(msg);
-<<<<<<< HEAD
 			$(".delete_save_button").click(function(a){
 				a.preventDefault();
 				var deletesave = $.ajax({ 	
@@ -42,8 +41,3 @@ $(function(){
 		});	
 	})
 })
-=======
-		});
-	});
-});
->>>>>>> 6d45ee632ac93e019e9e5e9b7cbe9a7b3b6c68b9
