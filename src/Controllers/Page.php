@@ -62,6 +62,16 @@ class Page
 
   public function addPageFormProcessing(Application $app, $id_adventure){
     $page_number = $_POST["page_number"];
+
+    $pages = $app["dao.page"]->getPagesByIdAdventure($id_adventure);
+    if($pages != "Aucune pages à l'id:$id_adventure"){
+      foreach ($pages as $key => $value) {
+        if($value["page_number"] == $page_number){
+          return "Numero de page deja pris";
+        }
+      }
+    }
+
     $story = $_POST["story"];
     $ending = $_POST["ending"];
     $infos = array("id_adventure"=>$id_adventure, "page_number"=>$page_number, "story"=>$story, "ending"=>$ending );
@@ -86,7 +96,20 @@ class Page
   }
 //Incomplete function modifyPageFormProcessing, update, not insert, get id page, and done
   public function modifyPageFormProcessing(Application $app, $id_adventure, $id_page){
+
     $page_number = $_POST["page_number"];
+    $page = $app["dao.page"]->getContentById($id_page);
+    if($page["page_number"] != $page_number){
+      $pages = $app["dao.page"]->getPagesByIdAdventure($id_adventure);
+      if($pages != "Aucune pages à l'id:$id_adventure"){
+        foreach ($pages as $key => $value) {
+          if($value["page_number"] == $page_number){
+            return "Numero de page deja pris";
+          }
+        }
+      }
+    }
+
     $story = $_POST["story"];
     $ending = $_POST["ending"];
     $infos = array("id_page"=>$id_page, "page_number"=>$page_number, "story"=>$story, "ending"=>$ending );

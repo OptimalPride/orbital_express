@@ -69,17 +69,7 @@ $(function(){
 		});
 
 		addpage.done(function(reg){
-			console.log(reg);
-			alert('Page ajoutée');
-			var test = "ça marche !!";
-			if (reg == test){
-				$(".contenu_popup_inscription").empty();
-				$("img.image_close_popup_inscription").click();
-				$("a.bouton_connexion").click();
-			}
-			else{
-				$("#error_inscription").html(reg);
-			}
+			alert(reg);
 		});
 		addpage.fail(function( jqXHR, textStatus ) {
   			alert( "Request failed: " + textStatus );

@@ -95,11 +95,11 @@ class PageDAO extends DAO
 	    $requete = "UPDATE page set page_number = ?, story = ?, ending = ? WHERE id_page = ?";
 	    $resultat = $this->getDb()->executeUpdate($requete, array($page_number, $story, $ending, $id_page));
 	    if($resultat){
-			return "Update réussi";
+			return "Contenu de page changé";
 		}
 		else{
 			// throw new \Exception("Erreur pendant l'update de la page");
-			return "Erreur pendant l'update de la page";
+			return "Contenu de page non modifié";
 		}
 	}
 

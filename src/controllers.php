@@ -164,8 +164,6 @@ $app->match("/gestionusersaves/", "OrbitalExpress\\Controllers\\Save::gestionUse
 
 $app->match("/deleteusersave/{id_save}", "OrbitalExpress\\Controllers\\Save::deleteUserSave" );
 
-$app->match("/adventureeditform/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::adventureEditForm" )->bind("adventureeditform");
-
 $app->match("/addpage/{id_adventure}", "OrbitalExpress\\Controllers\\Page::addPage" );
 
 $app->match("/addpageformprocessing/{id_adventure}", "OrbitalExpress\\Controllers\\Page::addPageFormProcessing" );
@@ -185,5 +183,9 @@ $app->match("/toggleadventure/{id_adventure}", "OrbitalExpress\\Controllers\\Adv
 $app->match("/successdisplay/{id_page}", "OrbitalExpress\\Controllers\\Game::successDisplay");
 
 $app->match("/faildisplay/{id_page}", "OrbitalExpress\\Controllers\\Game::failDisplay");
+
+$app->match("/createadventureformprocessing/", "OrbitalExpress\\Controllers\\Adventure::createAdventureFormProcessing");
+
+$app->match("/modifyadventureformprocessing/{id_adventure}/", "OrbitalExpress\\Controllers\\Adventure::modifyAdventureFormProcessing");
 
 

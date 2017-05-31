@@ -1,23 +1,19 @@
 $(function(){
 
-	var advform = $.ajax({ 	
-			url: baseUrl+"adventureeditform/"+id_adventure,
+	$("#adventure_edit").on("submit", function(e){
+		e.preventDefault();
+		var modifadv = $.ajax({
+			url: baseUrl+"modifyadventureformprocessing/"+id_adventure+"/",
 			method: "POST",
-	});
-
-	advform.done(function( msg ) {
-		$("#adventure_edit_form").html(msg);
-		$("#adventure_edit_form > form").on("submit", function(e){
-			e.preventDefault();
-			var advFormData = $.ajax({ 	
-				url: baseUrl+"adventureeditform/"+id_adventure,
-				method: "POST",
-				data: $(this).serialize()
-			});
-			advFormData.done(function(reg){
-				$("#form_msg").html(reg);
-			});
+			data: $(this).serialize()
 		});
+
+		modifadv.done(function(reg){
+			alert(reg);
+		});
+		modifadv.fail(function( jqXHR, textStatus ) {
+  			alert( "Request failed: " + textStatus );
+  		});
 	});
 // -----------------------------
 
@@ -48,8 +44,7 @@ $(function(){
 						data: $(this).serialize()
 					});
 					pagemodifdata.done(function(meg){
-						console.log(meg);
-						$("#form_message").text(meg);
+						alert(meg);
 					});
 
 				});
