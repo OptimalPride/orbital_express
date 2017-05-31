@@ -1,0 +1,92 @@
+{% extends "layoutBO.html.twig" %}
+
+{% block content %}
+
+<form id="page_create">
+	<label>Numero de page</label>
+	<input type="number"  min="1" name="page_number"><br>
+
+	<label>Scenario</label>
+	<textarea  rows="10" cols="50" name="story"></textarea><br>
+
+	<label>Page finale?</label>
+	<select name="ending">
+		<option>non</option>
+		<option>success</option>
+		<option>fail</option></select>
+
+	<fieldset>
+		<legend>Choix 1</legend>
+
+		<label>Personnage</label>
+		<input type="text" name="crew1">
+
+		<label>Reponse</label>
+		<textarea rows="3" cols="30" name="response1"></textarea>
+
+		<label>Vers la page :</label>
+		<input type="number"  min="1" name="id_landing_page1">
+	</fieldset>
+
+	<fieldset>
+		<legend>Choix 2</legend>
+
+		<label>Personnage</label>
+		<input type="text" name="crew2">
+
+		<label>Reponse</label>
+		<textarea rows="3" cols="30" name="response2"></textarea>
+
+		<label>Vers la page :</label>
+		<input type="number"  min="1" name="id_landing_page2">
+	</fieldset>
+
+	<fieldset>
+		<legend>Choix 3</legend>
+
+		<label>Personnage</label>
+		<input type="text" name="crew3">
+
+		<label>Reponse</label>
+		<textarea rows="3" cols="30" name="response3"></textarea>
+
+		<label>Vers la page :</label>
+		<input type="number"  min="1" name="id_landing_page3">
+	</fieldset>
+
+	<input type="submit" value="Creer page">
+</form>
+
+<script>
+$(function(){
+
+	$("#page_create").on("submit", function(e){
+		e.preventDefault();
+		var addpage = $.ajax({
+			url: baseUrl+"addpageformprocessing/"+{{id_adventure}},
+			method: "POST",
+			data: $(this).serialize()
+		});
+
+		addpage.done(function(reg){
+			console.log(reg);
+			alert('Page ajoutée');
+			var test = "ça marche !!";
+			if (reg == test){
+				$(".contenu_popup_inscription").empty();
+				$("img.image_close_popup_inscription").click();
+				$("a.bouton_connexion").click();
+			}
+			else{
+				$("#error_inscription").html(reg);
+			}
+		});
+		addpage.fail(function( jqXHR, textStatus ) {
+  			alert( "Request failed: " + textStatus );
+  		});
+	});
+
+});
+</script>
+
+{% endblock %}

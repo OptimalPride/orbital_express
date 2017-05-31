@@ -11,6 +11,17 @@ use OrbitalExpress\Entity\User;
 
 class UserDAO extends DAO implements UserProviderInterface
 {
+  public function getAllUser(){
+		$requete = "SELECT id_user, username, email, role FROM user";
+		$resultat = $this->getDb()->fetchAll($requete, array());
+		if($resultat){
+			return $resultat;
+		}
+		else{
+			throw new \Exception("Aucun membre dans la base de donnée");
+		}
+	}
+
   public function loadUserByUsername($username){
     $requete = "SELECT * FROM user WHERE username = ?";
     $resultat = $this -> getDb() -> fetchAssoc($requete, array($username));
@@ -85,7 +96,6 @@ class UserDAO extends DAO implements UserProviderInterface
     $user -> setUsername($resultat['username']);
     $user -> setEmail($resultat['email']);
     $user -> setPassword($resultat['password']);
-    $user -> setAvatar($resultat['avatar']);
 
     $user -> setRole($resultat['role']);
     $user -> setSalt($resultat['salt']);
@@ -100,7 +110,6 @@ class UserDAO extends DAO implements UserProviderInterface
 			"username" => $user -> getUsername(),
 			"password" => $user -> getPassword(),
 			"email" => $user -> getEmail(),
-      "avatar" => $user -> getAvatar(),
 
       "role" => $user -> getRole(),
 			"salt" => $user -> getSalt()
@@ -135,6 +144,29 @@ class UserDAO extends DAO implements UserProviderInterface
 		}
 	}
 
+  public function upgradeRoleById($id_user){
+		$requete = "UPDATE user SET role = 'ROLE_ADMIN' WHERE id_user = ?";
+		if ($this->getDb()->executeUpdate($requete, array($id_user))){
+			$msg = "ce membre est desormais un admin";
+		}
+		else {
+			$msg = "Erreur pendant l'evolution";
+		}
+		return $msg;
+		;
+	}
+
+  public function downgradeRoleById($id_user){
+		$requete = "UPDATE user SET role = 'ROLE_USER' WHERE id_user = ?";
+		if ($this->getDb()->executeUpdate($requete, array($id_user))){
+			$msg = "ce membre est desormais un user";
+		}
+		else {
+			$msg = "Erreur pendant la régression";
+		}
+		return $msg;
+		;
+	}
 }
 
 

@@ -1,0 +1,21 @@
+{% extends "layout.html.twig" %}
+
+{% block data_html %} data-wf-page="5928260e7a306e0936ce6cc4" data-wf-site="591dbb2c653bab09628cdd31" {% endblock %}
+
+{% block title %}Fail{% endblock %}
+
+
+
+{%  block body_class %} class="body-4" {% endblock %}
+
+
+{% block content %}
+
+  <div class="section-7">
+    <div class="container-4 w-container">
+      <h1 class="titre_fail" data-ix="fadedown">VOUS AVEZ PERDUS !</h1>
+      <p class="text_fail" data-ix="fadedown-3">{{page.story}}</p><a class="retour_tableau_de_bord w-button" data-ix="fadedown-2" href="{{path('tableau')}}">TABLEAU DE BORD&nbsp;</a>
+    </div>
+  </div>
+
+ {% endblock %}

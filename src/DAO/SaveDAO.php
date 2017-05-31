@@ -26,7 +26,7 @@ class SaveDAO extends DAO
 			return $resultat;
 		}
 		else{
-			throw new \Exception("Aucune sauvegarde pour l'id:$id_user");
+			return NULL;
 		}
 	}
 

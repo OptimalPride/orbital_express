@@ -12,13 +12,11 @@
 
 {% block content %}
   <script type="text/javascript">var id_current_page = {{id_current_page}};</script>
-  <div class="section-9"><img class="image-10" sizes="(max-width: 1920px) 100vw, 1920px" src="{{ asset('img/hautpngtest.png') }}" srcset="{{ asset('img/hautpngtest-p-500.png') }} 500w, {{ asset('img/hautpngtest-p-800.png') }} 800w, {{ asset('img/hautpngtest-p-1080.png') }} 1080w, {{ asset('img/hautpngtest-p-1600.png') }} 1600w, {{ asset('img/hautpngtest.png') }} 1920w"><img class="image-9" sizes="(max-width: 1920px) 100vw, 1920px" src="{{ asset('img/baspngtest.png') }}" srcset="{{ asset('img/baspngtest-p-500.png') }} 500w, {{ asset('img/baspngtest-p-800.png') }} 800w, {{ asset('img/baspngtest-p-1080.png') }} 1080w, {{ asset('img/baspngtest-p-1600.png') }} 1600w, {{ asset('img/baspngtest.png') }} 1920w">
-  </div>
   
   <div class="section-7">
     <div class="container-4 w-container">
       <h1 class="heading-5" data-ix="fadedown">Journal de bord</h1>
-      <h1 class="heading-6" data-ix="fadedown-2">username J-250</h1>
+      <h1 class="heading-6" data-ix="fadedown-2">Commandant {{ app.user.username }}</h1>
     </div>
   </div>
   <div class="section-6">
