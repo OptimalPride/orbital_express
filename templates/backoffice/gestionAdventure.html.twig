@@ -4,9 +4,12 @@
 
 <h2 class="gestion_header">Gestion d'aventure</h2>
 
+
 <div class="link_block_action"><a class="link_action" href="{{ path('createadventure')}}">Nouvelle aventure</a></div>
 
+{% if adventures != NULL%}
 <table>
+
 	<tr>
 		<th>ID</th>
 		<th>Name</th>
@@ -42,7 +45,7 @@
 		</tr>
 	{% endfor %}
 </table>
-
+{% else %}
 {{ msg }}
-
+{% endif %}
 {% endblock %}

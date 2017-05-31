@@ -2,9 +2,15 @@
 
 {% block content %}
 
+
 <h2 class="gestion_header">Gestion des sauvegardes</h2>
 
 <table>
+
+
+{% if save != NULL%}
+<table>
+
 	<tr>
 	{% for key, value in save[0] %}
 		<th>{{ key }}</th>
@@ -22,7 +28,7 @@
 		</tr>
 	{% endfor %}
 </table>
-
+{% else %}
 {{ msg }}
-
+{% endif %}
 {% endblock %}

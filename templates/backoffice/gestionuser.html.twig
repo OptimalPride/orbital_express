@@ -2,9 +2,12 @@
 
 {% block content %}
 
+
 <h2 class="gestion_header">Gestion des membres</h2>
 
-<table>
+{% if user != NULL%}
+<table border="1">
+
 	<tr>
 	{% for key, value in user[0] %}
 		<th>{{ key }}</th>
@@ -27,7 +30,7 @@
 		</tr>
 	{% endfor %}
 </table>
-
+{% else %}
 {{ msg }}
-
+{% endif %}
 {% endblock %}
