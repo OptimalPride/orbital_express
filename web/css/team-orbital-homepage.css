@@ -1166,6 +1166,7 @@
 .contenu_continuer_aventure button{
   background-image: -webkit-linear-gradient(270deg, #e03a6b, rgba(1, 28, 74, .9));
   background-image: linear-gradient(180deg, #e03a6b, rgba(1, 28, 74, .9));
+  width:200px;
 }
   
 .infos_user {

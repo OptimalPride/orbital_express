@@ -2,11 +2,11 @@
 
 {% block content %}
 
-<h2>Gestion d'aventure</h2>
+<h2 class="gestion_header">Gestion d'aventure</h2>
 
-<a href="{{ path('createadventure')}}">Nouvelle aventure</a><br><br>
+<div class="link_block_action"><a class="link_action" href="{{ path('createadventure')}}">Nouvelle aventure</a></div>
 
-<table border="1">
+<table>
 	<tr>
 	{% for key, value in adventures[0] %}
 		<th>{{ key }}</th>

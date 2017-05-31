@@ -1,3 +1,9 @@
+body{
+  background-color:#011C4A;
+}
+table{
+  width:30%;
+}
 .table {
   margin-top: 33px;
   margin-bottom: 33px;
@@ -18,21 +24,33 @@
   border: 1px solid #fff;
 }
 
+#nav_back{
+  text-align:center;
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+}
 .gestion_back_link {
-  width: 20%;
-  min-width: 20%;
-  margin: 33px 4%;
-  padding: 11px 4%;
+  width: 18%;
+  min-width: 18%;
+  margin: 33px 0%;
+  padding: 11px 0%;
   border-radius: 20px;
   background-image: -webkit-linear-gradient(270deg, #e03a6b, rgba(1, 28, 74, .8));
   background-image: linear-gradient(180deg, #e03a6b, rgba(1, 28, 74, .8));
   font-family: Avenir, sans-serif;
   color: #fff;
-  font-size: 1em;
+  font-size: 0.8em;
   font-weight: 700;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
+}
+
+.gestion_back_link a {
+  color:#fff;
+  text-decoration:none;
 }
 
 .container {
@@ -60,81 +78,97 @@
   margin-bottom: 20px;
   font-family: Avenir, sans-serif;
   color: #fff;
+  text-align:center;
   font-size: 3em;
+
 }
 
+.link_block_action{
+  text-align:center;
+  margin-bottom:5px;
+}
+
+.link_action{
+  color:#fff;
+  text-decoration:none;
+  font-family:Avenir, sans-serif;
+}
+
+
 @media (max-width: 991px) {
+  
+  #nav_back{
+    flex-wrap:wrap;
+    width:50%;
+    margin:auto;
+  }
   .gestion_back_link {
-    width: 30%;
-    min-width: 30%;
+    width: 100%;
+    min-width: 100%;
+    margin: 15px 0%;
+    font-size:1.2em;
   }
 }
 
 @media (max-width: 767px) {
-  .gestion_back_link {
-    width: 40%;
-    min-width: 40%;
-  }
+ 
 }
 
 @media (max-width: 479px) {
-  .gestion_back_link {
-    width: 50%;
-    min-width: 50%;
-  }
+
 }
 
 @font-face {
   font-family: 'Avenir';
-  src: url('../fonts/Avenir-HeavyOblique.ttf') format('truetype'), url('../fonts/Avenir-BlackOblique.ttf') format('truetype');
+  src: url('{{ asset('fonts/Avenir-HeavyOblique.ttf') }}') format('truetype'), url('{{ asset('fonts/Avenir-BlackOblique.ttf') }}') format('truetype');
   font-weight: 900;
   font-style: italic;
 }
 @font-face {
   font-family: 'Avenir';
-  src: url('../fonts/Avenir-Black.ttf') format('truetype'), url('../fonts/Avenir-Heavy.ttf') format('truetype');
+  src: url('{{ asset('fonts/Avenir-Black.ttf') }}') format('truetype'), url('{{ asset('fonts/Avenir-Heavy.ttf') }}') format('truetype');
   font-weight: 900;
   font-style: normal;
 }
 @font-face {
   font-family: 'Avenir book';
-  src: url('../fonts/Avenir-Book.ttf') format('truetype');
+  src: url('{{ asset('fonts/Avenir-Book.ttf') }}') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: 'Avenir';
-  src: url('../fonts/Avenir-Light.ttf') format('truetype');
+  src: url('{{ asset('fonts/Avenir-Light.ttf') }}') format('truetype');
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
   font-family: 'Avenir';
-  src: url('../fonts/Avenir-LightOblique.ttf') format('truetype');
+  src: url('{{ asset('fonts/Avenir-LightOblique.ttf') }}') format('truetype');
   font-weight: 300;
   font-style: italic;
 }
 @font-face {
   font-family: 'Avenir';
-  src: url('../fonts/Avenir-Oblique.ttf') format('truetype'), url('../fonts/Avenir-BookOblique.ttf') format('truetype');
+  src: url('{{ asset('fonts/Avenir-Oblique.ttf') }}') format('truetype'), url('{{ asset('fonts/Avenir-BookOblique.ttf') }}') format('truetype');
   font-weight: 400;
   font-style: italic;
 }
 @font-face {
   font-family: 'Avenir';
-  src: url('../fonts/Avenir-MediumOblique.ttf') format('truetype');
+  src: url('{{ asset('fonts/Avenir-MediumOblique.tt') }}') format('truetype');
   font-weight: 500;
   font-style: italic;
 }
 @font-face {
   font-family: 'Avenir roman';
-  src: url('../fonts/Avenir-Roman.ttf') format('truetype');
+  src: url('{{ asset('fonts/Avenir-Roman.ttf') }}') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: 'Avenir';
-  src: url('../fonts/Avenir-Medium.ttf') format('truetype');
+  src: url('{{ asset('fonts/Avenir-Medium.ttf') }}') format('truetype');
   font-weight: 500;
   font-style: normal;
 }
