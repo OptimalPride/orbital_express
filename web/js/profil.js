@@ -27,8 +27,23 @@ $(function(){
 			method: "POST",
 		});
 		gestionSauvegardes.done(function(msg) {
-			console.log(msg);
 			$("div.contenu_sauvegardes").html(msg);
+<<<<<<< HEAD
+			$(".delete_save_button").click(function(a){
+				a.preventDefault();
+				var deletesave = $.ajax({ 	
+					url: $(this).attr("href"),
+					method: "POST",
+				}); 
+				deletesave.done(function(b){
+					$("a.sauvegardes").click();
+				})
+			});
+		});	
+	})
+})
+=======
 		});
 	});
 });
+>>>>>>> 6d45ee632ac93e019e9e5e9b7cbe9a7b3b6c68b9
