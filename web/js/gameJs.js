@@ -1,5 +1,5 @@
 $(function(){
-	console.log("WTF 2");
+	console.log("WTF 3");
 	function gameFunction(id_landing_page, id_current_page){
 		var request = $.ajax({ 	
 			url: baseUrl+"gamefunction/",
@@ -16,27 +16,10 @@ $(function(){
 			else{
 				if(msg.ending != ""){
 					if(msg.ending == "success"){						
-						var win = $.ajax({ 	
-							url: baseUrl+"successdisplay/",
-							method: "POST"
-						});	
-
-						win.done(function( reg ) {
-							console.log(reg);
-							$("main").load(reg);
-							$(".text_victoire").html(msg.page.story);							
-						});
+						window.location.href=baseUrl+'successdisplay/'+msg.page.id_page;
 					}
 					if(msg.ending == "fail"){
-						var fail = $.ajax({ 	
-							url: baseUrl+"successdisplay/",
-							method: "POST"
-						});	
-
-						fail.done(function( reg ) {
-							$("main").html(msg);
-							$(".text_fail").html(msg.page.story);							
-						});	
+						window.location.href=baseUrl+'faildisplay/'+msg.page.id_page;
 					}
 				}
 				else{

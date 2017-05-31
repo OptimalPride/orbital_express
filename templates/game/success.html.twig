@@ -1,10 +1,23 @@
+{% extends "layout.html.twig" %}
 
+{% block data_html %} data-wf-page="59282361a24ec109453e0b88" data-wf-site="591dbb2c653bab09628cdd31" {% endblock %}
+
+{% block title %}Success{% endblock %}
+
+
+
+{%  block body_class %} class="body-4" {% endblock %}
+
+
+
+{% block content %}
 
   <div class="section-7">
     <div class="container-4 w-container">
       <h1 class="titre_victoire" data-ix="fadedown">VICTOIRE !</h1>
-      <p class="text_victoire" data-ix="fadedown-3"></p><a class="retour_tableau_de_bord w-button" data-ix="fadedown-2" href="#">TABLEAU DE BORD&nbsp;</a>
+      <p class="text_victoire" data-ix="fadedown-3">{{page.story}}</p><a class="retour_tableau_de_bord w-button" data-ix="fadedown-2" href="{{path('tableau')}}">TABLEAU DE BORD&nbsp;</a>
     </div>
   </div>
 
 
+{% endblock %}

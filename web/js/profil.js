@@ -27,8 +27,17 @@ $(function(){
 			method: "POST",
 		});
 		gestionSauvegardes.done(function(msg) {
-			console.log(msg);
 			$("div.contenu_sauvegardes").html(msg);
-		});
-	});
-});
+			$(".delete_save_button").click(function(a){
+				a.preventDefault();
+				var deletesave = $.ajax({ 	
+					url: $(this).attr("href"),
+					method: "POST",
+				}); 
+				deletesave.done(function(b){
+					$("a.sauvegardes").click();
+				})
+			});
+		});	
+	})
+})

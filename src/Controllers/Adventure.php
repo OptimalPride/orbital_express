@@ -113,7 +113,7 @@ class Adventure
 
 	public function newAdventure(Application $app, $id_adventure){
 		$adventure = $app["dao.adventure"]->getAdventureById($id_adventure);
-		return $app['twig']->render('game/intro.html.twig', array("adventure" => $adventure));
+		return $app['twig']->render('game/preface-aventure.html.twig', array("adventure" => $adventure));
 	}
 
 	public function adventureEditForm(Application $app,Request $request, $id_adventure){

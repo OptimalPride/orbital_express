@@ -67,7 +67,13 @@ class Game
 		}
 	}
 
-	public function successDisplay(Application $app){
-		return $app['twig']->render('/game/success.html.twig', array());		
+	public function successDisplay(Application $app, $id_page){
+		$page = $app["dao.page"]->getContentById($id_page);
+		return $app['twig']->render('/game/success.html.twig', array("page"=>$page));		
+	}
+
+	public function failDisplay(Application $app, $id_page){
+		$page = $app["dao.page"]->getContentById($id_page);
+		return $app['twig']->render('/game/fail.html.twig', array("page"=>$page));		
 	}
 }
