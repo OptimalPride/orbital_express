@@ -85,6 +85,20 @@ class AdventureDAO extends DAO
 		}
 	}
 
+	public function setActiveStatus($infos){
+		$id_adventure = $infos["id_adventure"];
+		$active = $infos["active"];
+		$requete = "UPDATE adventure SET active = ? WHERE id_adventure = ?";
+		if ($this->getDb()->executeUpdate($requete, array($active, $id_adventure))){
+			$msg = "Aventure Activée";
+		}
+		else {
+			$msg = "Erreur pendant l'activation";
+		}
+		return $msg;
+		;
+	}
+
 	protected function buildEntityObject(array $value){
 		$adventure = new adventure;
 

@@ -11,7 +11,7 @@ $(function(){
 			e.preventDefault();
 			var advFormData = $.ajax({ 	
 				url: baseUrl+"adventureeditform/"+id_adventure,
-				method: $(this).attr('method'),
+				method: "POST",
 				data: $(this).serialize()
 			});
 			advFormData.done(function(reg){
@@ -39,10 +39,23 @@ $(function(){
 
 			pageform.done(function(reg){
 				$("#page_edit_form").html(reg);
+
+				$("form#page_modif").on("submit", function(f){
+					f.preventDefault();
+					var pagemodifdata = $.ajax({ 	
+						url: baseUrl+"modifypageformprocessing/"+id_page,
+						method: "POST",
+						data: $(this).serialize()
+					});
+					pagemodifdata.done(function(meg){
+						console.log(meg);
+						$("#form_message").text(meg);
+					});
+
+				});
 			});		
 		})
 	});
 // -----------------------------
-
 
 });
