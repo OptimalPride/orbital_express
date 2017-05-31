@@ -94,6 +94,15 @@ table{
   font-family:Avenir, sans-serif;
 }
 
+.icon-back{
+  width:30px;
+}
+.icon-up{
+  transform: rotate(180deg);
+}
+
+
+
 
 @media (max-width: 991px) {
   
@@ -110,13 +119,9 @@ table{
   }
 }
 
-@media (max-width: 767px) {
- 
-}
 
-@media (max-width: 479px) {
 
-}
+
 
 @font-face {
   font-family: 'Avenir';

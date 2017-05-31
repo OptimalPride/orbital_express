@@ -405,7 +405,7 @@
 }
 
 .body-2 {
-  background-color:#011C4A;
+  background-image:url("../img/FOND_44.jpg");
   background-position: 0px 0px;
   background-size: cover;
 }
@@ -1026,7 +1026,9 @@
 
 
 .body-3 {
-  background-color: #011c4a;
+  background-image:url("../img/FOND_47.jpg");
+  background-position: 0px 0px;
+  background-size: cover;
 }
 
 .paragraph-5 {
@@ -1218,6 +1220,10 @@
   display: none;
 }
 
+.icon-profil{
+  width:50px;
+}
+
 .div-block-18 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1244,8 +1250,29 @@
 }
 
 .body-4 {
-  background-color: #011c4a;
+  background-image:url("../img/FOND_45.jpg");
+  background-position: 0px 0px;
+  background-size: cover;
 }
+
+.body-5 {
+  background-image:url("../img/FOND_48.jpg");
+  background-position: 0px 0px;
+  background-size: cover;
+}
+
+.body-6 {
+  background-image:url("../img/FOND_46.jpg");
+  background-position: 0px 0px;
+  background-size: cover;
+}
+
+.body-7 {
+  background-image:url("../img/FOND_49.jpg");
+  background-position: 0px 0px;
+  background-size: cover;
+}
+
 
 .form-wrapper {
   display: -webkit-box;

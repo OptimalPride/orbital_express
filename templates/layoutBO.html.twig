@@ -8,14 +8,13 @@
       <link href="{{ asset('css/gestion_back.css') }}" rel="stylesheet" type="text/css">
       <link href="{{ asset('css/tableau.css') }}" rel="stylesheet" type="text/css">
       <script  type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-      <link href="{{ asset('css/gestion_back.css') }}" rel="stylesheet" type="text/css">
-      <link href="{{ asset('css/tableau.css') }}" rel="stylesheet" type="text/css">
+
       <script>var baseUrl = "{{ path('homepage') }}";</script>
     </head>
     <body>
 
       <div id="nav_back">
-        <div class="gestion_back_link nav_link"><a href="{{ path("tableau") }}">Profil</a></div>
+        <div class="gestion_back_link nav_link"><a href="{{ path("tableau") }}">Tableau de bord</a></div>
         <div class="gestion_back_link nav_link"><a href="{{ path("logout") }}">Deconnexion</a></div>
         <div class="gestion_back_link nav_link"><a href="{{ path("gestionUser") }}">Gestion membres</a></div>
         <div class="gestion_back_link nav_link"><a href="{{ path("gestionAdventure") }}">Gestion aventures</a></div>
@@ -23,7 +22,7 @@
       </div>
       <div id="load_gestion">{% block content %}{% endblock %}</div>
      
-        <script  type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+       
     </body>
   </html>
 {% else %}
