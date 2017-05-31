@@ -25,7 +25,7 @@ class ChoiceDAO extends DAO
 			return $resultat;
 		}
 		else{
-			throw new \Exception("Aucun choix dans la bdd");
+			return "Aucun choix dans la bdd";
 		}
 	}
 

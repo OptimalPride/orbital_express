@@ -5,13 +5,13 @@
 <form id="adventure_create">
 
 	<label>Name</label>
-	<input type="text" name="name" value="Nom de l'aventure">
+	<input type="text" name="name" maxlength="20" value="Nom de l'aventure">
 
 	<label>Description</label>
-	<textarea rows="3" cols="30" name="description">Description de l'aventure</textarea>
+	<textarea rows="3" cols="30" name="description" maxlength="200">Description de l'aventure</textarea>
 
 	<label>Pitch</label>
-	<textarea rows="3" cols="30" name="pitch">Pitch de l'aventure, l'accroche</textarea>
+	<textarea rows="3" cols="30" name="pitch" maxlength="2000">Pitch de l'aventure, l'accroche</textarea>
 
 	<input type="submit" value="Ajouter aventure">
 
