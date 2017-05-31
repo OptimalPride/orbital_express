@@ -60,10 +60,14 @@ class Game
 		$app["session"]->set("id_save", $id_save);
 		$save = $app["dao.save"]->getSaveByIdSave($id_save);
 		$id_current_page = $save["id_current_page"];
-		return $app['twig']->render('/game/page-jeu.html.twig', array("id_current_page"=>$id_current_page));			
+		return $app['twig']->render('/game/page-jeu.html.twig', array("id_current_page"=>$id_current_page));
 		}
 		else{
 			return "Ceci n'est pas votre sauvegarde";
 		}
+	}
+
+	public function createAdventureBackup(Application $app, $id_adventure){
+		
 	}
 }
