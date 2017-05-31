@@ -67,18 +67,25 @@ class Page
     $infos = array("id_adventure"=>$id_adventure, "page_number"=>$page_number, "story"=>$story, "ending"=>$ending );
     $id_current_page = $app["dao.page"]->createPage($infos);
 
-    $choice1 = array("id_landing_page"=>$_POST["id_landing_page1"], "crew"=>$_POST["crew1"], "response"=>$_POST["response1"]);
+      $id_landing_page1 = $app["dao.page"]->getPageIdByPageNumber($_POST["id_landing_page1"], $id_adventure);
+      $id_landing_page1 = $id_landing_page1["id_page"];
+      $id_landing_page2 = $app["dao.page"]->getPageIdByPageNumber($_POST["id_landing_page2"], $id_adventure);
+      $id_landing_page2 = $id_landing_page2["id_page"];
+      $id_landing_page3 = $app["dao.page"]->getPageIdByPageNumber($_POST["id_landing_page3"], $id_adventure);
+      $id_landing_page3 = $id_landing_page3["id_page"];
 
-    $choice2 = array("id_landing_page"=>$_POST["id_landing_page2"], "crew"=>$_POST["crew2"], "response"=>$_POST["response2"]);
+    $choice1 = array("id_landing_page"=>$id_landing_page1, "crew"=>$_POST["crew1"], "response"=>$_POST["response1"]);
 
-    $choice3 = array("id_landing_page"=>$_POST["id_landing_page3"], "crew"=>$_POST["crew3"], "response"=>$_POST["response3"]);
+    $choice2 = array("id_landing_page"=>$id_landing_page2, "crew"=>$_POST["crew2"], "response"=>$_POST["response2"]);
+
+    $choice3 = array("id_landing_page"=>$id_landing_page3, "crew"=>$_POST["crew3"], "response"=>$_POST["response3"]);
 
     $choices = array("1"=>$choice1, "2"=>$choice2, "3"=>$choice3, "id_current_page"=>$id_current_page);
     $resultat = $app["dao.choice"]->createChoicesForAPage($choices);
     return $resultat;
   }
 //Incomplete function modifyPageFormProcessing, update, not insert, get id page, and done
-  public function modifyPageFormProcessing(Application $app, $id_page){
+  public function modifyPageFormProcessing(Application $app, $id_adventure, $id_page){
     $page_number = $_POST["page_number"];
     $story = $_POST["story"];
     $ending = $_POST["ending"];
@@ -86,11 +93,19 @@ class Page
     $resultat = $app["dao.page"]->updatePage($infos);
 
     if ($ending == "non") {
-      $choice1 = array("id_choice"=>$_POST["id_choice1"], "id_landing_page"=>$_POST["id_landing_page1"], "crew"=>$_POST["crew1"], "response"=>$_POST["response1"]);
 
-      $choice2 = array("id_choice"=>$_POST["id_choice2"], "id_landing_page"=>$_POST["id_landing_page2"], "crew"=>$_POST["crew2"], "response"=>$_POST["response2"]);
+      $id_landing_page1 = $app["dao.page"]->getPageIdByPageNumber($_POST["id_landing_page1"], $id_adventure);
+      $id_landing_page1 = $id_landing_page1["id_page"];
+      $id_landing_page2 = $app["dao.page"]->getPageIdByPageNumber($_POST["id_landing_page2"], $id_adventure);
+      $id_landing_page2 = $id_landing_page2["id_page"];
+      $id_landing_page3 = $app["dao.page"]->getPageIdByPageNumber($_POST["id_landing_page3"], $id_adventure);
+      $id_landing_page3 = $id_landing_page3["id_page"];
 
-      $choice3 = array("id_choice"=>$_POST["id_choice3"], "id_landing_page"=>$_POST["id_landing_page3"], "crew"=>$_POST["crew3"], "response"=>$_POST["response3"]);
+      $choice1 = array("id_choice"=>$_POST["id_choice1"], "id_landing_page"=>$id_landing_page1, "crew"=>$_POST["crew1"], "response"=>$_POST["response1"]);
+
+      $choice2 = array("id_choice"=>$_POST["id_choice2"], "id_landing_page"=>$id_landing_page2, "crew"=>$_POST["crew2"], "response"=>$_POST["response2"]);
+
+      $choice3 = array("id_choice"=>$_POST["id_choice3"], "id_landing_page"=> $id_landing_page3, "crew"=>$_POST["crew3"], "response"=>$_POST["response3"]);
 
       $choices = array("1"=>$choice1, "2"=>$choice2, "3"=>$choice3, "id_current_page"=>$id_page);
       $resultat .= " et ";

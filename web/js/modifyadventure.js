@@ -43,7 +43,7 @@ $(function(){
 				$("form#page_modif").on("submit", function(f){
 					f.preventDefault();
 					var pagemodifdata = $.ajax({ 	
-						url: baseUrl+"modifypageformprocessing/"+id_page,
+						url: baseUrl+"modifypageformprocessing/"+id_adventure+"/"+id_page,
 						method: "POST",
 						data: $(this).serialize()
 					});

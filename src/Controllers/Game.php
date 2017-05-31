@@ -66,4 +66,8 @@ class Game
 			return "Ceci n'est pas votre sauvegarde";
 		}
 	}
+
+	public function successDisplay(Application $app){
+		return $app['twig']->render('/game/success.html.twig', array());		
+	}
 }
