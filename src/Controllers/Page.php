@@ -20,7 +20,7 @@ class Page
       return $app->redirect($url);
     }
     $msg = $app["dao.page"]->deletePagebyId($id_page);
-    $url = $app['url_generator']->generate('listepage', ['id_adventure' =>$id_adventure]);
+    $url = $app['url_generator']->generate('modifyadventure', ['id_adventure' =>$id_adventure]);
     return $app->redirect($url);
   }
 
@@ -32,7 +32,7 @@ class Page
     }
   	$pages = $app["dao.page"]->getPagesByIdAdventure($id_adventure);
   	$choices = $app["dao.choice"]->getAllChoices();
-  	return $app["twig"]->render('backoffice/pagecreation.html.twig', array("pages" => $pages, "choices" => $choices));
+  	return $app["twig"]->render('backoffice/pagecreation.html.twig', array("pages" => $pages, "choices" => $choices, "id_adventure"=>$id_adventure ));
   }
 
 
@@ -46,15 +46,57 @@ class Page
     $pages = $app["dao.page"]->getPagesByIdAdventure($id_adventure);
     if($page["ending"] != NULL){
       if($page["ending"] == "success"){
-        return $app["twig"]->render('backoffice/pagemodification.html.twig', array("page" => $page, "choices" => "", "pages"=>$pages, "ending"=>"success"));
+        $ending = "success";
       }
       if($page["ending"] == "fail"){
-        return $app["twig"]->render('backoffice/pagemodification.html.twig', array("page" => $page, "choices" => "","pages"=>$pages, "ending"=>"fail"));
+        $ending = "fail";
       }
+      $choices = "";
     }
     else{
+      $ending = "";
       $choices = $app["dao.choice"]->getChoicesByPageId($id_page);
-      return $app["twig"]->render('backoffice/pagemodification.html.twig', array("page" => $page, "pages"=>$pages, "choices" => $choices, "ending"=>""));
     }
+    return $app["twig"]->render('backoffice/pagemodification.html.twig', array("page" => $page, "pages"=>$pages, "choices" => $choices, "ending"=>$ending));
+  }
+
+  public function addPageFormProcessing(Application $app, $id_adventure){
+    $page_number = $_POST["page_number"];
+    $story = $_POST["story"];
+    $ending = $_POST["ending"];
+    $infos = array("id_adventure"=>$id_adventure, "page_number"=>$page_number, "story"=>$story, "ending"=>$ending );
+    $id_current_page = $app["dao.page"]->createPage($infos);
+
+    $choice1 = array("id_landing_page"=>$_POST["id_landing_page1"], "crew"=>$_POST["crew1"], "response"=>$_POST["response1"]);
+
+    $choice2 = array("id_landing_page"=>$_POST["id_landing_page2"], "crew"=>$_POST["crew2"], "response"=>$_POST["response2"]);
+
+    $choice3 = array("id_landing_page"=>$_POST["id_landing_page3"], "crew"=>$_POST["crew3"], "response"=>$_POST["response3"]);
+
+    $choices = array("1"=>$choice1, "2"=>$choice2, "3"=>$choice3, "id_current_page"=>$id_current_page);
+    $resultat = $app["dao.choice"]->createChoicesForAPage($choices);
+    return $resultat;
+  }
+//Incomplete function modifyPageFormProcessing, update, not insert, get id page, and done
+  public function modifyPageFormProcessing(Application $app, $id_page){
+    $page_number = $_POST["page_number"];
+    $story = $_POST["story"];
+    $ending = $_POST["ending"];
+    $infos = array("id_page"=>$id_page, "page_number"=>$page_number, "story"=>$story, "ending"=>$ending );
+    $resultat = $app["dao.page"]->updatePage($infos);
+
+    if ($ending == "non") {
+      $choice1 = array("id_choice"=>$_POST["id_choice1"], "id_landing_page"=>$_POST["id_landing_page1"], "crew"=>$_POST["crew1"], "response"=>$_POST["response1"]);
+
+      $choice2 = array("id_choice"=>$_POST["id_choice2"], "id_landing_page"=>$_POST["id_landing_page2"], "crew"=>$_POST["crew2"], "response"=>$_POST["response2"]);
+
+      $choice3 = array("id_choice"=>$_POST["id_choice3"], "id_landing_page"=>$_POST["id_landing_page3"], "crew"=>$_POST["crew3"], "response"=>$_POST["response3"]);
+
+      $choices = array("1"=>$choice1, "2"=>$choice2, "3"=>$choice3, "id_current_page"=>$id_page);
+      $resultat .= " et ";
+      $resultat .= $app["dao.choice"]->updateChoicesForAPage($choices);  
+    }
+
+    return $resultat;
   }
 }
