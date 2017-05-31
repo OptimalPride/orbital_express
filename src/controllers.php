@@ -182,4 +182,8 @@ $app->match("/downgraderole/{id_user}", "OrbitalExpress\\Controllers\\User::down
 
 $app->match("/toggleadventure/{id_adventure}", "OrbitalExpress\\Controllers\\Adventure::toggleAdventure")->bind("toggleadventure");
 
-$app->match("/successdisplay/", "OrbitalExpress\\Controllers\\Game::successDisplay");
+$app->match("/successdisplay/{id_page}", "OrbitalExpress\\Controllers\\Game::successDisplay");
+
+$app->match("/faildisplay/{id_page}", "OrbitalExpress\\Controllers\\Game::failDisplay");
+
+
