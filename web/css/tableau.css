@@ -3,7 +3,7 @@ table {
   font-size:1em;
   background:#011c4a;
   margin:20px;
-
+  border:none;
 
   padding: 10px;
 
@@ -18,10 +18,7 @@ table th {
   padding:21px 25px 22px 25px;
   color: #fff;
   font-family: 'Big john', sans-serif;
-
-
-
-
+  border:none;
 
   background: rgba(224, 58, 107, 0.8);
 
@@ -54,6 +51,8 @@ table td {
   padding:10px;
   color: #fff;
 
+  border:none;
+  
   background: rgba(87, 86, 84, 0.5);
 
   max-height:20px;

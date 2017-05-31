@@ -18,7 +18,7 @@ class UserDAO extends DAO implements UserProviderInterface
 			return $resultat;
 		}
 		else{
-			throw new \Exception("Aucun membre dans la base de donnée");
+			return NULL;
 		}
 	}
 
