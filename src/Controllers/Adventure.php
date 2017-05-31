@@ -27,7 +27,7 @@ class Adventure
 			return $app->redirect($url);
 		}
 		$pages = $app["dao.page"]->getAllPages();
-		$adventures = $app["dao.adventure"]->getAllAdventures();
+		$adventures = $app["dao.adventure"]->getAllAdventuresInfos();
 		return $app['twig']->render('backoffice/gestionadventure.html.twig', array("adventures" => $adventures, "pages" => $pages, "msg" => ""));
 	}
 
