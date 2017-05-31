@@ -2,9 +2,12 @@
 
 {% block content %}
 
-<h2>Gestion des membres</h2>
+
+<h2 class="gestion_header">Gestion des membres</h2>
+
 {% if user != NULL%}
 <table border="1">
+
 	<tr>
 	{% for key, value in user[0] %}
 		<th>{{ key }}</th>
@@ -18,11 +21,11 @@
 			{% endfor %}
 				<td>
 				{% if key["role"] == "ROLE_USER" %}
-				<a href="{{ path('upgraderole', {'id_user' : key.id_user}) }}"><img src="{{ asset('img/upgrade.png') }}" style="width: 40px"></a>
+				<a href="{{ path('upgraderole', {'id_user' : key.id_user}) }}"><img class="icon-back icon-up" src="{{ asset('img/002-arrows.png') }}"></a>
 				{% else %}
-				<a href="{{ path('downgraderole', {'id_user' : key.id_user}) }}"><img src="{{ asset('img/downgrade.png') }}" style="width: 40px"></a>
+				<a href="{{ path('downgraderole', {'id_user' : key.id_user}) }}"><img class="icon-back" src="{{ asset('img/002-arrows.png') }}"></a>
 				{% endif %}
-			  <a href="{{ path('deleteuser', {'id_user' : key.id_user}) }}"><img src="{{ asset('img/delete.png') }}"></a>
+			  <a href="{{ path('deleteuser', {'id_user' : key.id_user}) }}"><img class="icon-back" src="{{ asset('img/003-garbage.png') }}"></a>
 				</td>
 		</tr>
 	{% endfor %}
