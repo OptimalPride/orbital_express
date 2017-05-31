@@ -14,7 +14,8 @@ class AdventureDAO extends DAO
 			return $resultat;
 		}
 		else{
-			throw new \Exception("Aventures non trouvées.");
+			return NULL;
+			//throw new \Exception("Aventures non trouvées.");
 		}
 	}
 
@@ -71,7 +72,7 @@ class AdventureDAO extends DAO
 		}
 		return $msg;
 		;
-		
+
 	}
 
 	public function getActiveAdventures(){

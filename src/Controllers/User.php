@@ -26,6 +26,9 @@ class User
 				return $app->redirect($url);
 			}
 			$user = $app['dao.user']->getAllUser();
+			if($user == NULL){
+				return $app['twig']->render('backoffice/gestionuser.html.twig', array("user" => $user, "msg" => "Pas de membre"));
+			}
 			return $app['twig']->render('backoffice/gestionuser.html.twig', array("user" => $user, "msg" => ""));
 	}
 

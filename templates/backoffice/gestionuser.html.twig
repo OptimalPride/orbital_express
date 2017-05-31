@@ -3,7 +3,7 @@
 {% block content %}
 
 <h2>Gestion des membres</h2>
-
+{% if user != NULL%}
 <table border="1">
 	<tr>
 	{% for key, value in user[0] %}
@@ -27,7 +27,7 @@
 		</tr>
 	{% endfor %}
 </table>
-
+{% else %}
 {{ msg }}
-
+{% endif %}
 {% endblock %}
