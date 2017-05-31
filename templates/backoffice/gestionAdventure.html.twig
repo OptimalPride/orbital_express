@@ -8,11 +8,11 @@
 {% if adventures != NULL%}
 <table border="1">
 	<tr>
-	{% for key, value in adventures[0] %}
-		<th>{{ key }}</th>
-	{% endfor %}
-	<th>Nombres de pages</th>
-	<th>Actions</th>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Actif?</th>
+		<th>Nombres de pages</th>
+		<th>Actions</th>
 	</tr>
 	{% for key in adventures %}
 		<tr>

@@ -19,6 +19,17 @@ class AdventureDAO extends DAO
 		}
 	}
 
+	public function getAllAdventuresInfos(){
+		$requete = "SELECT id_adventure, name, active FROM adventure";
+		$resultat = $this->getDb()->fetchAll($requete);
+		if($resultat){
+			return $resultat;
+		}
+		else{
+			throw new \Exception("Aventures non trouvées.");
+		}
+	}
+
 	public function getAdventureById($id_adventure){
 		$requete = "SELECT * FROM adventure where id_adventure = ?";
 		$resultat = $this->getDb()->fetchAssoc($requete, array($id_adventure));
