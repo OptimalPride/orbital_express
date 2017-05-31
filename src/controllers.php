@@ -142,6 +142,10 @@ $app->match("/contact/", function () use ($app){
     return $app['twig']->render('support.html.twig', array());
 })->bind('contact');
 
+$app->match("/regles/", function () use ($app){
+    return $app['twig']->render('regles-du-jeu.html.twig', array());
+})->bind('regles');
+
 $app->match("/tableau/", function () use ($app){
     return $app['twig']->render('tableau-de-bord.html.twig', array());
 })->bind('tableau');

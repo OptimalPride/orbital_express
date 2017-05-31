@@ -949,7 +949,7 @@
 
 .contenu_popup_connexion {
   display: block;
-  width: 50%;
+  width: 80%;
   margin-right: auto;
   margin-left: auto;
 }
@@ -1011,8 +1011,19 @@
 }
 
 .contenu_popup_inscription {
-  width: 50%;
+  width: 80%;
 }
+
+.popup_connexion input[type="submit"], .popup_inscription input[type="submit"]{
+  font-family: 'Big john', sans-serif;
+  font-size:0.8em;
+  height:30px;
+  width:150px;
+}
+.popup_connexion input[type="text"], .popup_inscription input[type="text"], .popup_connexion input[type="password"], .popup_inscription input[type="password"]{
+  text-align:center;
+}
+
 
 .body-3 {
   background-color: #011c4a;
@@ -1047,7 +1058,7 @@
 }
 
 .table-link {
-  width: 45%;
+  width: 30%;
   margin-right: 2%;
   margin-bottom: 33px;
   margin-left: 2%;
@@ -1125,20 +1136,26 @@
   font-family: Avenir, sans-serif;
   color: #fff;
   font-size: 1em;
+  text-align:center;
 }
 
 .contenu_continuer_aventure {
   font-family: Avenir, sans-serif;
   color: #fff;
   font-size: 1em;
+  text-align:center;
 }
 
 .contenu_sauvegardes {
-  padding: 40px 10%;
   font-family: Avenir, sans-serif;
   color: #fff;
   font-size: 1em;
   font-weight: 400;
+  text-align:center;
+}
+
+.contenu_nouvelle_aventure h3, .contenu_continuer_aventure h3, .contenu_sauvegardes h3{
+  margin-bottom:21px;
 }
 
 .contenu_nouvelle_aventure a, .contenu_continuer_aventure a, .contenu_sauvegardes a {
@@ -1701,9 +1718,6 @@ html.w-mod-js *[data-ix="initialstate-connexion"] {
   .nav_menu_flex {
     width: 35%;
   }
-  .div-block-15 {
-    display: none;
-  }
   .popup_connexion {
     width: 70vw;
   }
@@ -2262,7 +2276,15 @@ html.w-mod-js *[data-ix="initialstate-connexion"] {
   .titre_fail {
     font-size: 2em;
   }
-}
+
+  .table-link{
+    width:45%;
+  }
+
+  .contenu_nouvelle_aventure h3, .contenu_continuer_aventure h3, .contenu_sauvegardes h3{
+    font-size:1.4em;
+  }
+
 
 
 @font-face {
