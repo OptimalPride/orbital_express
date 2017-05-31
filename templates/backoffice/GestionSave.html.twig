@@ -3,7 +3,7 @@
 {% block content %}
 
 <h2>Gestion des sauvegardes</h2>
-
+{% if save != NULL%}
 <table border="1">
 	<tr>
 	{% for key, value in save[0] %}
@@ -22,7 +22,7 @@
 		</tr>
 	{% endfor %}
 </table>
-
+{% else %}
 {{ msg }}
-
+{% endif %}
 {% endblock %}

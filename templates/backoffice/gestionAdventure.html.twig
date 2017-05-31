@@ -5,7 +5,7 @@
 <h2>Gestion d'aventure</h2>
 
 <a href="{{ path('createadventure')}}">Nouvelle aventure</a><br><br>
-
+{% if adventures != NULL%}
 <table border="1">
 	<tr>
 		<th>ID</th>
@@ -42,7 +42,7 @@
 		</tr>
 	{% endfor %}
 </table>
-
+{% else %}
 {{ msg }}
-
+{% endif %}
 {% endblock %}
