@@ -20,6 +20,9 @@ class Save
         return $app->redirect($url);
       }
         $save = $app['dao.save']->getAllSaves();
+        if($save == NULL){
+          return $app['twig']->render('backoffice/gestionSave.html.twig', array("save" => $save, "msg" => "Pas de sauvegarde"));
+        }
         return $app['twig']->render('backoffice/gestionSave.html.twig', array("save" => $save, "msg" => ""));
     }
 
@@ -31,7 +34,8 @@ class Save
       }
   		$msg = $app["dao.save"]->deleteSaveById($id_save);
   		$saves = $app["dao.save"]->getAllSaves();
-  		return $app['twig']->render('backoffice/GestionSave.html.twig', array("saves" => $saves, "msg" => $msg));
+      $url = $app['url_generator']->generate('gestionSave');
+  		return $app->redirect($url);
   	}
 
 	public function loadSavesByUser(Application $app){

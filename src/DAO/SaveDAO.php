@@ -15,7 +15,8 @@ class SaveDAO extends DAO
 			return $resultat;
 		}
 		else{
-			throw new \Exception("Aucune sauvegarde dans la base de donnée");
+			return NULL;
+			//throw new \Exception("Aucune sauvegarde dans la base de donnée");
 		}
 	}
 
@@ -78,7 +79,7 @@ class SaveDAO extends DAO
 		return $msg;
 		;
 	}
-	
+
 	public function createNewSave(array $infos){
 		$id_user = $infos["id_user"];
 		$id_current_page = $infos["id_current_page"];
