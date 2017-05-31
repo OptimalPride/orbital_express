@@ -94,7 +94,7 @@ class Page
 
       $choices = array("1"=>$choice1, "2"=>$choice2, "3"=>$choice3, "id_current_page"=>$id_page);
       $resultat .= " et ";
-      $resultat .= $app["dao.choice"]->updateChoicesForAPage($choices);  
+      $resultat .= $app["dao.choice"]->updateChoicesForAPage($choices);
     }
 
     return $resultat;

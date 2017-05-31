@@ -38,7 +38,7 @@
                     <div class="nav_link"><a href="#">Connexion</a></div>
                   {% endif %}
                     <div class="nav_link"><a href="{{ path("contact") }}">Contact</a></div>
-                    <div class="nav_link"><a href="#">Regles du jeu</a></div>
+                    <div class="nav_link"><a href="{{ path("regles") }}">Regles du jeu</a></div>
                   {% if is_granted('ROLE_ADMIN') %}
                     <div class="nav_link"><a href="{{ path("gestionUser") }}">Gestion membres</a></div>
                     <div class="nav_link"><a href="{{ path("gestionAdventure") }}">Gestion aventures</a></div>
@@ -50,7 +50,7 @@
         <div class="menuburger">
              <a class="link-block-8 w-inline-block" data-ix="slide-navbar-out" href="#"><img src="{{ asset('img/002-menu.png') }}" width="40"></a>
         </div>
-      
+
 
         <div class="navbar w-nav" data-animation="default" data-collapse="medium" data-duration="400">
             <div class="container w-container">
@@ -71,9 +71,9 @@
                     <a class="link-block-3 w-inline-block" target="_blank"><img src="{{ asset('img/001-instagram-logo.png') }}" width="40"></a>
                 </div>
                 <div class="div-block-6">
-                    <a class="link w-preserve-3d" data-ix="linkhover" href="#">FACEBOOK</a>
-                    <a class="link w-preserve-3d" data-ix="linkhover" href="#">TWITTER</a>
-                    <a class="link w-preserve-3d" data-ix="linkhover" href="#">INSTAGRAM</a>
+                    <a class="link w-preserve-3d" data-ix="linkhover" href="https://www.facebook.com/Orbital-express-285466275248342/" target="_blank">FACEBOOK</a>
+                    <a class="link w-preserve-3d" data-ix="linkhover" href="https://twitter.com/_orbitalexpress" target="_blank">TWITTER</a>
+                    <a class="link w-preserve-3d" data-ix="linkhover" href="https://www.instagram.com/orbital_express/?hl=fr" target="_blank">INSTAGRAM</a>
                 </div>
                 <div class="div-block-9">
                     <a class="link w-preserve-3d" data-ix="linkhover" href="#">2017©TEAMORBITAL</a>
