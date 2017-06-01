@@ -88,10 +88,21 @@ table{
   margin-bottom:5px;
 }
 
+.link_add_adventure{
+  color:#fff;
+  text-decoration:none;
+  font-family:Avenir, sans-serif;
+}
+
 .link_action{
   color:#fff;
   text-decoration:none;
   font-family:Avenir, sans-serif;
+  margin-left:50px;
+}
+
+.link_action:first-of-type{
+  margin-left:20%;
 }
 
 .icon-back{
@@ -101,8 +112,35 @@ table{
   transform: rotate(180deg);
 }
 
+.text-back{
+  text-align:center;
+  color:#fff;
+  margin-top:33px;
+}
 
 
+#adventure_pages{
+  width: 50%;
+  float: left;
+  margin-top: 60px;
+}
+
+#page_edit_form{
+  width: 70%;
+  margin-top: 60px;
+  padding-left: 40%;
+}
+
+#page_modif{
+  width: 50%;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  margin-top: 25px;
+}
+#page_modif textarea{
+  width:100%;
+}
 
 @media (max-width: 991px) {
   

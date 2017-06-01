@@ -1,11 +1,11 @@
 
 
-<h2 class="gestion_header">Gestion des pages de l'aventure {{ adventure.id_adventure }}</h2>
+
 
 <table>
 	<tr>
 		<th>Numero de page</th>
-		<th>Pages associées</th>
+		<th>Pages associees</th>
 		<th>action</th>
 	</tr>
 	{% for key in page %}
@@ -21,8 +21,9 @@
 				{% endif %}
 				</td>
 				<td>
-			  <a href="{{ path('deletepage', {'id_adventure' : adventure.id_adventure,'id_page' : key.id_page}) }}"><img src="{{ asset('img/delete.png') }}"></a>
-			  <div id="{{key.id_page}}" class="pageedit"><img src="{{ asset('img/edit.png') }}"></a>
+				<div id="{{key.id_page}}" class="pageedit"><img class="icon-back" src="{{ asset('img/001-settings.png') }}"></div>	
+			  <a href="{{ path('deletepage', {'id_adventure' : adventure.id_adventure,'id_page' : key.id_page}) }}"><img class="icon-back" src="{{ asset('img/003-garbage.png') }}"></a>
+			  
 				</td>
 		</tr>
 	{% endfor %}
