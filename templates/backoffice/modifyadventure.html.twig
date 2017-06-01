@@ -6,13 +6,15 @@
 <form id="adventure_edit">
 
 	<label>Name</label>
-	<input type="text" name="name" value="{{adventure["name"]}}">
+	<input type="text" name="name" maxlength="20" value="{{adventure["name"]}}">
 
 	<label>Description</label>
-	<textarea rows="3" cols="30" name="description">{{adventure['description']}}</textarea>
+	<textarea rows="3" cols="30" name="description" maxlength="200">{{adventure['description']}}</textarea>
 
 	<label>Pitch</label>
-	<textarea rows="3" cols="30" name="pitch">{{adventure['pitch']}}</textarea>
+
+	<textarea rows="3" cols="30" name="pitch" maxlength="2000">{{adventure['pitch']}}</textarea>
+
 
 	<input type="submit" value="Modifier">
 
