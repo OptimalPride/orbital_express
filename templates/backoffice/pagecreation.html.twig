@@ -1,0 +1,82 @@
+{% extends "layoutBO.html.twig" %}
+
+{% block content %}
+
+<form id="page_create">
+	<label>Numero de page</label>
+	<input type="number"  min="1" name="page_number"><br>
+
+	<label>Scenario</label>
+	<textarea  rows="10" cols="50" name="story" maxlength="1000"></textarea><br>
+
+	<label>Page finale?</label>
+	<select name="ending">
+		<option>non</option>
+		<option>success</option>
+		<option>fail</option></select>
+
+	<fieldset>
+		<legend>Choix 1</legend>
+
+		<label>Personnage</label>
+		<input type="text" name="crew1" maxlength="20"><br/><br/>
+
+		<label>Reponse</label><br/><br/>
+		<textarea rows="3" cols="30" name="response1" maxlength="200"></textarea><br/><br/>
+
+		<label>Vers la page :</label>
+		<input type="number"  min="1" name="id_landing_page1">
+	</fieldset>
+
+	<fieldset>
+		<legend>Choix 2</legend>
+
+		<label>Personnage</label>
+		<input type="text" name="crew2" maxlength="20"><br/><br/>
+
+		<label>Reponse</label><br/><br/>
+		<textarea rows="3" cols="30" name="response2" maxlength="200"></textarea><br/><br/>
+
+		<label>Vers la page :</label>
+		<input type="number"  min="1" name="id_landing_page2">
+	</fieldset>
+
+	<fieldset>
+		<legend>Choix 3</legend>
+
+		<label>Personnage</label>
+		<input type="text" name="crew3" maxlength="20"><br/><br/>
+
+		<label>Reponse</label><br/><br/>
+		<textarea rows="3" cols="30" name="response3" maxlength="200"></textarea><br/><br/>
+
+		<label>Vers la page :</label>
+		<input type="number"  min="1" name="id_landing_page3">
+	</fieldset>
+
+	<input type="submit" value="Creer page">
+</form>
+
+<script>
+$(function(){
+
+	$("#page_create").on("submit", function(e){
+		e.preventDefault();
+		var addpage = $.ajax({
+			url: baseUrl+"addpageformprocessing/"+{{id_adventure}},
+			method: "POST",
+			data: $(this).serialize()
+		});
+
+		addpage.done(function(reg){
+			alert(reg);
+		});
+		addpage.fail(function( jqXHR, textStatus ) {
+  			alert( "Request failed: " + textStatus );
+  		});
+	});
+
+});
+</script>
+
+{% endblock %}

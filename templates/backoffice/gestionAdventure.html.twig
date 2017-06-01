@@ -2,17 +2,20 @@
 
 {% block content %}
 
-<h2>Gestion d'aventure</h2>
+<h2 class="gestion_header">Gestion d'aventure</h2>
 
-<a href="{{ path('createadventure')}}">Nouvelle aventure</a><br><br>
 
-<table border="1">
+<div class="link_block_action"><a class="link_add_adventure" href="{{ path('createadventure')}}">Nouvelle aventure</a></div>
+
+{% if adventures != NULL%}
+<table>
+
 	<tr>
-	{% for key, value in adventures[0] %}
-		<th>{{ key }}</th>
-	{% endfor %}
-	<th>Nombres de pages</th>
-	<th>Actions</th>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Actif?</th>
+		<th>Nombres de pages</th>
+		<th>Actions</th>
 	</tr>
 	{% for key in adventures %}
 		<tr>
@@ -35,14 +38,14 @@
 				{% endfor %}
 			<td>{{ i }}</td>
 			<td>
-				<a href="{{ path('deleteadventure', {'id_adventure' : key.id_adventure}) }}"><img src="{{ asset('img/delete.png') }}"></a>
-				<a href="{{ path('modifyadventure', {'id_adventure' : key.id_adventure}) }}"><img src="{{ asset('img/edit.png') }}"></a>
-				<a href="{{ path('displayadventure', {'id_adventure' : key.id_adventure}) }}"><img src="{{ asset('img/info.png') }}"></a>
+				<a href="{{ path('displayadventure', {'id_adventure' : key.id_adventure}) }}"><img class="icon-back" src="{{ asset('img/002-zoom-in.png') }}"></a>
+				<a href="{{ path('modifyadventure', {'id_adventure' : key.id_adventure}) }}"><img class="icon-back" src="{{ asset('img/001-settings.png') }}"></a>
+				<a href="{{ path('deleteadventure', {'id_adventure' : key.id_adventure}) }}"><img class="icon-back" src="{{ asset('img/003-garbage.png') }}"></a>
 			</td>
 		</tr>
 	{% endfor %}
 </table>
-
+{% else %}
 {{ msg }}
-
+{% endif %}
 {% endblock %}

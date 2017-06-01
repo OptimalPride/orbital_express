@@ -11,7 +11,6 @@
 
 
 {% block content %}
-
   <div class="section-7">
     <div class="container-4 w-container">
       <h1 class="heading-5" data-ix="fadedown">Tableau de bord</h1>
@@ -21,8 +20,8 @@
   <div class="infos_user" data-ix="fadedown-4">
     <div class="container_infos_user w-container">
       <div>
-        <p class="login_pseudo">Pseudo : janinedragonforce</p>
-        <p class="email">Email : janine@dragonforce.com</p>
+        <p class="login_pseudo">Pseudo : {{app.user.username}}</p>
+        <p class="email">Email : {{app.user.email}}</p>
       </div>
     </div>
     <div class="div-block-18">
@@ -30,7 +29,7 @@
         <p class="paragraph-desinscription">Se desinscrire</p>
       </a>
       <div class="desinscription_actions">
-        <a class="desinscription_check w-inline-block" href="#"><img class="image-16" src="{{ asset('img/success.png') }}" width="50">
+        <a class="desinscription_check w-inline-block" href="{{path('homepage')}}unregister/"><img class="image-16" src="{{ asset('img/success.png') }}" width="50">
         </a>
         <a class="desinscription_close w-inline-block" data-ix="desinscription-close" href="#"><img src="{{ asset('img/001-error.png') }}" width="50">
         </a>
@@ -41,23 +40,26 @@
     <div class="container-7 w-container">
       <div class="w-tabs" data-duration-in="300" data-duration-out="100">
         <div class="tabs-menu w-tab-menu">
-          <a class="nouvelle-aventure table-link w-inline-block w-tab-link" data-ix="tab-bounce" data-w-tab="Tab 1">
+          <a class="nouvelle-aventure table-link w--current w-inline-block w-tab-link" data-ix="tab-bounce-2" data-w-tab="Tab 1">
             <div class="text-block">Nouvelle Aventure</div>
           </a>
           <a class="continuer-aventure table-link w-inline-block w-tab-link" data-ix="tab-bounce" data-w-tab="Tab 2">
             <div class="text-block-2">Continuer Aventure</div>
           </a>
-          <a class="sauvegardes table-link w--current w-inline-block w-tab-link" data-ix="tab-bounce" data-w-tab="Tab 3">
-            <div class="text-block-3">gestion de sauvegardes</div>
+          <a class="sauvegardes table-link w-inline-block w-tab-link" data-ix="tab-bounce" data-w-tab="Tab 3">
+            <div class="text-block-3">Gestion de sauvegardes</div>
           </a>
         </div>
         <div class="w-tab-content">
-          <div class="contenu_nouvelle_aventure w-tab-pane" data-w-tab="Tab 1"></div>
+          <div class="contenu_nouvelle_aventure w--tab-active w-tab-pane" data-ix="new-interaction" data-w-tab="Tab 1"></div>
           <div class="contenu_continuer_aventure w-tab-pane" data-w-tab="Tab 2"></div>
-          <div class="contenu_sauvegardes w--tab-active w-tab-pane" data-w-tab="Tab 3"></div>
+          <div class="contenu_sauvegardes w-tab-pane" data-w-tab="Tab 3"></div>
         </div>
       </div>
     </div>
   </div>
 
+
+<script  type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/profil.js') }}"></script>
 {% endblock %}

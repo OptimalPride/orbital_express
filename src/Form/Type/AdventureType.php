@@ -5,10 +5,11 @@ namespace OrbitalExpress\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-use Symfony\Component\Form\Extension\Core\Type\TextType; //Input type text
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType; //Select
-use Symfony\Component\Form\Extension\Core\Type\IntegerType; // input type number
-use Symfony\Component\Form\Extension\Core\Type\TextareaType; // input type number
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -45,10 +46,9 @@ class AdventureType extends AbstractType
 				)
 			))
 		))
-	}
-
-	public function getName(){
-		return "commentaire";
+		->add('submit', SubmitType::class, [
+	            'label' => 'Send',
+	        ]);
 	}
 }
 

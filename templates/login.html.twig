@@ -7,10 +7,10 @@
 
 <form action="{{ path('login_check') }}" method="post">
 	<label>Pseudo</label>
-	<input type="text" name="_username" placeholder="pseudo" value="{{ last_username }}"/>
+	<input type="text" name="_username" value="{{ last_username }}"/>
 
 	<label>Mot de passe</label>
-	<input type="password" name="_password" placeholder="mot de passe" />
+	<input type="password" name="_password" />
 
 	<input type="submit" value="Connexion" />
 </form>

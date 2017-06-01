@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html {% block data_html %}{% endblock %}>
+<html lang="fr" {% block data_html %}{% endblock %}>
     <!-- Header -->
     <head>
         <meta charset="utf-8">
@@ -7,19 +7,18 @@
         <link href="{{ asset('css/normalize.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('css/components.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('css/team-orbital-homepage.css') }}" rel="stylesheet" type="text/css">
-         <link href="{{ asset('css/jquery.mCustomScrollbar.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('css/jquery.mCustomScrollbar.css') }}" rel="stylesheet" type="text/css">
         <script src="{{ asset('js/modernizr.js') }}" type="text/javascript"></script>
         <link href="https://daks2k3a4ib2z.cloudfront.net/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
         <link href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png" rel="apple-touch-icon">
-        <link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('css/form-orbital.webflow.css') }}" rel="stylesheet" type="text/css" />
-       
+
         <title>{% block title %}{% endblock %} - orbital express</title>
 
         <script>
         var baseUrl = "{{ path('homepage') }}";
         </script>
-  
+
     </head>
 
     <!-- Contenu page -->
@@ -27,19 +26,21 @@
 
         <div class="popup_wrapper" data-ix="initialstate-connexion">
             <div class="popup_connexion">
-                  <a class="closepopup w-inline-block" data-ix="close-connexion" href="#"><img class="image_close_poup" src="{{ asset('img/001-error.png') }}" width="40"></a>
-                  <h3 class="headerconnexion">connexion</h3>
-                  <div class="contenu_popup_connexion"></div>
+              <a class="closepopup w-inline-block" data-ix="close-connexion" href="#"><img class="image_close_poup" src="{{ asset('img/001-error.png') }}" width="40"></a>
+              <h3 class="headerconnexion">connexion</h3>
+              <div class="error_connexion"></div>
+              <div class="contenu_popup_connexion"></div>
             </div>
         </div>
         <div class="popup_wrapper2" data-ix="initialstate-inscription">
             <div class="popup_inscription">
-                <a class="closepopup_inscription w-inline-block" data-ix="close-inscription" href="#"><img class="image_close_popup_inscription" src="{{ asset('img/001-error.png') }}" width="40"></a>
-                <h3 class="header_inscription">Inscription</h3>
-                <div class="contenu_popup_inscription"></div>
+              <a class="closepopup_inscription w-inline-block" data-ix="close-inscription" href="#"><img class="image_close_popup_inscription" src="{{ asset('img/001-error.png') }}" width="40"></a>
+              <h3 class="header_inscription">Inscription</h3>
+              <div class="error_inscription"></div>
+              <div class="contenu_popup_inscription"></div>
             </div>
         </div>
-        <div class="section-9"><img class="planete1" data-ix="planete1" src="{{ asset('img/planete3png.png') }}" width="111.5"><img class="image-10" sizes="(max-width: 1920px) 100vw, 1920px" src="{{ asset('img/hautpngtest.png') }}" srcset="{{ asset('img/hautpngtest-p-500.png') }} 500w, {{ asset('img/hautpngtest-p-800.png') }} 800w, {{ asset('img/hautpngtest-p-1080.png') }} 1080w, {{ asset('img/hautpngtest-p-1600.png') }} 1600w, {{ asset('img/hautpngtest.png') }} 1920w"><img class="image-13 planeteanneau" data-ix="planeteanneau" sizes="(max-width: 767px) 100vw, 500px" src="{{ asset('img/planeteanneaupng.png') }}" srcset="{{ asset('img/planeteanneaupng-p-500.png') }} 500w, {{ asset('img/planeteanneaupng.png') }} 728w" width="500"><img class="planete3" data-ix="planete-3" src="{{ asset('img/planete6png.png') }}" width="62.5"><img class="image-9" sizes="(max-width: 1920px) 100vw, 1920px" src="{{ asset('img/baspngtest.png') }}" srcset="{{ asset('img/baspngtest-p-500.png') }} 500w, {{ asset('img/baspngtest-p-800.png') }} 800w, {{ asset('img/baspngtest-p-1080.png') }} 1080w, {{ asset('img/baspngtest-p-1600.png') }} 1600w, {{ asset('img/baspngtest.png') }} 1920w"><img class="planete2" data-ix="planete2" src="{{ asset('img/planete5png.png') }}" width="300">
+         <div class="section-9"><img class="planete1" data-ix="planete1" src="{{ asset('img/planete3png.png') }}" width="111.5"><img class="image-10" sizes="(max-width: 1920px) 100vw, 1920px" src="{{ asset('img/hautpngtest.png') }}" srcset="{{ asset('img/hautpngtest-p-500.png') }} 500w, {{ asset('img/hautpngtest-p-800.png') }} 800w, {{ asset('img/hautpngtest-p-1080.png') }} 1080w, {{ asset('img/hautpngtest-p-1600.png') }} 1600w, {{ asset('img/hautpngtest.png 1920w') }}"><img class="image-13 planeteanneau" data-ix="planeteanneau" sizes="(max-width: 767px) 100vw, 500px" src="{{ asset('img/planeteanneaupng.png') }}" srcset="{{ asset('img/planeteanneaupng-p-500.png') }} 500w, {{ asset('img/planeteanneaupng.png') }} 728w" width="500"><img class="planete3" data-ix="planete-3" src="{{ asset('img/planete6png.png') }}" width="62.5"><img class="image-9" sizes="(max-width: 1920px) 100vw, 1920px" src="{{ asset('img/baspngtest.png') }}" srcset="{{ asset('img/baspngtest-p-500.png') }} 500w, {{ asset('img/baspngtest-p-800.png') }} 800w, {{ asset('img/baspngtest-p-1080.png') }} 1080w, {{ asset('img/baspngtest-p-1600.png') }} 1600w, {{ asset('img/baspngtest.png 1920w') }}"><img class="planete2" data-ix="planete2" src="{{ asset('img/planete5png.png') }}" width="300">
         </div>
 
         <div class="navbar w-nav" data-animation="default" data-collapse="medium" data-duration="400">
@@ -49,19 +50,19 @@
         </div>
 
         {% block content %}{% endblock %}
-    
+
         <!-- Footer -->
         <div class="section-5">
             <div class="div-block-5" data-ix="fadeup">
                 <div class="div-block-7">
-                    <a class="link-block w-inline-block" target="_blank"><img src="{{ asset('img/003-facebook-letter-logo.png') }}" width="40"></a>
-                    <a class="link-block-2 w-inline-block" target="_blank"><img src="{{ asset('img/002-twitter-black-shape.png') }}" width="40"></a>
-                    <a class="link-block-3 w-inline-block" target="_blank"><img src="{{ asset('img/001-instagram-logo.png') }}" width="40"></a>
+                    <a class="link-block w-inline-block" href="https://www.facebook.com/Orbital-express-285466275248342/" target="_blank"><img src="{{ asset('img/003-facebook-letter-logo.png') }}" width="40"></a>
+                    <a class="link-block-2 w-inline-block" href="https://twitter.com/_orbitalexpress" target="_blank"><img src="{{ asset('img/002-twitter-black-shape.png') }}" width="40"></a>
+                    <a class="link-block-3 w-inline-block"  href="https://www.instagram.com/orbital_express/?hl=fr" target="_blank"><img src="{{ asset('img/001-instagram-logo.png') }}" width="40"></a>
                 </div>
                 <div class="div-block-6">
-                    <a class="link w-preserve-3d" data-ix="linkhover" href="#">FACEBOOK</a>
-                    <a class="link w-preserve-3d" data-ix="linkhover" href="#">TWITTER</a>
-                    <a class="link w-preserve-3d" data-ix="linkhover" href="#">INSTAGRAM</a>
+                    <a class="link w-preserve-3d" data-ix="linkhover" href="https://www.facebook.com/Orbital-express-285466275248342/" target="_blank">FACEBOOK</a>
+                    <a class="link w-preserve-3d" data-ix="linkhover" href="https://twitter.com/_orbitalexpress" target="_blank">TWITTER</a>
+                    <a class="link w-preserve-3d" data-ix="linkhover" href="https://www.instagram.com/orbital_express/?hl=fr" target="_blank">INSTAGRAM</a>
                 </div>
                 <div class="div-block-9">
                     <a class="link w-preserve-3d" data-ix="linkhover" href="#">2017©TEAMORBITAL</a>

@@ -1,6 +1,6 @@
 {% extends "layout.html.twig" %}
 
-{% block data_html %} data-wf-page="591dbb2c653bab09628cdd32" data-wf-site="591dbb2c653bab09628cdd31" {% endblock %}
+{% block data_html %} data-wf-page="5927e5f75bcb4c5822cb9f0f" data-wf-site="591dbb2c653bab09628cdd31" {% endblock %}
 
 {% block title %}Contact{% endblock %}
 
@@ -19,22 +19,23 @@
         <br>De toute façon, personne ne travaille le week end en 2058...</p>
     </div>
   </div>
-  <div class="form_contact">
+  <div>
     <div class="container_contact w-container">
       <div class="form-wrapper w-form" data-ix="movetoright-2">
-        <form class="form" data-name="Email Form" id="email-form" method="post" name="email-form">
-          <label for="name">Pseudo :</label>
-          <input class="w-input" data-name="Name" id="name" maxlength="256" name="name" placeholder="Pseudo" required="required" type="text">
+        <form class="form" id="email-form">
+          <label for="name">Sujet :</label>
+          <input class="w-input" data-name="Name" id="name" maxlength="256" name="name" placeholder="Sujet" required="required" type="text">
           <label for="email">Email :</label>
           <input class="w-input" data-name="Email" id="email" maxlength="256" name="email" placeholder="Email" required="required" type="email">
           <label for="field">Message :</label>
           <textarea class="w-input" id="field" maxlength="5000" name="field" placeholder="Message" required="required"></textarea>
           <input class="w-button" data-wait="Veuillez patienter..." type="submit" value="Envoyer">
         </form>
-        <div class="w-form-done"></div>
-        <div class="w-form-fail"></div>
+        <div style="color:white;" id="message_mail"></div>
       </div>
     </div>
   </div>
 
+  <script  type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/contact.js') }}"></script>
 {% endblock %}

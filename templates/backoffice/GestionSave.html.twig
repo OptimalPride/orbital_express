@@ -1,0 +1,34 @@
+{% extends "layoutBO.html.twig" %}
+
+{% block content %}
+
+
+<h2 class="gestion_header">Gestion des sauvegardes</h2>
+
+<table>
+
+
+{% if save != NULL%}
+<table>
+
+	<tr>
+	{% for key, value in save[0] %}
+		<th>{{ key }}</th>
+	{% endfor %}
+		<th>action</th>
+	</tr>
+	{% for key in save %}
+		<tr>
+			{% for value in key %}
+				<td>{{ value }}</td>
+			{% endfor %}
+				<td>
+			  <a href="{{ path('deletesave', {'id_save' : key.id_save}) }}"><img class="icon-back" src="{{ asset('img/003-garbage.png') }}"></a>
+				</td>
+		</tr>
+	{% endfor %}
+</table>
+{% else %}
+{{ msg }}
+{% endif %}
+{% endblock %}

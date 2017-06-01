@@ -1,0 +1,33 @@
+
+
+
+
+<table>
+	<tr>
+		<th>Numero de page</th>
+		<th>Pages associees</th>
+		<th>action</th>
+	</tr>
+	{% for key in page %}
+		<tr>
+				<td>{{ key["page_number"] }}</td>
+				<td>
+				{% if key["ending"] == NULL %}
+				{% for choice in choices %}
+					{% if key["id_page"] == choice["id_current_page"] %} - {% for key2 in page %}{% if choice["id_landing_page"] == key2["id_page"] %}{{key2["page_number"]}}{% endif %}{% endfor %}{% endif %}
+				{% endfor %} - 
+				{% else %}
+					{{key["ending"]}}
+				{% endif %}
+				</td>
+				<td>
+
+				<div id="{{key.id_page}}" class="pageedit"><img class="icon-back" src="{{ asset('img/001-settings.png') }}"></div>	
+			  <a href="{{ path('deletepage', {'id_adventure' : adventure.id_adventure,'id_page' : key.id_page}) }}"><img class="icon-back" src="{{ asset('img/003-garbage.png') }}"></a>
+			  
+
+				</td>
+		</tr>
+	{% endfor %}
+</table>
+

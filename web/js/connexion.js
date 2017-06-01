@@ -1,55 +1,102 @@
 $(function(){
-	
-	var login = $.ajax({ 	
+
+	var loginInit = $.ajax({
 		url: baseUrl+"login/",
 		method: "POST",
-	});	
+	});
+	loginInit.done(function( msg ) {
+		msg = JSON.parse(msg);
+		$(".contenu_popup_connexion").html(msg['display']);
+	});
 
-	login.done(function( msg ) {
-		$(".contenu_popup_connexion").html(msg);
-		$("div.contenu_popup_connexion > form").on("submit", function(e){
-			e.preventDefault();
-			var loginData = $.ajax({ 	
-				url: $(this).attr('action'),
-				method: $(this).attr('method'),
-				data: $(this).serialize()
-			});
+	$("a.bouton_connexion").click(function(e){
+		var login = $.ajax({
+			url: baseUrl+"login/",
+			method: "POST",
+		});
 
-			loginData.done(function(reg){
-				$(".contenu_popup_connexion").html(reg);
+		login.done(function( msg ) {
+			msg = JSON.parse(msg);
+			$(".contenu_popup_connexion").html(msg['display']);
+			$("div.contenu_popup_connexion > form").on("submit", function(e){
+				e.preventDefault();
+				var formData = $(this).serialize();
+				var loginData = $.ajax({
+					url: $(this).attr('action'),
+					method: $(this).attr('method'),
+					data: $(this).serialize()
+				});
+
+				loginData.done(function(reg){
+					reg = JSON.parse(reg);
+					if(reg["redirect"] == "true"){
+						window.location.href=baseUrl+'tableau';
+					}
+					else{
+						$(".error_connexion").css({"color": "red", "margin-bottom": "10px"});
+						$(".error_connexion").html("Erreur de saisie");
+					}
+				});
+				loginData.fail(function( jqXHR, textStatus ) {
+		  			alert( "Request failed: " + textStatus );
+		  		});
 			});
-			loginData.fail(function( jqXHR, textStatus ) {
-	  			alert( "Request failed: " + textStatus );
-	  		});			
+		});
+
+		login.fail(function( jqXHR, textStatus ) {
+		  alert( "Request failed: " + textStatus );
 		});
 	});
 
-	login.fail(function( jqXHR, textStatus ) {
-	  alert( "Request failed: " + textStatus );
-	});
 
 // ---------------------------
 
-	var register = $.ajax({ 	
+	var registerInit = $.ajax({
 		url: baseUrl+"register/",
 		method: "POST",
-	});	
-
-	register.done(function( msg ) {
+	});
+	registerInit.done(function( msg ) {
 		$(".contenu_popup_inscription").html(msg);
-		$("div.contenu_popup_inscription > form").on("submit", function(e){
-			e.preventDefault();
-			if (msg = "ça marche !!"){
-				window.location.href=baseUrl+'profil';
-			}
-			else{
-				$(".contenu_popup_inscription").html(msg);
-			}			
-		});
 	});
 
-	register.fail(function( jqXHR, textStatus ) {
-	  alert( "Request failed: " + textStatus );
+	$("a.bouton_inscription").click(function(e){
+		var register = $.ajax({
+			url: baseUrl+"register/",
+			method: "POST",
+		});
+
+		register.done(function( msg ) {
+			$(".contenu_popup_inscription").html(msg);
+			$("div.contenu_popup_inscription > form").on("submit", function(e){
+				e.preventDefault();
+				var registerData = $.ajax({
+					url: $(this).attr('action'),
+					method: $(this).attr('method'),
+					data: $(this).serialize()
+				});
+
+				registerData.done(function(reg){
+					console.log(reg);
+					var test = "ça marche !!";
+					if (reg == test){
+						$(".contenu_popup_inscription").empty();
+						$("img.image_close_popup_inscription").click();
+						$("a.bouton_connexion").click();
+					}
+					else{
+						$(".error_inscription").css({"color": "red", "margin-bottom": "10px"});
+						$(".error_inscription").html(reg);
+					}
+				});
+				registerData.fail(function( jqXHR, textStatus ) {
+		  			alert( "Request failed: " + textStatus );
+		  		});
+			});
+		});
+
+		register.fail(function( jqXHR, textStatus ) {
+		  alert( "Request failed: " + textStatus );
+		});
+
 	});
 });
- 

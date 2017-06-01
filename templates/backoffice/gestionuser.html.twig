@@ -1,0 +1,36 @@
+{% extends "layoutBO.html.twig" %}
+
+{% block content %}
+
+
+<h2 class="gestion_header">Gestion des membres</h2>
+
+{% if user != NULL%}
+<table border="1">
+
+	<tr>
+	{% for key, value in user[0] %}
+		<th>{{ key }}</th>
+	{% endfor %}
+		<th>action</th>
+	</tr>
+	{% for key in user %}
+		<tr>
+			{% for value in key %}
+				<td>{{ value }}</td>
+			{% endfor %}
+				<td>
+				{% if key["role"] == "ROLE_USER" %}
+				<a href="{{ path('upgraderole', {'id_user' : key.id_user}) }}"><img class="icon-back icon-up" src="{{ asset('img/002-arrows.png') }}"></a>
+				{% else %}
+				<a href="{{ path('downgraderole', {'id_user' : key.id_user}) }}"><img class="icon-back" src="{{ asset('img/002-arrows.png') }}"></a>
+				{% endif %}
+			  <a href="{{ path('deleteuser', {'id_user' : key.id_user}) }}"><img class="icon-back" src="{{ asset('img/003-garbage.png') }}"></a>
+				</td>
+		</tr>
+	{% endfor %}
+</table>
+{% else %}
+{{ msg }}
+{% endif %}
+{% endblock %}

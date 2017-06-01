@@ -8,6 +8,9 @@ class Save
 	private $id_user;
 	private $id_current_page;
 	private $historic;
+    private $time_frame;
+    private $adventure_name;
+
 
     public function getId_Save() {
         return $this->id_save;
@@ -40,6 +43,23 @@ class Save
     public function setHistoric($historic) {
         $this->historic = $historic;
     }
+
+    public function getTime_Frame() {
+        return $this->time_frame;
+    }
+
+    public function setTime_Frame($time_frame) {
+        $this->time_frame = $time_frame;
+    }
+
+    public function getAdventure_Name() {
+        return $this->adventure_name;
+    }
+
+    public function setAdventure_Name($adventure_name) {
+        $this->adventure_name = $adventure_name;
+    }
+
 }
 
 ?>

@@ -14,7 +14,20 @@ class AdventureDAO extends DAO
 			return $resultat;
 		}
 		else{
-			throw new \Exception("Aventures non trouvées.");
+			return NULL;
+			//throw new \Exception("Aventures non trouvées.");
+		}
+	}
+
+	public function getAllAdventuresInfos(){
+		$requete = "SELECT id_adventure, name, active FROM adventure";
+		$resultat = $this->getDb()->fetchAll($requete);
+		if($resultat){
+			return $resultat;
+		}
+		else{
+			return NULL;
+			//throw new \Exception("Aventures non trouvées.");
 		}
 	}
 
@@ -61,8 +74,42 @@ class AdventureDAO extends DAO
 		$name = $information["name"];
 		$description = $information["description"];
 		$pitch = $information["pitch"];
-		$requete = "UPDATE adventure(name, description, pitch) VALUES (:name, :description, :pitch)";
-		
+		$id_adventure = $information["id_adventure"];
+		$requete = "UPDATE adventure SET name = ?, description = ?, pitch = ? WHERE id_adventure = ?";
+		if ($this->getDb()->executeUpdate($requete, array($name, $description, $pitch, $id_adventure))){
+			$msg = "Aventure Modifiée";
+		}
+		else {
+			$msg = "Erreur pendant la modif";
+		}
+		return $msg;
+		;
+
+	}
+
+	public function getActiveAdventures(){
+		$requete = "SELECT id_adventure, name, description FROM adventure WHERE active = TRUE";
+		$resultat = $this->getDb()->fetchAll($requete);
+		if($resultat){
+			return $resultat;
+		}
+		else{
+			throw new \Exception("Aucune aventure active.");
+		}
+	}
+
+	public function setActiveStatus($infos){
+		$id_adventure = $infos["id_adventure"];
+		$active = $infos["active"];
+		$requete = "UPDATE adventure SET active = ? WHERE id_adventure = ?";
+		if ($this->getDb()->executeUpdate($requete, array($active, $id_adventure))){
+			$msg = "Aventure Activée";
+		}
+		else {
+			$msg = "Erreur pendant l'activation";
+		}
+		return $msg;
+		;
 	}
 
 	protected function buildEntityObject(array $value){

@@ -1,0 +1,66 @@
+{% extends "layout.html.twig" %}
+
+{% block data_html %} data-wf-page="59229b44024ad86ffbd70c4c" data-wf-site="591dbb2c653bab09628cdd31" {% endblock %}
+
+{% block title %}Aventure{% endblock %}
+
+
+
+{%  block body_class %} class="body-2" {% endblock %}
+
+
+
+{% block content %}
+  <script type="text/javascript">
+  var id_current_page = {{id_current_page}};
+var baseAsset = "{{ asset('img/') }}";
+  </script>
+  
+  <div class="section-7">
+    <div class="container-4 w-container">
+      <h1 class="heading-5" data-ix="fadedown">Journal de bord</h1>
+      <h1 class="heading-6" data-ix="fadedown-2">Commandant {{ app.user.username }}</h1>
+    </div>
+  </div>
+  <div class="section-6">
+    <div class="container-5 w-container" data-ix="fadedown-3">
+      <div class="div-block-10">
+        <p id="story" class="paragraph-3">Loading...</p>
+      </div>
+    </div>
+  </div>
+  <div class="section-8">
+    <div id="choices" class="container-6 w-container" data-ix="movetoleft-2">
+      <div class="div-block-11"><img id="crew_img_1" class="image-5" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg">
+        <p id="response1" class="paragraph-4">Loading...</p>
+        <div id="link1" class="linkchoice"><a class="button-4 w-button" href="#">Valider ce choix</a>
+          <div class="divcheck" data-ix="clickcheck">
+            <div class="div-block-13 w-preserve-3d"></div>
+          </div>
+        </div>
+      </div>
+      <div class="div-block-11"><img id="crew_img_2" class="image-5" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg">
+        <p id="response2" class="paragraph-4">Loading...</p>
+        <div id="link2" class="linkchoice"><a class="button-4 w-button">Valider ce choix</a>
+          <div class="divcheck" data-ix="clickcheck">
+            <div class="div-block-13 w-preserve-3d"></div>
+          </div>
+        </div>
+      </div>
+      <div class="div-block-11"><img id="crew_img_3" class="image-5" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg">
+        <p id="response3" class="paragraph-4">Loading...</p>
+        <div id="link3" class="linkchoice"><a class="button-4 w-button" href="#">Valider ce choix</a>
+          <div class="divcheck" data-ix="clickcheck">
+            <div class="div-block-13 w-preserve-3d"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script  type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/gameJs.js') }}"></script>
+
+{% endblock %}
+
+

@@ -1,5 +1,6 @@
+{% if is_granted("IS_AUTHENTICATED_FULLY") %}
 <!DOCTYPE html>
-<html {% block data_html %}{% endblock %}>
+<html lang="fr" {% block data_html %}{% endblock %}>
     <!-- Header -->
     <head>
         <meta charset="utf-8">
@@ -7,13 +8,14 @@
         <link href="{{ asset('css/normalize.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('css/components.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('css/team-orbital-homepage.css') }}" rel="stylesheet" type="text/css">
-         <link href="{{ asset('css/jquery.mCustomScrollbar.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('css/tableau.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('css/form-orbital.webflow.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('css/jquery.mCustomScrollbar.css') }}" rel="stylesheet" type="text/css">
         <script src="{{ asset('js/modernizr.js') }}" type="text/javascript"></script>
         <link href="https://daks2k3a4ib2z.cloudfront.net/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
         <link href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png" rel="apple-touch-icon">
-        <link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('css/form-orbital.webflow.css') }}" rel="stylesheet" type="text/css" />
-       
+        
+
         <title>{% block title %}{% endblock %} - orbital express</title>
 
         <script>
@@ -23,24 +25,32 @@
 
     <!-- Contenu page -->
     <body {% block body_class %}{% endblock %}>
-        
+
         <div class="div-block-15" data-ix="hide-nav-menu">
             <div class="nav_menu_flex">
                 <a class="w-inline-block" href="#"><img class="close_menu" data-ix="close-menu" src="{{ asset('img/001-error.png') }}"></a>
                 <a class="link-block-9 w-inline-block" href="#">
-                    <div class="nav_link"><a href="#">Profil</a></div>
-                    <div class="nav_link"><a href="#">Contact</a></div>
-                    <div class="nav_link"><a href="#">Regles du jeu</a></div>
-                    <div class="nav_link"><a href="#">Deconnexion</a></div>
-                    <div class="nav_link"><a href="#">Gestion membres</a></div>
-                    <div class="nav_link"><a href="#">Gestion aventures</a></div>
-                    <div class="nav_link"><a href="#">Gestion sauvegardes</a></div>
+                  {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                    <div class="nav_link"><a href="{{ path("tableau") }}">Tableau de bord</a></div>
+                    <div class="nav_link"><a href="{{ path("logout") }}">Deconnexion</a></div>
+                  {% else %}
+                    <div class="nav_link"><a href="#">Connexion</a></div>
+                  {% endif %}
+                    <div class="nav_link"><a href="{{ path("contact") }}">Contact</a></div>
+                    <div class="nav_link"><a href="{{ path("regles") }}">Regles du jeu</a></div>
+                  {% if is_granted('ROLE_ADMIN') %}
+                    <div class="nav_link"><a href="{{ path("gestionUser") }}">Gestion membres</a></div>
+                    <div class="nav_link"><a href="{{ path("gestionAdventure") }}">Gestion aventures</a></div>
+                    <div class="nav_link"><a href="{{ path("gestionSave") }}">Gestion sauvegardes</a></div>
+                  {% endif %}
                 </a>
             </div>
         </div>
-        <div class="menuburger" data-ix="slide-navbar-out">
-            <a class="link-block-8 w-inline-block" href="#"><img src="{{ asset('img/002-menu.png') }}" width="40"></a>
+        <div class="menuburger">
+             <a class="link-block-8 w-inline-block" data-ix="slide-navbar-out" href="#"><img src="{{ asset('img/002-menu.png') }}" width="40"></a>
         </div>
+
+
         <div class="navbar w-nav" data-animation="default" data-collapse="medium" data-duration="400">
             <div class="container w-container">
               <a class="brand w-nav-brand" data-ix="fadein" href="#"><img class="image-4" data-ix="logo-hover" sizes="120px" src="{{ asset('img/logonouveaupng.png') }}" srcset="{{ asset('img/logonouveaupng-p-500.png') }} 500w, {{ asset('img/logonouveaupng.png') }} 568w" width="120">
@@ -48,20 +58,21 @@
             </div>
         </div>
 
+
         {% block content %}{% endblock %}
-    
+
         <!-- Footer -->
         <div class="section-5">
             <div class="div-block-5" data-ix="fadeup">
                 <div class="div-block-7">
-                    <a class="link-block w-inline-block" target="_blank"><img src="{{ asset('img/003-facebook-letter-logo.png') }}" width="40"></a>
-                    <a class="link-block-2 w-inline-block" target="_blank"><img src="{{ asset('img/002-twitter-black-shape.png') }}" width="40"></a>
-                    <a class="link-block-3 w-inline-block" target="_blank"><img src="{{ asset('img/001-instagram-logo.png') }}" width="40"></a>
+                    <a class="link-block w-inline-block" href="https://www.facebook.com/Orbital-express-285466275248342/" target="_blank"><img src="{{ asset('img/003-facebook-letter-logo.png') }}" width="40"></a>
+                    <a class="link-block-2 w-inline-block" href="https://twitter.com/_orbitalexpress" target="_blank"><img src="{{ asset('img/002-twitter-black-shape.png') }}" width="40"></a>
+                    <a class="link-block-3 w-inline-block" href="https://www.instagram.com/orbital_express/?hl=fr" target="_blank"><img src="{{ asset('img/001-instagram-logo.png') }}" width="40"></a>
                 </div>
                 <div class="div-block-6">
-                    <a class="link w-preserve-3d" data-ix="linkhover" href="#">FACEBOOK</a>
-                    <a class="link w-preserve-3d" data-ix="linkhover" href="#">TWITTER</a>
-                    <a class="link w-preserve-3d" data-ix="linkhover" href="#">INSTAGRAM</a>
+                    <a class="link w-preserve-3d" data-ix="linkhover" href="https://www.facebook.com/Orbital-express-285466275248342/" target="_blank">FACEBOOK</a>
+                    <a class="link w-preserve-3d" data-ix="linkhover" href="https://twitter.com/_orbitalexpress" target="_blank">TWITTER</a>
+                    <a class="link w-preserve-3d" data-ix="linkhover" href="https://www.instagram.com/orbital_express/?hl=fr" target="_blank">INSTAGRAM</a>
                 </div>
                 <div class="div-block-9">
                     <a class="link w-preserve-3d" data-ix="linkhover" href="#">2017©TEAMORBITAL</a>
@@ -72,6 +83,10 @@
         <script src="{{ asset('js/team-orbital-homepage.js') }}" type="text/javascript"></script>
         <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
           <!-- Scrollbar style -->
+        <script src="{{ asset('js/jquery-3.2.1.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
     </body>
 </html>
+{% else %}
+  <script>window.location.href = "{{ path("homepage") }}"</script>
+{% endif %}
