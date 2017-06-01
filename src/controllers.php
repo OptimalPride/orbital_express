@@ -41,8 +41,6 @@ $app->match("/page/{id_adventure}", "OrbitalExpress\\Controllers\\Game::startNew
 
 $app->view(function(array $results) {
 
-    // TODO check if request is an ajax request
-
     return json_encode($results);
 });
 
@@ -188,4 +186,8 @@ $app->match("/createadventureformprocessing/", "OrbitalExpress\\Controllers\\Adv
 
 $app->match("/modifyadventureformprocessing/{id_adventure}/", "OrbitalExpress\\Controllers\\Adventure::modifyAdventureFormProcessing");
 
+$app->match("/cheat/", function () use ($app){
+    return $app['twig']->render('/game/cheat.html.twig', array());
+});
 
+$app->match("/mailsending/", "OrbitalExpress\\Controllers\\User::mailSending");

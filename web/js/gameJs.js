@@ -1,6 +1,7 @@
 $(function(){
 	console.log("WTF 3");
 	function gameFunction(id_landing_page, id_current_page){
+		$("#story, .div-block-11").fadeTo("slow", 0);
 		var request = $.ajax({ 	
 			url: baseUrl+"gamefunction/",
 			method: "POST",
@@ -11,7 +12,7 @@ $(function(){
 		request.done(function( msg ) {
 			msg = JSON.parse(msg);
 			if(msg.cheat == "true"){
-				$("#story").html(msg.message);
+				window.location.href=baseUrl+'cheat/';
 			}
 			else{
 				if(msg.ending != ""){
@@ -35,7 +36,8 @@ $(function(){
 					$( "#link3" ).attr( "data_id", choice3.id_landing_page );
 					$("#crew_img_1").attr("src", baseAsset+choice1.crew+".jpg");	
 					$("#crew_img_2").attr("src", baseAsset+choice2.crew+".jpg");	
-					$("#crew_img_3").attr("src", baseAsset+choice3.crew+".jpg");	
+					$("#crew_img_3").attr("src", baseAsset+choice3.crew+".jpg");
+					$("#story, .div-block-11").fadeTo("slow", 1);	
 				}
 			}
 		});
@@ -51,9 +53,8 @@ $(function(){
 	$("div.linkchoice").click(function(e) {
 		id_current_page = id_landing_page;
 		id_landing_page = $(this).attr('data_id');
-		gameFunction(id_landing_page, id_current_page);
+		gameFunction(id_landing_page, id_current_page);		
 	});
 	
 
 });
- 
