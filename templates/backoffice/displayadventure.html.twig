@@ -4,7 +4,8 @@
 
 <h2 class="gestion_header">Pages de l'aventure : </h2>
 
-<table border="1">
+{% if pages != "Aucune pages à l'id:1" %}
+<table>
 	<tr>
 	{% for key, value in pages[0] %}
 		<th>{{ key }}</th>
@@ -18,6 +19,8 @@
 		</tr>
 	{% endfor %}
 </table>
-
+{% else %}
+<h3 class="text-back">Pas de pages à afficher !</h3>
+{% endif %}
 
 {% endblock %}
