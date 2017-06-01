@@ -11,7 +11,10 @@
 
 
 {% block content %}
-  <script type="text/javascript">var id_current_page = {{id_current_page}};</script>
+  <script type="text/javascript">
+  var id_current_page = {{id_current_page}};
+var baseAsset = "{{ asset('img/') }}";
+  </script>
   
   <div class="section-7">
     <div class="container-4 w-container">
@@ -28,7 +31,7 @@
   </div>
   <div class="section-8">
     <div class="container-6 w-container" data-ix="movetoleft-2">
-      <div class="div-block-11"><img class="image-5" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg">
+      <div class="div-block-11"><img id="crew_img_1" class="image-5" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg">
         <p id="response1" class="paragraph-4">Loading...</p>
         <div id="link1" class="linkchoice"><a class="button-4 w-button" href="#">Valider ce choix</a>
           <div class="divcheck" data-ix="clickcheck">
@@ -36,7 +39,7 @@
           </div>
         </div>
       </div>
-      <div class="div-block-11"><img class="image-5" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg">
+      <div class="div-block-11"><img id="crew_img_2" class="image-5" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg">
         <p id="response2" class="paragraph-4">Loading...</p>
         <div id="link2" class="linkchoice"><a class="button-4 w-button">Valider ce choix</a>
           <div class="divcheck" data-ix="clickcheck">
@@ -44,7 +47,7 @@
           </div>
         </div>
       </div>
-      <div class="div-block-11"><img class="image-5" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg">
+      <div class="div-block-11"><img id="crew_img_3" class="image-5" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg">
         <p id="response3" class="paragraph-4">Loading...</p>
         <div id="link3" class="linkchoice"><a class="button-4 w-button" href="#">Valider ce choix</a>
           <div class="divcheck" data-ix="clickcheck">
