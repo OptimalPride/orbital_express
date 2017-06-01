@@ -12,15 +12,19 @@
 	<textarea rows="3" cols="30" name="description" maxlength="200">{{adventure['description']}}</textarea>
 
 	<label>Pitch</label>
+
 	<textarea rows="3" cols="30" name="pitch" maxlength="2000">{{adventure['pitch']}}</textarea>
+
 
 	<input type="submit" value="Modifier">
 
 </form>
 
-<a href="{{path('homepage')}}toggleadventure/{{adventure["id_adventure"]}}">{% if adventure["active"] == TRUE %}Desactiver aventure{% else %}Activer aventure{% endif %}</a>
-
-<a href="{{path('homepage')}}addpage/{{adventure["id_adventure"]}}">Ajouter une page</a>
+<div class="link_block_action">
+	<a class="link_action" href="{{path('homepage')}}toggleadventure/{{adventure["id_adventure"]}}">{% if adventure["active"] == TRUE %}Desactiver aventure{% else %}Activer aventure{% endif %}</a>
+	<a class="link_action" href="{{path('homepage')}}addpage/{{adventure["id_adventure"]}}">Ajouter une page</a>
+</div>
+<h2 class="gestion_header">Gestion des pages de l'aventure {{ adventure.id_adventure }}</h2>
 <div id="adventure_pages"></div>
 
 <div id="page_edit_form"></div>
