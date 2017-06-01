@@ -33,7 +33,8 @@ $(function(){
 						window.location.href=baseUrl+'tableau';
 					}
 					else{
-						$("#error_connexion").html("Erreur de saisie");
+						$(".error_connexion").css({"color": "red", "margin-bottom": "10px"});
+						$(".error_connexion").html("Erreur de saisie");
 					}
 				});
 				loginData.fail(function( jqXHR, textStatus ) {
@@ -83,7 +84,7 @@ $(function(){
 						$("a.bouton_connexion").click();
 					}
 					else{
-						$("#error_inscription").html(reg);
+						$(".error_inscription").html(reg);
 					}
 				});
 				registerData.fail(function( jqXHR, textStatus ) {
