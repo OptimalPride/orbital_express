@@ -24,7 +24,8 @@ $(function(){
 					}
 				}
 				else{
-					$("#story").html(msg.page.story);
+					var story = msg.page.story.replace(/\n/g, "<br />")
+					$("#story").html(story);
 					var choice1 = msg.choices[0];
 					var choice2 = msg.choices[1];
 					var choice3 = msg.choices[2];
