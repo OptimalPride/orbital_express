@@ -196,7 +196,7 @@
 
 .heading-2 {
   display: block;
-  width: 270%;
+  width: 100%;
   background-color: transparent;
   font-family: 'Big john', sans-serif;
   font-size: 3.5em;
@@ -371,7 +371,7 @@
 }
 
 .heading-4 {
-  width: 281%;
+  width: 100%;
   margin-top: 20px;
   margin-bottom: 0px;
   font-family: 'Big john', sans-serif;
@@ -455,11 +455,13 @@
 
 .paragraph-3 {
   overflow: scroll;
+  overflow-x: hidden;
   max-height: none;
   padding: 30px;
   opacity: 1;
   font-family: Avenir, sans-serif;
-  font-size: 1em;
+  font-size: 1.5em;
+  line-height:1.6em;
   text-align: center;
 }
 
@@ -521,7 +523,7 @@
   padding: 16px;
   font-family: Avenir, sans-serif;
   color: #fff;
-  font-size: 0.9em;
+  font-size: 1.3em;
   text-align: center;
 }
 
@@ -1865,6 +1867,8 @@ html.w-mod-js *[data-ix="initialstate-connexion"] {
   }
   .paragraph-3 {
     overflow: scroll;
+    font-size:1.2em;
+    line-height:1.3em;
   }
   .container-5 {
     margin-bottom: 99px;
@@ -1911,6 +1915,7 @@ html.w-mod-js *[data-ix="initialstate-connexion"] {
     -ms-flex: 0 auto;
     flex: 0 auto;
     text-align: left;
+    font-size:0.9em;
   }
   .divcheck {
     width: 50px;
@@ -2155,7 +2160,9 @@ html.w-mod-js *[data-ix="initialstate-connexion"] {
   }
   .paragraph-3 {
     overflow: scroll;
+    overflow-y: none;
     max-height: 500px;
+    height: 500px;
   }
   .container-5 {
     margin-bottom: 55px;
