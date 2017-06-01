@@ -3,21 +3,27 @@
   <html>
     <head>
       <title>{% block title '' %} - admin orbital express</title>
-      <script  type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+      <meta charset="utf-8">
+      <meta content="width=device-width, initial-scale=1" name="viewport">
       <link href="{{ asset('css/gestion_back.css') }}" rel="stylesheet" type="text/css">
       <link href="{{ asset('css/tableau.css') }}" rel="stylesheet" type="text/css">
+      <link href="{{ asset('css/form-orbital.webflow.css') }}" rel="stylesheet" type="text/css" />
+      <script  type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+
       <script>var baseUrl = "{{ path('homepage') }}";</script>
     </head>
     <body>
 
-
-        <div class="nav_link"><a href="{{ path("tableau") }}">Profil</a></div>
-        <div class="nav_link"><a href="{{ path("logout") }}">Deconnexion</a></div>
-        <div class="nav_link"><a href="{{ path("gestionUser") }}">Gestion membres</a></div>
-        <div class="nav_link"><a href="{{ path("gestionAdventure") }}">Gestion aventures</a></div>
-        <div class="nav_link"><a href="{{ path("gestionSave") }}">Gestion sauvegardes</a></div>
-        <div id="load_gestion">{% block content %}{% endblock %}</div>
-        <script  type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+      <div id="nav_back">
+        <div class="gestion_back_link nav_link"><a href="{{ path("tableau") }}">Tableau de bord</a></div>
+        <div class="gestion_back_link nav_link"><a href="{{ path("logout") }}">Deconnexion</a></div>
+        <div class="gestion_back_link nav_link"><a href="{{ path("gestionUser") }}">Gestion membres</a></div>
+        <div class="gestion_back_link nav_link"><a href="{{ path("gestionAdventure") }}">Gestion aventures</a></div>
+        <div class="gestion_back_link nav_link"><a href="{{ path("gestionSave") }}">Gestion sauvegardes</a></div>
+      </div>
+      <div id="load_gestion">{% block content %}{% endblock %}</div>
+     
+       
     </body>
   </html>
 {% else %}

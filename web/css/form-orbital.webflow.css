@@ -71,11 +71,12 @@ input:focus {
 textarea {
   width: 50%;
   border-style: none;
-  background-color: #011c4a;
+  background-color: #fff;
+  opacity:0.8;
   -webkit-transition: border 500ms ease;
   transition: border 500ms ease;
   font-family: Avenir, sans-serif;
-  color: #fff;
+  color: #000;
   font-size: 1em;
 }
 
@@ -123,67 +124,67 @@ label {
 
 @font-face {
   font-family: 'Avenir';
-  src: url('../fonts/Avenir-BlackOblique.ttf') format('truetype'), url('../fonts/Avenir-HeavyOblique.ttf') format('truetype');
+  src: url('{{ asset('fonts/Avenir-BlackOblique.ttf') }}') format('truetype'), url('../fonts/Avenir-HeavyOblique.ttf') format('truetype');
   font-weight: 900;
   font-style: italic;
 }
 @font-face {
   font-family: 'Avenir';
-  src: url('../fonts/Avenir-Black.ttf') format('truetype'), url('../fonts/Avenir-Heavy.ttf') format('truetype');
+  src: url('{{ asset('fonts/Avenir-Black.ttf') }}') format('truetype'), url('../fonts/Avenir-Heavy.ttf') format('truetype');
   font-weight: 900;
   font-style: normal;
 }
 @font-face {
   font-family: 'Avenir';
-  src: url('../fonts/Avenir-Light.ttf') format('truetype');
+  src: url('{{ asset('fonts/Avenir-Light.ttf') }}') format('truetype');
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
   font-family: 'Avenir';
-  src: url('../fonts/Avenir-BookOblique.ttf') format('truetype'), url('../fonts/Avenir-Oblique.ttf') format('truetype');
+  src: url('{{ asset('fonts/Avenir-BookOblique.ttf') }}') format('truetype'), url('../fonts/Avenir-Oblique.ttf') format('truetype');
   font-weight: 400;
   font-style: italic;
 }
 @font-face {
   font-family: 'Avenir';
-  src: url('../fonts/Avenir-LightOblique.ttf') format('truetype');
+  src: url('{{ asset('fonts/Avenir-LightOblique.ttf') }}') format('truetype');
   font-weight: 300;
   font-style: italic;
 }
 @font-face {
   font-family: 'Avenir book';
-  src: url('../fonts/Avenir-Book.ttf') format('truetype');
+  src: url('{{ asset('fonts/Avenir-Book.ttf') }}') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: 'Avenir';
-  src: url('../fonts/Avenir-MediumOblique.ttf') format('truetype');
+  src: url('{{ asset('fonts/Avenir-MediumOblique.ttf') }}') format('truetype');
   font-weight: 500;
   font-style: italic;
 }
 @font-face {
   font-family: 'Avenir';
-  src: url('../fonts/Avenir-Medium.ttf') format('truetype');
+  src: url('{{ asset('fonts/Avenir-Medium.ttf') }}') format('truetype');
   font-weight: 500;
   font-style: normal;
 }
 @font-face {
   font-family: 'Avenir roman';
-  src: url('../fonts/Avenir-Roman.ttf') format('truetype');
+  src: url('{{ asset('fonts/Avenir-Roman.ttf') }}') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: 'Slim joe';
-  src: url('../fonts/Slim-Joe.otf') format('opentype');
+  src: url('{{ asset('fonts/Slim-Joe.otf') }}') format('opentype');
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: 'Big john';
-  src: url('../fonts/BIG-JOHN.otf') format('opentype');
+  src: url('{{ asset('/BIG-JOHN.otf') }}') format('opentype');
   font-weight: 400;
   font-style: normal;
 }

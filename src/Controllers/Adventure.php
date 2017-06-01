@@ -69,34 +69,19 @@ class Adventure
 		return $app['twig']->render('backoffice/displayadventure.html.twig', array("pages" => $pages));
 	}
 
-	public function createAdventure(Application $app, Request $request){
+	public function createAdventure(Application $app){
 		$role = $app['security.token_storage']->getToken()->getUser()->getRole();
 		if($role != "ROLE_ADMIN"){
 			$url = $app['url_generator']->generate('logout');
 			return $app->redirect($url);
 		}
-	    $data = array(
-	        "name" => "Nom de l'aventure",
-	        "description" => "Description de l'aventure",
-	        "pitch" => "Pitch de l'aventure, l'accroche"
-	    );
-	    $adventureform = $app['form.factory']->create(\OrbitalExpress\Form\Type\AdventureType::class, $data);
-	    $adventureform->handleRequest($request);
+	    return $app['twig']->render('backoffice/createadventure.html.twig', array());
+	}
 
-	    if ($adventureform->isValid()) {
-	        $data = $adventureform->getData();
-	        if (isset($data["name"]) && isset($data["description"]) && isset($data["pitch"])) {
-	            $information = array("name" => $data["name"], "description" => $data["description"], "pitch" => $data["pitch"]);
-	            $msg = $app["dao.adventure"]->addNewAdventure($information);
-	            $adventures = $app["dao.adventure"]->getAllAdventures();
-				$url = $app['url_generator']->generate('gestionAdventure');
-				return $app->redirect($url);
-	        }
-	        else{
-	            throw new \Exception("Veuillez remplir toutes les informations");
-	        }
-	    }
-	    return $app['twig']->render('backoffice/createadventure.html.twig', array('adventureform' => $adventureform->createView()));
+	public function createAdventureFormProcessing(Application $app){
+ 		$information = array("name" => $_POST["name"], "description" => $_POST["description"], "pitch" => $_POST["pitch"]);
+	    $msg = $app["dao.adventure"]->addNewAdventure($information);
+	    return $msg;
 	}
 
 	public function modifyAdventure(Application $app, Request $request, $id_adventure){
@@ -119,34 +104,11 @@ class Adventure
 		return $app['twig']->render('game/preface-aventure.html.twig', array("adventure" => $adventure));
 	}
 
-	public function adventureEditForm(Application $app,Request $request, $id_adventure){
-		$role = $app['security.token_storage']->getToken()->getUser()->getRole();
-		if($role != "ROLE_ADMIN"){
-			$url = $app['url_generator']->generate('logout');
-			return $app->redirect($url);
-		}
+	public function modifyAdventureFormProcessing(Application $app, $id_adventure){
 		$adventure = $app["dao.adventure"]->getAdventureById($id_adventure);
-	    $data = array(
-	        "name" => $adventure["name"],
-	        "description" => $adventure["description"],
-	        "pitch" => $adventure["pitch"]
-	    );
-
-	    $adventureform = $app['form.factory']->create(\OrbitalExpress\Form\Type\AdventureType::class, $data);
-	    $adventureform->handleRequest($request);
-
-	    if ($adventureform->isValid()) {
-	        $data = $adventureform->getData();
-	        if (isset($data["name"]) && isset($data["description"]) && isset($data["pitch"])) {
-	            $information = array("name" => $data["name"], "description" => $data["description"], "pitch" => $data["pitch"], "id_adventure"=>$id_adventure);
-	            $msg = $app["dao.adventure"]->updateAdventure($information);
-	            return "Aventure modifiée";
-	        }
-	        else{
-	            throw new \Exception("Veuillez remplir toutes les informations");
-	        }
-	    }
-	    return $app['twig']->render('backoffice/adventureform.html.twig', array('adventureform' => $adventureform->createView()));
+        $information = array("name" => $_POST["name"], "description" => $_POST["description"], "pitch" => $_POST["pitch"], "id_adventure"=>$id_adventure);
+        $msg = $app["dao.adventure"]->updateAdventure($information);
+        return $msg;
 	}
 
 	public function toggleAdventure(Application $app, $id_adventure){

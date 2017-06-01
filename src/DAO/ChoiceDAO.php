@@ -25,7 +25,7 @@ class ChoiceDAO extends DAO
 			return $resultat;
 		}
 		else{
-			throw new \Exception("Aucun choix dans la bdd");
+			return "Aucun choix dans la bdd";
 		}
 	}
 
@@ -47,10 +47,10 @@ class ChoiceDAO extends DAO
 
 	    $resultat = $this->getDb()->executeUpdate($requete, array($id_current_page, $choices["1"]["id_landing_page"], $choices["1"]["crew"], $choices["1"]["response"], $id_current_page, $choices["2"]["id_landing_page"], $choices["2"]["crew"], $choices["2"]["response"], $id_current_page, $choices["3"]["id_landing_page"], $choices["3"]["crew"], $choices["3"]["response"]));
 	    if($resultat){
-			return "Choix ajoutés";
+			return "Page et choix ajoutés";
 		}
 		else{
-			throw new \Exception("Erreur pendant l'ajout des choix");
+			return "Erreur pendant l'ajout des choix";
 		}
 	}
 
@@ -73,11 +73,10 @@ class ChoiceDAO extends DAO
 	    $resultat = $this->getDb()->executeUpdate($requete, array($choices["1"]["id_choice"], $choices["2"]["id_choice"], $choices["3"]["id_choice"], $choices["1"]["id_landing_page"], $choices["1"]["crew"], $choices["1"]["response"], $choices["2"]["id_landing_page"], $choices["2"]["crew"], $choices["2"]["response"], $choices["3"]["id_landing_page"], $choices["3"]["crew"], $choices["3"]["response"]));
 
 	    if($resultat){
-			return "Choix modifiés";
+			return "choix modifiés";
 		}
 		else{
-			// throw new \Exception("Erreur pendant la modification des choix");
-			return "Erreur pendant la modification des choix";
+			return "choix non modifiés";
 		}
 	}
 

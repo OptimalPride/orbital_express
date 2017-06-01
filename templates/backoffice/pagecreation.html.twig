@@ -7,7 +7,7 @@
 	<input type="number"  min="1" name="page_number"><br>
 
 	<label>Scenario</label>
-	<textarea  rows="10" cols="50" name="story"></textarea><br>
+	<textarea  rows="10" cols="50" name="story" maxlength="1000"></textarea><br>
 
 	<label>Page finale?</label>
 	<select name="ending">
@@ -19,10 +19,10 @@
 		<legend>Choix 1</legend>
 
 		<label>Personnage</label>
-		<input type="text" name="crew1">
+		<input type="text" name="crew1" maxlength="20"><br/><br/>
 
-		<label>Reponse</label>
-		<textarea rows="3" cols="30" name="response1"></textarea>
+		<label>Reponse</label><br/><br/>
+		<textarea rows="3" cols="30" name="response1" maxlength="200"></textarea><br/><br/>
 
 		<label>Vers la page :</label>
 		<input type="number"  min="1" name="id_landing_page1">
@@ -32,10 +32,10 @@
 		<legend>Choix 2</legend>
 
 		<label>Personnage</label>
-		<input type="text" name="crew2">
+		<input type="text" name="crew2" maxlength="20"><br/><br/>
 
-		<label>Reponse</label>
-		<textarea rows="3" cols="30" name="response2"></textarea>
+		<label>Reponse</label><br/><br/>
+		<textarea rows="3" cols="30" name="response2" maxlength="200"></textarea><br/><br/>
 
 		<label>Vers la page :</label>
 		<input type="number"  min="1" name="id_landing_page2">
@@ -45,10 +45,10 @@
 		<legend>Choix 3</legend>
 
 		<label>Personnage</label>
-		<input type="text" name="crew3">
+		<input type="text" name="crew3" maxlength="20"><br/><br/>
 
-		<label>Reponse</label>
-		<textarea rows="3" cols="30" name="response3"></textarea>
+		<label>Reponse</label><br/><br/>
+		<textarea rows="3" cols="30" name="response3" maxlength="200"></textarea><br/><br/>
 
 		<label>Vers la page :</label>
 		<input type="number"  min="1" name="id_landing_page3">
@@ -69,17 +69,7 @@ $(function(){
 		});
 
 		addpage.done(function(reg){
-			console.log(reg);
-			alert('Page ajoutée');
-			var test = "ça marche !!";
-			if (reg == test){
-				$(".contenu_popup_inscription").empty();
-				$("img.image_close_popup_inscription").click();
-				$("a.bouton_connexion").click();
-			}
-			else{
-				$("#error_inscription").html(reg);
-			}
+			alert(reg);
 		});
 		addpage.fail(function( jqXHR, textStatus ) {
   			alert( "Request failed: " + textStatus );

@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS Choice (
   id_current_page INT(5) NOT NULL,
   id_landing_page INT(5) DEFAULT NULL,
   crew VARCHAR(20) NOT NULL,
-  response VARCHAR(100) NOT NULL,
+  response VARCHAR(200) NOT NULL,
   PRIMARY KEY (id_choice),
   FOREIGN KEY (id_current_page) REFERENCES Page (id_page) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -32,7 +32,10 @@ $(function(){
 					$("#response3").html(choice3.response);
 					$( "#link1" ).attr( "data_id", choice1.id_landing_page );
 					$( "#link2" ).attr( "data_id", choice2.id_landing_page );
-					$( "#link3" ).attr( "data_id", choice3.id_landing_page );	
+					$( "#link3" ).attr( "data_id", choice3.id_landing_page );
+					$("#crew_img_1").attr("src", baseAsset+choice1.crew+".jpg");	
+					$("#crew_img_2").attr("src", baseAsset+choice2.crew+".jpg");	
+					$("#crew_img_3").attr("src", baseAsset+choice3.crew+".jpg");	
 				}
 			}
 		});
