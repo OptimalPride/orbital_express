@@ -84,6 +84,7 @@ $(function(){
 						$("a.bouton_connexion").click();
 					}
 					else{
+						$(".error_inscription").css({"color": "red", "margin-bottom": "10px"});
 						$(".error_inscription").html(reg);
 					}
 				});

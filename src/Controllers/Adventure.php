@@ -127,7 +127,11 @@ class Adventure
 
 	}
 
-	public function createAdventureBackup(Application $app){
-
+	public function createAdventureBackup(Application $app, $id_adventure){
+		/*Idea : create a backup generator for an adventure. 
+			Export with sql requests: get adventure infos by id_adventure, get pages infos by id_adventure, get choices for each page.
+			put infos in a txt file with a write, in the form of sql inserts. Have a import button. First insert adventure, get new id_adventure (lastInsertId()), insert pages with the new the id_adventure, get new id_page for each page and insert choices with new id pages. difficulty : getting the new id_landing_pages. Solution : get id page by pagenumber and id_adventure.
+		*/
+			return "Feature to be implemented";
 	}
 }
